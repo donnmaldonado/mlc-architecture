@@ -4,8 +4,8 @@
 <meta name="robots" content="noindex, nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About us &mdash; MLC Architecture P.C.</title>
-<meta name="description" content="MLC Architecture P.C. is a full-service architectural firm based in Patchogue, New York, serving clients across Long Island and New York City.">
+<title>Showcase &mdash; MLC Architecture P.C.</title>
+<meta name="description" content="A selection of residential and commercial work by MLC Architecture P.C. across Long Island and New York City.">
 <link rel="icon" href="assets/img/favicon.png" sizes="any">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,31 +13,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/main.css?v=8">
 <style>
-  /* about-only */
-  .approach__close { text-align: center; max-width: 40rem; margin: clamp(3rem, 6vw, 5rem) auto 0; padding-top: clamp(2.5rem, 5vw, 4rem); border-top: var(--border) solid rgba(250,248,243,0.2); }
-  .approach__close .btn-row { justify-content: center; margin-top: 2rem; }
-  .mission-media .caption { justify-content: flex-start; }
+  /* showcase-only */
+  .work-grid { display: grid; gap: clamp(2rem, 3.5vw, 3rem) clamp(20px, 3vw, 44px); grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .work-item--wide { grid-column: span 2; } }
 </style>
 </head>
 <body>
 <header class="header" id="top">
   <div class="header__inner">
     <nav class="nav nav--left" aria-label="Showcase">
-      <a href="showcase.html">Showcase</a>
+      <a href="showcase.html" aria-current="page">Showcase</a>
     </nav>
     <a class="brandmark" href="index.html" aria-label="MLC Architecture P.C. &mdash; home">
       <img class="brandmark__logo" src="assets/img/logo/mlc-logo.png" width="900" height="451" alt="MLC Architecture P.C." decoding="async">
     </a>
     <nav class="nav nav--right" aria-label="The firm">
-      <a href="about.html" aria-current="page">The Firm</a>
+      <a href="about.html">The Firm</a>
     </nav>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span class="menu-btn__label">Menu</span><span class="menu-btn__icon" aria-hidden="true"></span></button>
   </div>
-  <nav class="subnav" aria-label="The firm section">
+  <nav class="subnav" aria-label="Showcase section">
     <div class="subnav__inner">
-      <a href="about.html" aria-current="page">About us</a>
-      <a href="services.html">Services</a>
-      <a href="contact.html">Contact us</a>
+      <a href="showcase.html" aria-current="page">Showcase</a>
+      <a href="gallery.html">Gallery</a>
     </div>
   </nav>
 </header>
@@ -47,14 +45,24 @@
     <li class="menu__grp">
       <p class="menu__grp-head">Showcase</p>
       <ul>
-      <li><a href="showcase.html">Showcase</a></li>
+      <li><a href="showcase.html" aria-current="page">Showcase</a></li>
       <li><a href="gallery.html">Gallery</a></li>
       </ul>
     </li>
     <li class="menu__grp">
       <p class="menu__grp-head">The firm</p>
       <ul>
-      <li><a href="about.html" aria-current="page">About us</a></li>
+      <li><a href="about.html">About us</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact us</a></li>
+      </ul>
+    </li>
+  </ul>
+    </li>
+    <li class="menu__grp">
+      <p class="menu__grp-head">The firm</p>
+      <ul>
+      <li><a href="about.html">About us</a></li>
       <li><a href="services.html">Services</a></li>
       <li><a href="contact.html">Contact us</a></li>
       </ul>
@@ -71,82 +79,72 @@
 
 <main>
   <!-- PAGE HERO -->
-  <section class="page-hero page-hero--image">
-    <div class="page-hero__bg" aria-hidden="true"><img src="assets/img/projects/p04.jpg" alt="" width="1600" height="917" fetchpriority="high"></div>
+  <section class="page-hero">
     <div class="container">
-      <p class="label" data-reveal>The firm</p>
-      <div class="page-hero__head mt-3">
-        <h1 class="display" data-reveal style="--d:.1s">About Us</h1>
-        <p class="lead measure" data-reveal style="--d:.2s">MLC Architecture P.C., a full-service architectural firm based in Patchogue, New York, brings its professional expertise to clients across Long Island and New York City.</p>
-      </div>
+      <p class="label" data-reveal>Selected work</p>
+      <h1 class="display mt-3" data-reveal style="--d:.1s">Showcase</h1>
+      <p class="lead measure mt-4" data-reveal style="--d:.2s">A short selection of the practice&rsquo;s residential and commercial work. The full set of projects lives in the gallery.</p>
+    </div>
+  </section>
+  <div class="container"><hr class="rule"></div>
+
+  <!-- FEATURE -->
+  <section class="section section--flush-top feature">
+    <a class="feature__media" href="gallery.html" data-reveal>
+      <img src="assets/img/projects/p01.jpg" alt="White modern farmhouse, glass garage door and gravel drive" loading="lazy" width="1178" height="580">
+    </a>
+    <div class="feature__body" data-reveal style="--d:.1s">
+      <p class="label">Residential</p>
+      <h2 class="h2 mt-2">Project 01</h2>
+      <p class="lead">White modern farmhouse with a glass garage door and gravel drive. New construction on Long Island.</p>
+      <p><a class="link" href="gallery.html">View in the gallery</a></p>
     </div>
   </section>
 
-  <!-- INTRO -->
+  <!-- THE SELECTION -->
   <section class="section">
     <div class="container">
-      <div class="grid">
-        <div class="col-12 md:col-6">
-          <p class="lead" data-reveal>MLC Architecture P.C., a full-service architectural firm based in Patchogue, New York, brings its professional expertise to clients across Long Island and New York City. Founded on the belief of delivering customized solutions, MLC offers an efficient design process that seamlessly integrates all project elements for residential and commercial clients.</p>
-        </div>
-        <div class="col-12 md:col-6 md:start-7">
-          <p class="lead" data-reveal style="--d:.1s">Our clients&rsquo; lives are enriched and enhanced by these designs that are timeless, functional, and aesthetic.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- OUR MISSION -->
-  <section class="section section--flush-top">
-    <div class="container">
-      <div class="grid">
-        <div class="col-12 md:col-5 mission-media" data-reveal>
-          <div class="media media--4x3"><img src="assets/img/projects/p11.jpg" alt="Stone and white gable house, front elevation" loading="lazy" width="1600" height="1040"></div>
-          <div class="caption"><b>Project 11</b><span>Residential</span></div>
-        </div>
-        <div class="col-12 md:col-6 md:start-7">
-          <p class="label" data-reveal>Our mission</p>
-          <h2 class="h2 mt-2" data-reveal style="--d:.05s">Design That Transforms Lives</h2>
-          <p class="lead mt-4" data-reveal style="--d:.1s">At MLC Architecture P.C., we are passionate about design&rsquo;s ability to transform lives. Through innovation, sustainability, and close collaboration, we create inspiring, functional, and enduring spaces for residential and commercial clients.</p>
-          <p class="body mt-3" data-reveal style="--d:.2s">Since our founding, we have been committed to exceeding expectations by delivering exceptional architectural solutions tailored to each client&rsquo;s unique vision. We believe in the power of thoughtful design, technical expertise, and personalized service to create environments that enhance lives and communities.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- OUR APPROACH -->
-  <section class="section section--ink">
-    <div class="container">
       <div class="section-head">
-        <p class="label" data-reveal>Our approach</p>
-        <h2 class="h2 mt-2" data-reveal style="--d:.05s">Passion Meets Precision</h2>
+        <p class="label" data-reveal>Recent projects</p>
+        <h2 class="h2 mt-2" data-reveal style="--d:.05s">Residential, Commercial, and Interiors</h2>
+        <p class="lead" data-reveal style="--d:.1s">Across Long Island and New York City.</p>
       </div>
-      <div class="grid">
-        <div class="col-12 md:col-6">
-          <p class="lead" data-reveal style="--d:.1s">At MLC Architecture P.C., passion meets precision. We bring a collaborative approach and unwavering commitment to excellence to every project.</p>
-        </div>
-        <div class="col-12 md:col-6 md:start-7">
-          <p class="lead" data-reveal style="--d:.15s">We listen closely to understand your vision and translate it into a tailored solution that exceeds expectations. Our meticulous attention to detail ensures exceptional results, from concept to completion.</p>
-        </div>
+      <div class="work-grid">
+        <a class="work-item" href="gallery.html" data-reveal>
+          <div class="media media--3x2"><img src="assets/img/projects/thumbs/p03.jpg" alt="Open-plan interior with white kitchen and oak floors" loading="lazy" width="720" height="373"></div>
+          <div class="caption"><b>Project 03</b><span>Interior</span></div>
+        </a>
+        <a class="work-item" href="gallery.html" data-reveal style="--d:.05s">
+          <div class="media media--3x2"><img src="assets/img/projects/thumbs/p04.jpg" alt="White house, rear elevation with two balconies" loading="lazy" width="720" height="413"></div>
+          <div class="caption"><b>Project 04</b><span>Residential</span></div>
+        </a>
+        <a class="work-item" href="gallery.html" data-reveal style="--d:.1s">
+          <div class="media media--3x2"><img src="assets/img/projects/thumbs/p06.jpg" alt="Living room with a wall of glass to the pool" loading="lazy" width="720" height="480"></div>
+          <div class="caption"><b>Project 06</b><span>Interior</span></div>
+        </a>
+        <a class="work-item" href="gallery.html" data-reveal style="--d:.15s">
+          <div class="media media--3x2"><img src="assets/img/projects/thumbs/p13.jpg" alt="Rendering of a brick and stone house with pool" loading="lazy" width="720" height="398"></div>
+          <div class="caption"><b>Project 13</b><span>Rendering</span></div>
+        </a>
+        <a class="work-item work-item--wide" href="gallery.html" data-reveal style="--d:.2s">
+          <div class="media media--16x9"><img src="assets/img/projects/p14.jpg" alt="Rendering of a brick church, front elevation" loading="lazy" width="1600" height="900"></div>
+          <div class="caption"><b>Project 14</b><span>Commercial</span></div>
+        </a>
       </div>
-      <div class="approach__close">
-        <h3 class="h2" data-reveal>Let&rsquo;s Turn Your Dream Space Into Reality</h3>
-        <div class="btn-row" data-reveal style="--d:.1s">
-          <a class="btn btn--paper" href="contact.html">Contact us</a>
-          <a class="btn btn--outline-light" href="services.html">Our services</a>
-        </div>
-      </div>
+      <div class="btn-row btn-row--center mt-6" data-reveal><a class="btn btn--outline" href="gallery.html">View all 14 projects</a></div>
     </div>
   </section>
 
-  <!-- FACTS -->
-  <section class="section section--tight">
-    <div class="container">
-      <div class="facts" data-reveal>
-        <div><p class="label">Based in</p><p class="val">Patchogue, New York</p></div>
-        <div><p class="label">Serving</p><p class="val">Long Island &amp; New York City</p></div>
-        <div><p class="label">Sectors</p><p class="val">Residential &amp; Commercial</p></div>
-        <div><p class="label">Practice</p><p class="val">Full-service architectural firm</p></div>
+  <section class="cta">
+    <div class="container cta__inner">
+      <p class="label" data-reveal>Contact us</p>
+      <h2 class="h1 mt-3" data-reveal>Let&rsquo;s Turn Your Dream Space Into Reality</h2>
+      <div class="cta__actions" data-reveal style="--d:.15s">
+        <p class="lead measure">Reach us by phone, WhatsApp, or the contact form. Based in Patchogue, serving Long Island and New York City.</p>
+        <div class="btn-row">
+          <a class="btn btn--paper" href="contact.html">Contact us</a>
+          <a class="btn btn--outline-light" href="https://wa.me/16317393966" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
       </div>
     </div>
   </section>

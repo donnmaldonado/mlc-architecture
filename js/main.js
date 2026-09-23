@@ -20,16 +20,34 @@
     window.matchMedia('(min-width: 900px)').addEventListener('change', e => { if (e.matches) setOpen(false); });
   }
 
-  /* Header: solid once scrolled, hide on scroll down, show on scroll up */
+  /* Header: sticky. Picks up a hairline shadow once the page is scrolled, and
+     folds the wordmark and section nav away so only the logo and the two
+     primary links remain.
+
+     Condensing shortens the bar, which pulls the page up under it. Left to
+     itself that lands the reader back above the trigger and the bar flips
+     straight back, so: two thresholds far enough apart to swallow the shift,
+     and a lock for the length of the transition so nothing toggles twice
+     while the bar is still moving. (body { overflow-anchor: none } stops the
+     browser from re-correcting the scroll position on its own.) */
   if (header) {
-    let last = window.scrollY;
-    const onScroll = () => {
+    const CONDENSE_AT = 140, EXPAND_AT = 40, SETTLE = 500;
+    let condensed = false, locked = false, lockTimer;
+
+    const apply = () => {
+      if (locked) return;
       const y = window.scrollY;
-      header.classList.toggle('is-scrolled', y > 24);
-      if (!document.body.classList.contains('menu-open')) {
-        header.classList.toggle('is-hidden', y > last && y > 240);
-      }
-      last = y;
+      const next = condensed ? y > EXPAND_AT : y > CONDENSE_AT;
+      if (next === condensed) return;
+      condensed = next;
+      header.classList.toggle('is-condensed', condensed);
+      locked = true;
+      clearTimeout(lockTimer);
+      lockTimer = setTimeout(() => { locked = false; apply(); }, SETTLE);
+    };
+    const onScroll = () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 8);
+      apply();
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -91,6 +109,34 @@
       });
     });
   }
+
+  /* Forms: no backend yet, so compose a mailto: the visitor can send */
+  document.querySelectorAll('[data-mailto]').forEach(form => {
+    const msg = form.querySelector('[data-form-msg]');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const required = Array.from(form.querySelectorAll('[required]'));
+      let bad = null;
+      required.forEach(f => {
+        const ok = f.checkValidity() && f.value.trim() !== '';
+        f.setAttribute('aria-invalid', String(!ok));
+        if (!ok && !bad) bad = f;
+      });
+      if (bad) {
+        if (msg) { msg.textContent = 'Please complete the highlighted fields.'; msg.className = msg.className.replace(/ ?form-msg--\w+/g, '') + ' form-msg--error'; }
+        bad.focus();
+        return;
+      }
+      const data = new FormData(form);
+      const lines = [];
+      data.forEach((v, k) => { if (String(v).trim()) lines.push(k.charAt(0).toUpperCase() + k.slice(1) + ': ' + v); });
+      const subject = form.dataset.subject || 'Website enquiry';
+      window.location.href = 'mailto:' + form.dataset.mailto +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(lines.join('\n'));
+      if (msg) { msg.textContent = 'Opening your email app\u2026 if nothing happens, write to ' + form.dataset.mailto + '.'; msg.className = msg.className.replace(/ ?form-msg--\w+/g, '') + ' form-msg--ok'; }
+    });
+  });
 
   /* Lightbox: any element with [data-lightbox-group] containing <a href="full.jpg" data-caption="..."> */
   const groups = document.querySelectorAll('[data-lightbox-group]');
