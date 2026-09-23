@@ -5,6 +5,43 @@
    full-bleed imagery, hairline rules, muted slate accent.
    ========================================================================== */
 
+/* ---------- webfonts (self-hosted; see assets/fonts/) ----------
+   Both families are variable fonts, so one file per subset covers every weight
+   we use. Latin loads for nearly every visitor; latin-ext is fetched only when
+   a glyph in its range actually appears. */
+@font-face {
+  font-family: "Cinzel";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("../assets/fonts/cinzel-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Cinzel";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("../assets/fonts/cinzel-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300 400;
+  font-display: swap;
+  src: url("../assets/fonts/montserrat-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300 400;
+  font-display: swap;
+  src: url("../assets/fonts/montserrat-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 :root {
   --paper: #faf8f3;
   --paper-2: #f2eee5;
@@ -31,7 +68,7 @@
   --wrap-narrow: 860px;
   --gutter: clamp(20px, 5vw, 40px);
   --section: clamp(64px, 8.5vw, 128px);
-  --header-h: 84px;
+  --header-h: 76px;
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   /* The logo file carries more transparent margin under the wordmark than above
      the monogram, so its optical middle sits this fraction of its height above
@@ -40,7 +77,7 @@
   --border: 1px;
 }
 
-@media (min-width: 900px) { :root { --header-h: 146px; } }
+@media (min-width: 900px) { :root { --header-h: 131px; } }
 
 /* ---------- reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -219,7 +256,7 @@ address { font-style: normal; }
 .nav a:hover { color: var(--ink); }
 .nav a:hover::after, .nav a[aria-current="page"]::after, .nav a.is-section::after { transform: scaleX(1); }
 .nav a[aria-current="page"], .nav a.is-section { color: var(--ink); }
-.header .nav a { font-family: var(--font-label); font-size: 0.72rem; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; }
+.header .nav a { font-family: var(--font-label); font-size: 1rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); }
 
 /* section nav, sitting under the brandmark; collapses on scroll */
 .subnav { display: none; overflow: hidden; border-top: var(--border) solid var(--line-soft); max-height: 4rem; opacity: 1; transition: max-height 0.45s var(--ease), opacity 0.3s var(--ease), border-color 0.3s var(--ease); }
@@ -246,7 +283,7 @@ address { font-style: normal; }
     display: grid; grid-template-columns: 1fr auto 1fr;
     align-items: center; justify-items: center;
     column-gap: clamp(1.5rem, 4vw, 3.5rem);
-    padding-top: 1.7rem; padding-bottom: 1.3rem;
+    padding-top: 1.15rem; padding-bottom: 0.85rem;
     transition: padding 0.45s var(--ease);
   }
   /* lift the nav by the logo's own skew to land the links on its optical middle */
@@ -262,7 +299,7 @@ address { font-style: normal; }
 
   .header { --logo-h: clamp(90px, 8.6vw, 112px); }
   /* condensed: the section nav folds away, the bar shrinks to the logo */
-  .header.is-condensed .header__inner { padding-top: 0.85rem; padding-bottom: 0.85rem; }
+  .header.is-condensed .header__inner { padding-top: 0.6rem; padding-bottom: 0.6rem; }
   .header.is-condensed { --logo-h: clamp(58px, 5.2vw, 70px); }
   .header.is-condensed .subnav { max-height: 0; opacity: 0; border-top-color: transparent; }
 }
