@@ -68,7 +68,7 @@
   --wrap-narrow: 860px;
   --gutter: clamp(20px, 5vw, 40px);
   --section: clamp(64px, 8.5vw, 128px);
-  --header-h: 76px;
+  --header-h: 84px;
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   /* The logo file carries more transparent margin under the wordmark than above
      the monogram, so its optical middle sits this fraction of its height above
@@ -76,8 +76,6 @@
   --logo-skew: 0.033;
   --border: 1px;
 }
-
-@media (min-width: 900px) { :root { --header-h: 131px; } }
 
 /* ---------- reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -243,7 +241,7 @@ address { font-style: normal; }
 
 /* brandmark: the logo carries the wordmark */
 .brandmark { display: inline-block; line-height: 1.1; }
-.header { --logo-h: clamp(58px, 13.5vw, 70px); }
+.header { --logo-h: clamp(64px, 15vw, 78px); }
 .header .brandmark { text-align: center; }
 .header .brandmark__logo {
   height: var(--logo-h); width: auto; margin-inline: auto;
@@ -288,6 +286,8 @@ address { font-style: normal; }
     align-items: center; justify-items: center;
     column-gap: clamp(1.5rem, 4vw, 3.5rem);
     padding-top: 1.15rem; padding-bottom: 0.85rem;
+    /* height comes from the logo and padding, so the bar shrinks with the logo */
+    min-height: 0;
     transition: padding 0.45s var(--ease);
   }
   /* lift the nav by the logo's own skew to land the links on its optical middle */
@@ -301,7 +301,7 @@ address { font-style: normal; }
   .menu-btn { display: none; }
   .subnav { display: block; }
 
-  .header { --logo-h: clamp(90px, 8.6vw, 112px); }
+  .header { --logo-h: clamp(104px, 10vw, 130px); }
   /* condensed: the section nav folds away, the bar shrinks to the logo */
   .header.is-condensed .header__inner { padding-top: 0.6rem; padding-bottom: 0.6rem; }
   .header.is-condensed { --logo-h: clamp(58px, 5.2vw, 70px); }
@@ -349,7 +349,6 @@ address { font-style: normal; }
 .hero .display, .hero .h1 { color: var(--paper); text-shadow: 0 2px 24px rgba(0,0,0,0.3); }
 .hero .lead { color: rgba(250,248,243,0.9); margin-inline: auto; }
 .hero .label { color: rgba(250,248,243,0.8); }
-.hero__logo { width: min(250px, 55vw); height: auto; margin: 0 auto clamp(1.75rem, 3.5vw, 2.5rem); filter: drop-shadow(0 2px 10px rgba(0,0,0,0.75)) drop-shadow(0 8px 34px rgba(0,0,0,0.55)); }
 .hero .btn-row { justify-content: center; margin-top: clamp(1.75rem, 3vw, 2.5rem); }
 
 /* ---------- page hero (interior pages) ---------- */
