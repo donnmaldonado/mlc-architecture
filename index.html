@@ -31,13 +31,6 @@
   "sameAs": ["https://www.facebook.com/profile.php?id=61555710343842", "https://www.instagram.com/mlcarchitecture/", "https://www.youtube.com/@MLCARCHITECTUREPC"]
 }
 </script>
-<style>
-  /* home-only */
-  .work-grid { display: grid; gap: clamp(2rem, 3.5vw, 3rem) clamp(20px, 3vw, 44px); grid-template-columns: 1fr; }
-  @media (min-width: 640px) { .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .work-item--wide { grid-column: span 2; } }
-  .statement { text-align: center; max-width: 46rem; margin-inline: auto; }
-  .statement .h1 { line-height: 1.18; }
-</style>
 </head>
 <body>
 <header class="header" id="top">
@@ -105,171 +98,55 @@
     </div>
   </section>
 
-  <!-- STATEMENT -->
-  <section class="section">
-    <div class="container">
-      <div class="statement">
-        <p class="label" data-reveal>Our practice</p>
-        <h2 class="h1 mt-3" data-reveal style="--d:.05s">Designs That Are Timeless, Functional, and Aesthetic</h2>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURE 01 -->
-  <section class="section section--flush-top feature">
-    <a class="feature__media" href="gallery.html" data-reveal>
-      <img src="assets/img/projects/p04.jpg" alt="Rear elevation of a white house with two balconies" loading="lazy" width="1600" height="917">
+  <!-- SPLIT ROWS: image and text halves, sides alternating. Each row is
+       self-contained so it can become a block pattern. -->
+  <section class="split split--paper2" id="join">
+    <a class="split__media" href="gallery.html" style="--pos: 30% 50%">
+      <img src="assets/img/projects/p04.jpg" alt="White house, rear elevation with two balconies" loading="lazy" width="1600" height="917">
     </a>
-    <div class="feature__body" data-reveal style="--d:.1s">
-      <p class="label">Residential</p>
-      <h3 class="h2 mt-2">Project 04</h3>
-      <p class="lead">White house, rear elevation with two balconies. New construction on Long Island.</p>
-      <p><a class="link" href="gallery.html">View the gallery</a></p>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <p class="label" data-reveal>Our office</p>
-        <h2 class="h2 mt-2" data-reveal style="--d:.05s">A Full-Service Architectural Firm in Patchogue, New York</h2>
-      </div>
-      <div class="grid">
-        <div class="col-12 md:col-6">
-          <p class="lead" data-reveal style="--d:.1s">MLC Architecture P.C. brings its professional expertise to clients across Long Island and New York City. Founded on the belief of delivering customized solutions, MLC offers an efficient design process that seamlessly integrates all project elements for residential and commercial clients.</p>
-        </div>
-        <div class="col-12 md:col-6 md:start-7">
-          <p class="lead" data-reveal style="--d:.15s">Our clients&rsquo; lives are enriched and enhanced by these designs that are timeless, functional, and aesthetic.</p>
-          <p class="mt-4" data-reveal style="--d:.2s"><a class="link" href="about.html">More about the firm</a></p>
-        </div>
+    <div class="split__body">
+      <div class="split__content">
+        <p class="label" data-reveal>Join us</p>
+        <h2 class="h2 mt-2" data-reveal style="--d:.05s">News From the Studio</h2>
+        <p class="lead mt-3" data-reveal style="--d:.1s">Occasional notes on new projects, renovations, and work in progress.</p>
+        <form class="signup__form" data-reveal style="--d:.15s" data-mailto="info@mlcarchitecture.com" data-subject="Newsletter signup" novalidate>
+          <div class="signup__names">
+            <input type="text" name="first name" autocomplete="given-name" placeholder="First name" aria-label="First name">
+            <input type="text" name="last name" autocomplete="family-name" placeholder="Last name" aria-label="Last name">
+          </div>
+          <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required>
+          <div class="btn-row"><button class="btn btn--brand" type="submit">Sign up</button></div>
+          <p class="signup__note" data-form-msg role="status" aria-live="polite">We&rsquo;ll only write when there&rsquo;s something worth seeing.</p>
+        </form>
       </div>
     </div>
   </section>
 
-  <!-- FEATURE 02 -->
-  <section class="section section--flush-top feature">
-    <a class="feature__media" href="gallery.html" data-reveal>
+  <section class="split split--reverse">
+    <a class="split__media" href="gallery.html" style="--pos: 50% 50%">
       <img src="assets/img/projects/p11.jpg" alt="Stone and white gable house, front elevation" loading="lazy" width="1600" height="1040">
     </a>
-    <div class="feature__body" data-reveal style="--d:.1s">
-      <p class="label">Residential</p>
-      <h3 class="h2 mt-2">Project 11</h3>
-      <p class="lead">Stone and white gable house, front elevation. Traditional massing with a contemporary plan.</p>
-      <p><a class="link" href="gallery.html">View the gallery</a></p>
+    <div class="split__body">
+      <div class="split__content">
+        <p class="label" data-reveal>Our practice</p>
+        <h2 class="h2 mt-2" data-reveal style="--d:.05s">Designs That Are Timeless, Functional, and Aesthetic</h2>
+        <p class="lead mt-3" data-reveal style="--d:.1s">MLC Architecture P.C. brings its professional expertise to clients across Long Island and New York City. Founded on the belief of delivering customized solutions, MLC offers an efficient design process for residential and commercial clients.</p>
+        <div class="split__links" data-reveal style="--d:.15s"><a class="link" href="about.html">More about the firm</a></div>
+      </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="section section--paper2">
-    <div class="container">
-      <div class="section-head">
+  <section class="split split--paper2">
+    <a class="split__media" href="gallery.html" style="--pos: 60% 50%">
+      <img src="assets/img/projects/p06.jpg" alt="Living room with a wall of glass to the pool" loading="lazy" width="1536" height="1024">
+    </a>
+    <div class="split__body">
+      <div class="split__content">
         <p class="label" data-reveal>Services</p>
-        <h2 class="h2 mt-2" data-reveal>From Initial Sketches to Final Construction Documents</h2>
-        <p class="lead" data-reveal style="--d:.1s">We guide you from start to finish, handling every step of the design process for residential and commercial clients.</p>
+        <h2 class="h2 mt-2" data-reveal style="--d:.05s">From Initial Sketches to Final Construction Documents</h2>
+        <p class="lead mt-3" data-reveal style="--d:.1s">We guide you from start to finish, handling every step of the design process for residential and commercial clients.</p>
+        <div class="split__links" data-reveal style="--d:.15s"><a class="link" href="services.html#residential">Residential services</a><a class="link" href="services.html#commercial">Commercial services</a></div>
       </div>
-      <div class="cards" style="--cols:2">
-        <article class="card" data-reveal>
-          <p class="label">Residential architecture</p>
-          <h3 class="h3">Ready to renovate, build an addition, or design your dream home?</h3>
-          <ul class="list-rules mt-2">
-            <li><span class="txt">New Construction</span></li>
-            <li><span class="txt">Additions and Renovations</span></li>
-            <li><span class="txt">Waterfront House Design</span></li>
-            <li><span class="txt">FEMA Compliant House Design</span></li>
-            <li><span class="txt">Elevated House Design</span></li>
-          </ul>
-          <a class="link" href="services.html#residential">All residential services</a>
-        </article>
-        <article class="card" data-reveal style="--d:.1s">
-          <p class="label">Commercial architecture</p>
-          <h3 class="h3">Envisioning a new office space? Expanding your retail footprint?</h3>
-          <ul class="list-rules mt-2">
-            <li><span class="txt">Multi-Family and Apartment Design</span></li>
-            <li><span class="txt">Mixed Use</span></li>
-            <li><span class="txt">Restaurant Design</span></li>
-            <li><span class="txt">Office Design</span></li>
-            <li><span class="txt">Hotel and Hospitality Design</span></li>
-          </ul>
-          <a class="link" href="services.html#commercial">All commercial services</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- SELECTED WORK -->
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <p class="label" data-reveal>Gallery</p>
-        <h2 class="h2 mt-2" data-reveal>Selected Work</h2>
-        <p class="lead" data-reveal style="--d:.1s">Residential and commercial projects across Long Island and New York City.</p>
-      </div>
-      <div class="work-grid">
-        <a class="work-item work-item--wide" href="gallery.html" data-reveal>
-          <div class="media media--16x9"><img src="assets/img/projects/p01.jpg" alt="White modern farmhouse, glass garage door and gravel drive" loading="lazy" width="1178" height="580"></div>
-          <div class="caption"><b>Project 01</b><span>Residential</span></div>
-        </a>
-        <a class="work-item" href="gallery.html" data-reveal style="--d:.1s">
-          <div class="media media--3x2"><img src="assets/img/projects/thumbs/p03.jpg" alt="Open-plan interior with white kitchen and oak floors" loading="lazy" width="720" height="373"></div>
-          <div class="caption"><b>Project 03</b><span>Interior</span></div>
-        </a>
-        <a class="work-item" href="gallery.html" data-reveal style="--d:.15s">
-          <div class="media media--3x2"><img src="assets/img/projects/thumbs/p13.jpg" alt="Rendering of a brick and stone house with pool" loading="lazy" width="720" height="398"></div>
-          <div class="caption"><b>Project 13</b><span>Rendering</span></div>
-        </a>
-        <a class="work-item" href="gallery.html" data-reveal style="--d:.2s">
-          <div class="media media--3x2"><img src="assets/img/projects/thumbs/p06.jpg" alt="Living room with a wall of glass to the pool" loading="lazy" width="720" height="480"></div>
-          <div class="caption"><b>Project 06</b><span>Interior</span></div>
-        </a>
-        <a class="work-item" href="gallery.html" data-reveal style="--d:.25s">
-          <div class="media media--3x2"><img src="assets/img/projects/thumbs/p14.jpg" alt="Rendering of a brick church, front elevation" loading="lazy" width="720" height="405"></div>
-          <div class="caption"><b>Project 14</b><span>Commercial</span></div>
-        </a>
-      </div>
-      <div class="btn-row btn-row--center mt-6" data-reveal><a class="btn btn--outline" href="gallery.html">View all 14 projects</a></div>
-    </div>
-  </section>
-
-  <!-- OFFICE DETAILS -->
-  <section class="section section--tight section--flush-top">
-    <div class="container">
-      <div class="facts" data-reveal>
-        <div>
-          <p class="label">Address</p>
-          <address class="val">70 East Main Street<br>2nd Floor<br>Patchogue, NY 11772</address>
-        </div>
-        <div>
-          <p class="label">Working hours</p>
-          <p class="val">Mon &ndash; Fri: 9:00 am &ndash; 5:00 pm<br>Sat: 9:00 am &ndash; 1:00 pm<br>Sun: closed</p>
-        </div>
-        <div>
-          <p class="label">Email</p>
-          <p class="val"><button type="button" class="copy" data-copy="info@mlcarchitecture.com" aria-label="Copy email address info@mlcarchitecture.com"><span class="copy__text">info@mlcarchitecture.com</span><span class="copy__ic"><svg class="copy__ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8.5" y="8.5" width="11.5" height="11.5" rx="1.5"/><path d="M15.5 4.5H5.5A1.5 1.5 0 0 0 4 6v10"/></svg><svg class="copy__ok" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7"/></svg></span><span class="copy__tip" aria-hidden="true">Copied</span></button></p>
-        </div>
-        <div>
-          <p class="label">Phone</p>
-          <p class="val"><a href="tel:+16316826157">631-682-6157</a></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- JOIN US -->
-  <section class="section signup">
-    <div class="container">
-      <p class="label" data-reveal>Join us</p>
-      <h2 class="h2 mt-2" data-reveal style="--d:.05s">News From the Studio</h2>
-      <p class="lead measure mt-3" data-reveal style="--d:.1s">Occasional notes on new projects, renovations, and work in progress.</p>
-      <form class="signup__form" data-reveal style="--d:.15s" data-mailto="info@mlcarchitecture.com" data-subject="Newsletter signup" novalidate>
-        <div class="signup__names">
-          <input type="text" name="first name" autocomplete="given-name" placeholder="First name" aria-label="First name">
-          <input type="text" name="last name" autocomplete="family-name" placeholder="Last name" aria-label="Last name">
-        </div>
-        <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required>
-        <div class="btn-row btn-row--center"><button class="btn btn--brand" type="submit">Sign up</button></div>
-        <p class="signup__note" data-form-msg role="status" aria-live="polite">We&rsquo;ll only write when there&rsquo;s something worth seeing.</p>
-      </form>
     </div>
   </section>
 
