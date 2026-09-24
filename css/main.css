@@ -541,13 +541,13 @@ a.channel__value:hover, .channel__value a:hover { color: var(--accent); }
 .channel__value--copy .copy { flex: none; }
 /* the one-third panel is narrow on laptops: tighten, then stack the label */
 @media (min-width: 900px) and (max-width: 1359px) {
-  .channel { grid-template-columns: 3.9rem minmax(0, 1fr); gap: 0.4rem; }
-  .channel__value { font-size: 0.8rem; }
-  .channel__value--copy { gap: 0.4rem; }
-  .copy--icon { width: 1.5rem; height: 1.5rem; }
+  .feature .channel { grid-template-columns: 3.9rem minmax(0, 1fr); gap: 0.4rem; }
+  .feature .channel__value { font-size: 0.8rem; }
+  .feature .channel__value--copy { gap: 0.4rem; }
+  .feature .copy--icon { width: 1.5rem; height: 1.5rem; }
 }
 @media (min-width: 900px) and (max-width: 1099px) {
-  .channel { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; padding: 0.55rem 0; }
+  .feature .channel { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; padding: 0.55rem 0; }
 }
 
 .feature--light .feature__panel { background: var(--paper-3); }
@@ -574,8 +574,16 @@ a.channel__value:hover, .channel__value a:hover { color: var(--accent); }
 .cta .h1, .cta .h2 { color: var(--paper); }
 .cta .label { color: rgba(250,248,243,0.65); }
 .cta .lead { color: rgba(250,248,243,0.8); margin-inline: auto; }
-.cta__actions { margin-top: 2rem; display: grid; gap: 1.5rem; justify-items: center; }
-.cta .btn-row { justify-content: center; }
+/* the contact channels, reversed out on the dark band */
+.cta .channels { max-width: 26rem; margin: 2.25rem auto 0; border-color: rgba(250,248,243,0.18); }
+.cta .channel + .channel { border-color: rgba(250,248,243,0.18); }
+.cta .channel__label { color: rgba(250,248,243,0.6); }
+.cta .channel__value { color: var(--paper); }
+.cta a.channel__value:hover, .cta .channel__value a:hover { color: var(--white); text-decoration: underline; text-underline-offset: 0.2em; }
+.cta :is(.copy--icon, .socials a) { border-color: rgba(250,248,243,0.28); color: rgba(250,248,243,0.8); }
+.cta :is(.copy--icon, .socials a):is(:hover, :focus-visible) { border-color: var(--paper); color: var(--paper); background: rgba(250,248,243,0.06); }
+.cta .copy--icon.is-copied { background: var(--paper); border-color: var(--paper); color: var(--deep); }
+.cta :focus-visible { outline-color: var(--paper); }
 
 /* ---------- footer ---------- */
 .footer { background: var(--paper-2); color: var(--ink); border-top: var(--border) solid var(--line); }
