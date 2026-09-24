@@ -103,54 +103,55 @@
     </div>
   </section>
 
-  <!-- SPLIT ROWS: image and text halves, sides alternating. Each row is
-       self-contained so it can become a block pattern. -->
-  <section class="split split--paper2" id="join">
-    <a class="split__media" href="showcase.html#gallery" style="--pos: 30% 50%">
-      <img src="assets/img/projects/p04.jpg" alt="White house, rear elevation with two balconies" loading="lazy" width="1600" height="917">
-    </a>
-    <div class="split__body">
-      <div class="split__content">
-        <p class="label" data-reveal>Join us</p>
-        <h2 class="h2 mt-2" data-reveal style="--d:.05s">News From the Studio</h2>
-        <p class="lead mt-3" data-reveal style="--d:.1s">Occasional notes on new projects, renovations, and work in progress.</p>
-        <form class="signup__form" data-reveal style="--d:.15s" data-mailto="info@mlcarchitecture.com" data-subject="Newsletter signup" novalidate>
-          <div class="signup__names">
-            <input type="text" name="first name" autocomplete="given-name" placeholder="First name" aria-label="First name">
-            <input type="text" name="last name" autocomplete="family-name" placeholder="Last name" aria-label="Last name">
-          </div>
-          <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required>
-          <div class="btn-row"><button class="btn btn--brand" type="submit">Sign up</button></div>
-          <p class="signup__note" data-form-msg role="status" aria-live="polite">We&rsquo;ll only write when there&rsquo;s something worth seeing.</p>
-        </form>
+  <!-- FEATURE ROWS: a two-thirds photo and a one-third coloured panel, sides
+       alternating, set in a paper mat. Each .feature is self-contained so it
+       can become a block pattern; the tone modifier picks the panel colour. -->
+  <section class="features" id="join" aria-label="From the studio">
+    <div class="feature feature--light">
+      <a class="feature__media" href="showcase.html#gallery" style="--pos: 30% 50%">
+        <img src="assets/img/projects/p04.jpg" alt="White house, rear elevation with two balconies" loading="lazy" width="1600" height="917">
+        <span class="feature__title">Project 04</span>
+      </a>
+      <div class="feature__panel">
+        <div class="feature__content">
+          <p class="label" data-reveal>Join us</p>
+          <h2 class="h3" data-reveal style="--d:.05s">News From the Studio</h2>
+          <form class="signup__form" data-reveal style="--d:.1s" data-mailto="info@mlcarchitecture.com" data-subject="Newsletter signup" novalidate>
+            <div class="signup__names">
+              <input type="text" name="first name" autocomplete="given-name" placeholder="First name" aria-label="First name">
+              <input type="text" name="last name" autocomplete="family-name" placeholder="Last name" aria-label="Last name">
+            </div>
+            <input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email address" required>
+            <div class="btn-row"><button class="btn btn--brand" type="submit">Sign up</button></div>
+            <p class="signup__note" data-form-msg role="status" aria-live="polite">Occasional notes on new projects and work in progress.</p>
+          </form>
+        </div>
       </div>
     </div>
-  </section>
 
-  <section class="split split--reverse">
-    <a class="split__media" href="showcase.html#gallery" style="--pos: 50% 50%">
-      <img src="assets/img/projects/p11.jpg" alt="Stone and white gable house, front elevation" loading="lazy" width="1600" height="1040">
-    </a>
-    <div class="split__body">
-      <div class="split__content">
-        <p class="label" data-reveal>Our practice</p>
-        <h2 class="h2 mt-2" data-reveal style="--d:.05s">Designs That Are Timeless, Functional, and Aesthetic</h2>
-        <p class="lead mt-3" data-reveal style="--d:.1s">MLC Architecture P.C. brings its professional expertise to clients across Long Island and New York City. Founded on the belief of delivering customized solutions, MLC offers an efficient design process for residential and commercial clients.</p>
-        <div class="split__links" data-reveal style="--d:.15s"><a class="link" href="about.html">More about the firm</a></div>
+    <div class="feature feature--dark">
+      <a class="feature__media" href="showcase.html#gallery" style="--pos: 50% 50%">
+        <img src="assets/img/projects/p11.jpg" alt="Stone and white gable house, front elevation" loading="lazy" width="1600" height="1040">
+        <span class="feature__title">Project 11</span>
+      </a>
+      <div class="feature__panel">
+        <div class="feature__content">
+          <h2 class="h3 feature__statement" data-reveal>Designs That Are Timeless, Functional, and Aesthetic</h2>
+          <p class="feature__links" data-reveal style="--d:.1s"><a class="link" href="about.html">About the firm</a></p>
+        </div>
       </div>
     </div>
-  </section>
 
-  <section class="split split--paper2">
-    <a class="split__media" href="showcase.html#gallery" style="--pos: 60% 50%">
-      <img src="assets/img/projects/p06.jpg" alt="Living room with a wall of glass to the pool" loading="lazy" width="1536" height="1024">
-    </a>
-    <div class="split__body">
-      <div class="split__content">
-        <p class="label" data-reveal>Services</p>
-        <h2 class="h2 mt-2" data-reveal style="--d:.05s">From Initial Sketches to Final Construction Documents</h2>
-        <p class="lead mt-3" data-reveal style="--d:.1s">We guide you from start to finish, handling every step of the design process for residential and commercial clients.</p>
-        <div class="split__links" data-reveal style="--d:.15s"><a class="link" href="services.html#residential">Residential services</a><a class="link" href="services.html#commercial">Commercial services</a></div>
+    <div class="feature feature--medium">
+      <a class="feature__media" href="showcase.html#gallery" style="--pos: 60% 50%">
+        <img src="assets/img/projects/p06.jpg" alt="Living room with a wall of glass to the pool" loading="lazy" width="1536" height="1024">
+        <span class="feature__title">Project 06</span>
+      </a>
+      <div class="feature__panel">
+        <div class="feature__content">
+          <h2 class="h3 feature__statement" data-reveal>From Initial Sketches to Final Construction Documents</h2>
+          <p class="feature__links" data-reveal style="--d:.1s"><a class="link" href="services.html#residential">Residential</a><a class="link" href="services.html#commercial">Commercial</a></p>
+        </div>
       </div>
     </div>
   </section>

@@ -506,24 +506,49 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
   .card:last-child { border-bottom: 0; }
 }
 
-/* ---------- split row: image half and text half, sides alternating ----------
-   Edge to edge from 900px, image first when stacked. Each row stands alone so
-   it can become a block pattern; --reverse flips the image to the right. */
-.split { display: grid; background: var(--paper); scroll-margin-top: var(--hero-offset, calc(var(--header-h) + var(--border))); }
-.split--paper2 { background: var(--paper-2); }
-.split__media { display: block; position: relative; overflow: hidden; background: var(--paper-3); aspect-ratio: 4 / 3; }
-.split__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); transition: transform 1.6s var(--ease); }
-.split__media:hover img { transform: scale(1.03); }
-.split__body { padding: clamp(3rem, 9vw, 4.5rem) var(--gutter); }
-.split__content { max-width: 30rem; }
-.split__links { display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 2rem; }
+/* ---------- feature rows: two-thirds photo, one-third coloured panel ----------
+   Set in a thin paper mat that also runs between rows and between photo and
+   panel. Sides alternate from 900px, image first when stacked. Each row stands
+   alone so it can become a block pattern; the tone modifier sets the panel. */
+.features { display: grid; gap: 0.5rem; padding: 0.5rem; background: var(--paper); scroll-margin-top: var(--hero-offset, calc(var(--header-h) + var(--border))); }
+.feature { display: grid; gap: 0.5rem; }
+.feature__media { display: block; position: relative; overflow: hidden; background: var(--paper-3); aspect-ratio: 4 / 3; }
+.feature__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); transition: transform 1.6s var(--ease); }
+/* a light deep-blue tint, plus a gradient under the title so it holds on pale photos */
+.feature__media::before { content: ""; position: absolute; inset: 50% 0 0; z-index: 1; background: linear-gradient(to top, rgba(31, 48, 64, 0.55), rgba(31, 48, 64, 0)); }
+.feature__media::after { content: ""; position: absolute; inset: 0; background: var(--deep); opacity: 0.15; transition: opacity 0.5s var(--ease); }
+.feature__media:hover img { transform: scale(1.03); }
+.feature__media:hover::after, .feature__media:focus-visible::after { opacity: 0.55; }
+.feature__media:focus-visible { outline: 2px solid var(--paper); outline-offset: -8px; }
+.feature__title { position: absolute; left: clamp(1.1rem, 2vw, 2rem); bottom: clamp(1rem, 1.6vw, 1.75rem); z-index: 2; font-family: var(--font-display); font-size: clamp(1.05rem, 1.4vw, 1.4rem); letter-spacing: var(--track); color: var(--paper); text-shadow: 0 1px 14px rgba(0, 0, 0, 0.3); }
+.feature__panel { display: flex; align-items: center; justify-content: center; text-align: center; padding: clamp(3rem, 9vw, 4.5rem) var(--gutter); }
+.feature__content { width: 100%; max-width: 24rem; }
+/* em-dash rules above and below a short statement */
+.feature__statement::before, .feature__statement::after { content: "\2014"; display: block; font-size: 1rem; line-height: 1; opacity: 0.55; }
+.feature__statement::before { margin-bottom: 1.5rem; }
+.feature__statement::after { margin-top: 1.5rem; }
+.feature__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem; margin-top: 2rem; }
+.feature .signup__form { margin-top: 1.75rem; text-align: left; }
+.feature .signup__form .btn-row { justify-content: center; }
+.feature .signup__note { text-align: center; }
+
+.feature--light .feature__panel { background: var(--paper-3); }
+.feature--dark .feature__panel { background: var(--deep); }
+.feature--medium .feature__panel { background: var(--accent); }
+:is(.feature--dark, .feature--medium) .feature__panel { color: var(--paper); }
+:is(.feature--dark, .feature--medium) :is(.h3, .link) { color: var(--paper); }
+:is(.feature--dark, .feature--medium) .link:hover { color: var(--white); }
+:is(.feature--dark, .feature--medium) .label { color: rgba(250, 248, 243, 0.65); }
+:is(.feature--dark, .feature--medium) :focus-visible { outline-color: var(--paper); }
+
 @media (min-width: 900px) {
-  .split { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  /* the image sets the row's height; a taller text column (the form) stretches it */
-  .split__media { aspect-ratio: auto; min-height: min(90vh, 820px); }
-  .split--reverse .split__media { order: 2; }
-  .split__body { display: flex; align-items: center; justify-content: center; padding: clamp(3rem, 6vw, 6rem) clamp(2.5rem, 5vw, 5rem); }
-  .split__content { width: 100%; }
+  .features { gap: 1vw; padding: 1vw; }
+  .feature { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 1vw; min-height: clamp(25rem, 38vw, 56rem); }
+  .feature__media { aspect-ratio: auto; }
+  .feature:nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+  .feature:nth-child(even) .feature__media { order: 2; }
+  .feature__panel { padding: clamp(2.5rem, 3.5vw, 4rem) clamp(1.75rem, 3vw, 3.5rem); }
+  .feature .signup__names { grid-template-columns: 1fr; }
 }
 
 /* ---------- newsletter form ---------- */
