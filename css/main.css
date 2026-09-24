@@ -528,9 +528,15 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
 .feature__statement::before { margin-bottom: 1.5rem; }
 .feature__statement::after { margin-top: 1.5rem; }
 .feature__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem; margin-top: 2rem; }
-.feature__contact { margin-top: 1.75rem; line-height: 1.9; }
-.feature__contact a:hover { color: var(--accent); }
-.feature__panel .btn-row { margin-top: 2rem; }
+/* contact channels: label over value, hairlines between */
+.channels { margin-top: 0.25rem; }
+.channel { display: grid; justify-items: center; gap: 0.35rem; padding: 1.05rem 0; }
+.channel + .channel { border-top: var(--border) solid var(--line); }
+.channel__label { font-family: var(--font-label); font-size: 0.62rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); }
+.channel__value { font-size: 1rem; line-height: 1.55; color: var(--ink); overflow-wrap: anywhere; transition: color 0.3s; }
+.channel__value:hover { color: var(--accent); }
+.channels__socials { justify-content: center; margin-top: 1.25rem; }
+.feature__cta { margin-top: 1.75rem; }
 
 .feature--light .feature__panel { background: var(--paper-3); }
 .feature--dark .feature__panel { background: var(--deep); }
@@ -626,4 +632,13 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
   opacity: 0; transition: opacity 0.25s, transform 0.25s var(--ease);
 }
 .copy.is-copied .copy__tip { opacity: 1; transform: translateY(0); }
-@media (prefers-reduced-motion: reduce) { .copy, .copy__ic, .copy__tip { transition: none; } }
+/* pill variant: a visible "Copy email" button that swaps to "Copied" */
+.copy--pill { display: inline-flex; align-items: center; gap: 0.45rem; margin-top: 0.35rem; padding: 0.45rem 0.8rem; border: var(--border) solid var(--line); font-family: var(--font-label); font-size: 0.6rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-2); transition: border-color 0.3s, color 0.3s, background-color 0.3s; }
+.copy--pill .copy__ic { margin: 0; vertical-align: 0; opacity: 1; }
+.copy--pill svg { width: 0.9rem; height: 0.9rem; }
+.copy--pill:hover, .copy--pill:focus-visible { border-color: var(--accent); color: var(--accent); }
+.copy__done { display: none; }
+.copy--pill.is-copied { background: var(--accent); border-color: var(--accent); color: var(--white); }
+.copy--pill.is-copied .copy__say { display: none; }
+.copy--pill.is-copied .copy__done { display: inline; }
+@media (prefers-reduced-motion: reduce) { .copy, .copy__ic, .copy__tip, .copy--pill { transition: none; } }
