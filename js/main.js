@@ -159,7 +159,7 @@
   });
 
   /* Hero slideshow: [data-slideshow] holding .slide figures, one .hero__tab per
-     slide and a [data-slideshow-pause] button. Only slide 1 ships with a real
+     slide. Only slide 1 ships with a real
      src; the rest carry data-src. After window load only the next slide is
      fetched, one ahead of the show, so a long gallery never downloads all at
      once, and a slide is only shown once its image is in. The active tab runs
@@ -172,18 +172,17 @@
     const slides = Array.from(show.querySelectorAll('.slide'));
     const tabs = Array.from(show.querySelectorAll('.hero__tab'));
     const stage = show.querySelector('.hero__bg');
-    const pauseBtn = show.querySelector('[data-slideshow-pause]');
     if (slides.length < 2 || tabs.length !== slides.length) return;
     show.querySelectorAll('[data-slideshow-ui]').forEach(el => { el.hidden = false; });
 
-    let current = 0, want = 0, loaded = false, userPaused = false, hovered = false, focused = false;
+    let current = 0, want = 0, loaded = false, hovered = false, focused = false;
     const imgOf = n => slides[n].querySelector('img');
     const fetchImg = n => { const img = imgOf(n); if (img.dataset.src) { img.src = img.dataset.src; img.removeAttribute('data-src'); } };
     const isReady = n => { const img = imgOf(n); return !!img.getAttribute('src') && img.complete && img.naturalWidth > 0; };
     const isBroken = n => { const img = imgOf(n); return !!img.getAttribute('src') && img.complete && !img.naturalWidth; };
 
     const setPaused = () => {
-      const paused = userPaused || hovered || focused || document.hidden;
+      const paused = hovered || focused || document.hidden;
       show.classList.toggle('is-paused', paused);
       // announce slide changes only while nothing is rotating on its own
       stage.setAttribute('aria-live', paused ? 'polite' : 'off');
@@ -214,12 +213,6 @@
     tabs.forEach((tab, n) => {
       tab.addEventListener('click', () => go(n));
       tab.addEventListener('animationend', e => { if (e.animationName === 'hero-fill' && n === current) go((n + 1) % slides.length); });
-    });
-    if (pauseBtn) pauseBtn.addEventListener('click', () => {
-      userPaused = !userPaused;
-      pauseBtn.classList.toggle('is-off', userPaused);
-      pauseBtn.setAttribute('aria-label', userPaused ? 'Play slideshow' : 'Pause slideshow');
-      setPaused();
     });
     // hover pauses for a mouse only; a tap would otherwise leave it "hovered"
     show.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { hovered = true; setPaused(); } });

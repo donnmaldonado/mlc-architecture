@@ -421,18 +421,11 @@ address { font-style: normal; }
 @keyframes hero-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @media (min-width: 900px) { .hero__tab { flex-basis: 2rem; } .hero__tab::before, .hero__tab::after { left: 0.3rem; right: 0.3rem; } }
 
-.hero__pause { position: absolute; z-index: 3; right: var(--gutter); bottom: clamp(1rem, 3vh, 2rem); display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; color: var(--paper); opacity: 0.75; transition: opacity 0.3s var(--ease); }
-.hero__pause[hidden] { display: none; }
-.hero__pause:hover { opacity: 1; }
-.hero__pause svg { width: 0.85rem; height: 0.85rem; fill: currentColor; }
-.hero__play-ico, .hero__pause.is-off .hero__pause-ico { display: none; }
-.hero__pause.is-off .hero__play-ico { display: block; }
 
 /* no autoplay, instant swaps; the tiles still work */
 @media (prefers-reduced-motion: reduce) {
   .slide, .slide.is-active { transition: none; }
   .hero__tab.is-running::after { animation: none; }
-  .hero__pause { display: none; }
 }
 
 /* ---------- gallery (showcase page): every project, two up with wide rows ---------- */
