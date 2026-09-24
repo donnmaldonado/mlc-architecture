@@ -574,15 +574,10 @@ a.channel__value:hover, .channel__value a:hover { color: var(--accent); }
 .cta .h1, .cta .h2 { color: var(--paper); }
 .cta .label { color: rgba(250,248,243,0.65); }
 .cta .lead { color: rgba(250,248,243,0.8); margin-inline: auto; }
-/* the contact channels, reversed out on the dark band */
-.cta .channels { max-width: 26rem; margin: 2.25rem auto 0; border-color: rgba(250,248,243,0.18); }
-.cta .channel + .channel { border-color: rgba(250,248,243,0.18); }
-.cta .channel__label { color: rgba(250,248,243,0.6); }
-.cta .channel__value { color: var(--paper); }
-.cta a.channel__value:hover, .cta .channel__value a:hover { color: var(--white); text-decoration: underline; text-underline-offset: 0.2em; }
-.cta :is(.copy--icon, .socials a) { border-color: rgba(250,248,243,0.28); color: rgba(250,248,243,0.8); }
-.cta :is(.copy--icon, .socials a):is(:hover, :focus-visible) { border-color: var(--paper); color: var(--paper); background: rgba(250,248,243,0.06); }
-.cta .copy--icon.is-copied { background: var(--paper); border-color: var(--paper); color: var(--deep); }
+/* the social icons, reversed out on the dark band */
+.cta .channels__foot { margin-top: 2rem; }
+.cta .socials a { border-color: rgba(250,248,243,0.28); color: rgba(250,248,243,0.8); }
+.cta .socials a:is(:hover, :focus-visible) { border-color: var(--paper); color: var(--paper); background: rgba(250,248,243,0.06); }
 .cta :focus-visible { outline-color: var(--paper); }
 
 /* ---------- footer ---------- */
