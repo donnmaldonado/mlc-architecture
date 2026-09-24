@@ -528,9 +528,9 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
 .feature__statement::before { margin-bottom: 1.5rem; }
 .feature__statement::after { margin-top: 1.5rem; }
 .feature__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem; margin-top: 2rem; }
-.feature .signup__form { margin-top: 1.75rem; text-align: left; }
-.feature .signup__form .btn-row { justify-content: center; }
-.feature .signup__note { text-align: center; }
+.feature__contact { margin-top: 1.75rem; line-height: 1.9; }
+.feature__contact a:hover { color: var(--accent); }
+.feature__panel .btn-row { margin-top: 2rem; }
 
 .feature--light .feature__panel { background: var(--paper-3); }
 .feature--dark .feature__panel { background: var(--deep); }
@@ -548,17 +548,7 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
   .feature:nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
   .feature:nth-child(even) .feature__media { order: 2; }
   .feature__panel { padding: clamp(2.5rem, 3.5vw, 4rem) clamp(1.75rem, 3vw, 3.5rem); }
-  .feature .signup__names { grid-template-columns: 1fr; }
 }
-
-/* ---------- newsletter form ---------- */
-.signup__form { display: grid; gap: 0.85rem; max-width: 34rem; margin-top: 2rem; }
-.signup__form input { width: 100%; background: var(--paper); border: var(--border) solid var(--line); padding: 0.9rem 1rem; font: inherit; font-size: 0.95rem; color: var(--ink); border-radius: 0; }
-.signup__form input::placeholder { color: var(--ink-4); }
-.signup__form input:focus { border-color: var(--accent); outline: none; }
-.signup__note { font-size: 0.78rem; color: var(--ink-3); margin-top: 1rem; }
-.signup__names { display: grid; gap: 0.85rem; }
-@media (min-width: 640px) { .signup__names { grid-template-columns: 1fr 1fr; } }
 
 /* ---------- CTA ---------- */
 .cta { background: var(--deep); color: var(--paper); text-align: center; }

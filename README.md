@@ -23,7 +23,7 @@ change should port cleanly to a WordPress theme. In practice:
   paths can be swapped for `get_template_directory_uri()`. Images will likely
   move into the WordPress media library.
 - **No server logic we can't run on DreamHost.** Anything dynamic, such as the
-  contact and newsletter forms (currently `mailto:` placeholders), will be
+  contact form (currently a `mailto:` placeholder), will be
   handled by PHP or a WordPress plugin (e.g. Contact Form 7, WPForms). Don't add
   Node backends, serverless functions or GitHub-Pages-only features.
 - **Third-party assets must be allowed in WordPress.** Self-hosted fonts (see
