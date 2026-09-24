@@ -34,3 +34,17 @@ change should port cleanly to a WordPress theme. In practice:
 
 If a change would be hard to reproduce in a WordPress theme, flag it before
 building it.
+
+## Header colour trial (temporary)
+
+The client is choosing between three dark headers. Add `?header=` to any page
+URL to preview one site-wide; the choice sticks while you click between pages.
+
+- `?header=navy`: deep navy (`--deep`)
+- `?header=ink`: warm charcoal (`--ink`)
+- `?header=black`: near-black
+- `?header=paper` or no parameter: the current paper header
+
+Once one is picked, move its values into the `.header` defaults in
+`css/main.css`, delete the trial block there, and delete `js/header-preview.js`
+and its `<script>` tag on every page. None of it should reach WordPress.

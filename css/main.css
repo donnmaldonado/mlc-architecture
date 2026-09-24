@@ -229,7 +229,10 @@ address { font-style: normal; }
 .link--light { color: var(--paper); }
 
 /* ---------- header ---------- */
-.header { position: sticky; top: 0; z-index: 100; background: var(--paper); border-bottom: var(--border) solid var(--line-soft); transition: box-shadow 0.4s var(--ease); }
+.header {
+  --hd-bg: var(--paper); --hd-line: var(--line-soft); --hd-text: var(--ink); --hd-text-2: var(--ink-2); --hd-text-3: var(--ink-3); --hd-rule: var(--accent);
+}
+.header { position: sticky; top: 0; z-index: 100; background: var(--hd-bg); border-bottom: var(--border) solid var(--hd-line); transition: box-shadow 0.4s var(--ease); }
 .header.is-scrolled { box-shadow: 0 1px 14px rgba(44, 42, 38, 0.07); }
 .header__inner {
   max-width: calc(var(--wrap) + var(--gutter) * 2); margin-inline: auto;
@@ -256,22 +259,23 @@ address { font-style: normal; }
 .nav a:hover { color: var(--ink); }
 .nav a:hover::after, .nav a[aria-current="page"]::after, .nav a.is-section::after { transform: scaleX(1); }
 .nav a[aria-current="page"], .nav a.is-section { color: var(--ink); }
-.header .nav a { font-family: var(--font-label); font-size: 1rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); }
+.header .nav a { font-family: var(--font-label); font-size: 1rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hd-text); }
+.header .nav a::after { background: var(--hd-rule); }
 
 /* section nav, sitting under the brandmark; collapses on scroll */
-.subnav { display: none; overflow: hidden; border-top: var(--border) solid var(--line-soft); max-height: 4rem; opacity: 1; transition: max-height 0.45s var(--ease), opacity 0.3s var(--ease), border-color 0.3s var(--ease); }
+.subnav { display: none; overflow: hidden; border-top: var(--border) solid var(--hd-line); max-height: 4rem; opacity: 1; transition: max-height 0.45s var(--ease), opacity 0.3s var(--ease), border-color 0.3s var(--ease); }
 .subnav__inner {
   max-width: calc(var(--wrap) + var(--gutter) * 2); margin-inline: auto;
   padding: 0.6rem var(--gutter);
   display: flex; justify-content: center; gap: clamp(1.5rem, 3vw, 2.75rem);
 }
-.subnav a { font-family: var(--font-label); font-size: 0.7rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); padding: 0.25rem 0; position: relative; transition: color 0.3s var(--ease); }
-.subnav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease); }
-.subnav a:hover { color: var(--ink); }
+.subnav a { font-family: var(--font-label); font-size: 0.7rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hd-text-3); padding: 0.25rem 0; position: relative; transition: color 0.3s var(--ease); }
+.subnav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--hd-rule); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease); }
+.subnav a:hover { color: var(--hd-text); }
 .subnav a:hover::after, .subnav a[aria-current="page"]::after { transform: scaleX(1); }
-.subnav a[aria-current="page"] { color: var(--ink); }
+.subnav a[aria-current="page"] { color: var(--hd-text); }
 
-.menu-btn { display: inline-flex; align-items: center; gap: 0.65rem; font-family: var(--font-label); font-size: 0.66rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-2); justify-self: end; }
+.menu-btn { display: inline-flex; align-items: center; gap: 0.65rem; font-family: var(--font-label); font-size: 0.66rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hd-text-2); justify-self: end; }
 .menu-btn__icon { width: 22px; height: 11px; position: relative; display: block; }
 .menu-btn__icon::before, .menu-btn__icon::after { content: ""; position: absolute; left: 0; right: 0; height: 1px; background: currentColor; transition: transform 0.4s var(--ease), top 0.4s var(--ease); }
 .menu-btn__icon::before { top: 0; } .menu-btn__icon::after { top: 10px; }
@@ -307,6 +311,18 @@ address { font-style: normal; }
 @media (prefers-reduced-motion: reduce) {
   .header .brandmark__logo, .header .nav, .subnav, .header__inner { transition: none; }
 }
+
+/* Header colour trial for the client review: <html data-header="navy|ink|black">,
+   set by js/header-preview.js from ?header= in the URL. Once the client picks,
+   fold the chosen values into the .header defaults above and delete this block. */
+[data-header] .header {
+  --hd-line: rgba(250, 248, 243, 0.12); --hd-text: var(--paper); --hd-text-2: var(--paper);
+  --hd-text-3: rgba(250, 248, 243, 0.62); --hd-rule: var(--paper);
+}
+[data-header="navy"] .header { --hd-bg: var(--deep); }
+[data-header="ink"] .header { --hd-bg: var(--ink); }
+[data-header="black"] .header { --hd-bg: #161616; }
+[data-header] .header :focus-visible { outline-color: var(--paper); }
 
 /* mobile overlay menu */
 .menu { position: fixed; inset: 0; z-index: 90; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; padding: calc(var(--header-h) + 2rem) var(--gutter) 2.5rem; transform: translateY(-100%); transition: transform 0.55s var(--ease); visibility: hidden; overflow-y: auto; }
