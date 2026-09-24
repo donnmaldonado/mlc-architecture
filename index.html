@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/main.css?v=11">
+<link rel="stylesheet" href="css/main.css?v=12">
 <script src="js/header-preview.js"></script>
 <script type="application/ld+json">
 {
@@ -83,16 +83,25 @@
 </div>
 
 <main>
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero__bg" aria-hidden="true"><img src="assets/img/projects/p07.jpg" alt="" fetchpriority="high"></div>
-    <div class="container hero__inner">
-      <h1 class="display" data-reveal style="--d:.1s">Full Residential &amp; Commercial<br>Architectural Services</h1>
-      <p class="lead measure mt-3" data-reveal style="--d:.2s">A full-service architectural practice in Patchogue, New York, serving Long Island and New York City.</p>
-      <div class="btn-row" data-reveal style="--d:.3s">
-        <a class="btn btn--paper" href="gallery.html">View our work</a>
-        <a class="btn btn--outline-light" href="contact.html">Contact us</a>
+  <!-- HERO: a text-free slideshow. Each .slide is self-contained so it can come
+       from an ACF repeater or a gallery block; only the first carries a real src. -->
+  <section class="hero" data-slideshow aria-roledescription="carousel" aria-label="Featured projects">
+    <h1 class="sr-only">MLC Architecture P.C.: Full Residential &amp; Commercial Architectural Services</h1>
+    <div class="hero__bg">
+      <figure class="slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 4" style="--pos: 62% 60%"><img src="assets/img/projects/p07.jpg" alt="White house, rear elevation with pool and spa" width="1536" height="1024" fetchpriority="high"></figure>
+      <figure class="slide" role="group" aria-roledescription="slide" aria-label="2 of 4" style="--pos: 42% 60%"><img data-src="assets/img/projects/p05.jpg" alt="White board-and-batten farmhouse with black garage doors" width="1600" height="909"></figure>
+      <figure class="slide" role="group" aria-roledescription="slide" aria-label="3 of 4" style="--pos: 55% 55%"><img data-src="assets/img/projects/p08.jpg" alt="White two-story house with attached garage and gravel drive" width="1433" height="830"></figure>
+      <figure class="slide" role="group" aria-roledescription="slide" aria-label="4 of 4" style="--pos: 72% 60%"><img data-src="assets/img/projects/p02.jpg" alt="White farmhouse, rear elevation and lawn" width="1255" height="594"></figure>
+    </div>
+    <a class="hero__scroll" href="#join">Scroll</a>
+    <div class="hero__controls" data-slideshow-ui hidden>
+      <div class="hero__tabs">
+        <button class="hero__tab" type="button" aria-label="Show slide 1 of 4" aria-current="true"></button>
+        <button class="hero__tab" type="button" aria-label="Show slide 2 of 4"></button>
+        <button class="hero__tab" type="button" aria-label="Show slide 3 of 4"></button>
+        <button class="hero__tab" type="button" aria-label="Show slide 4 of 4"></button>
       </div>
+      <button class="hero__pause" type="button" aria-label="Pause slideshow" data-slideshow-pause><svg class="hero__pause-ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 3h2v10H5zM9 3h2v10H9z"/></svg><svg class="hero__play-ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 3l8 5-8 5z"/></svg></button>
     </div>
   </section>
 

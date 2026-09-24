@@ -43,12 +43,32 @@
       header.classList.toggle('is-condensed', condensed);
       locked = true;
       clearTimeout(lockTimer);
-      lockTimer = setTimeout(() => { locked = false; apply(); }, SETTLE);
+      lockTimer = setTimeout(() => settle(), SETTLE);
     };
     const onScroll = () => {
       header.classList.toggle('is-scrolled', window.scrollY > 8);
       apply();
     };
+    /* Full-screen hero: its height is the viewport minus this bar, so hand the
+       bar's real height to the CSS as --hero-offset. Only measure the full-size
+       bar: re-measuring as it condenses would resize the hero mid-scroll. If it
+       is condensed (or mid-transition) when the window resizes, wait until it
+       has expanded again. Measured before onScroll() below, which may condense
+       it on a reload part-way down the page. */
+    const hasHero = !!document.querySelector('.hero');
+    let heroStale = false;
+    const measureHero = () => {
+      if (!hasHero) return;
+      if (condensed || locked) { heroStale = true; return; }
+      html.style.setProperty('--hero-offset', header.getBoundingClientRect().height + 'px');
+      heroStale = false;
+    };
+    measureHero();
+    let resizeRaf;
+    window.addEventListener('resize', () => { cancelAnimationFrame(resizeRaf); resizeRaf = requestAnimationFrame(measureHero); });
+    window.addEventListener('load', measureHero);
+    const settle = () => { locked = false; if (heroStale && !condensed) measureHero(); apply(); };
+
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
   }
@@ -136,6 +156,81 @@
         '&body=' + encodeURIComponent(lines.join('\n'));
       if (msg) { msg.textContent = 'Opening your email app\u2026 if nothing happens, write to ' + form.dataset.mailto + '.'; msg.className = msg.className.replace(/ ?form-msg--\w+/g, '') + ' form-msg--ok'; }
     });
+  });
+
+  /* Hero slideshow: [data-slideshow] holding .slide figures, one .hero__tab per
+     slide and a [data-slideshow-pause] button. Only slide 1 ships with a real
+     src; the rest carry data-src and are fetched after window load, so they
+     never compete with the first paint, and a slide is only shown once its
+     image is in. The active tab's fill is a CSS animation and its end is what
+     advances the show, so pausing the animation pauses the timer, and the
+     bar and the slide can't drift apart. Reduced motion turns that animation
+     off in the CSS, which is all it takes to stop autoplay. The controls are
+     [hidden] in the markup, so without JS there are none to go dead. */
+  document.querySelectorAll('[data-slideshow]').forEach(show => {
+    const slides = Array.from(show.querySelectorAll('.slide'));
+    const tabs = Array.from(show.querySelectorAll('.hero__tab'));
+    const stage = show.querySelector('.hero__bg');
+    const pauseBtn = show.querySelector('[data-slideshow-pause]');
+    if (slides.length < 2 || tabs.length !== slides.length) return;
+    show.querySelectorAll('[data-slideshow-ui]').forEach(el => { el.hidden = false; });
+
+    let current = 0, want = 0, userPaused = false, hovered = false, focused = false;
+    const imgOf = n => slides[n].querySelector('img');
+    const fetchImg = n => { const img = imgOf(n); if (img.dataset.src) { img.src = img.dataset.src; img.removeAttribute('data-src'); } };
+    const isReady = n => { const img = imgOf(n); return !!img.getAttribute('src') && img.complete && img.naturalWidth > 0; };
+    const isBroken = n => { const img = imgOf(n); return !!img.getAttribute('src') && img.complete && !img.naturalWidth; };
+
+    const setPaused = () => {
+      const paused = userPaused || hovered || focused || document.hidden;
+      show.classList.toggle('is-paused', paused);
+      // announce slide changes only while nothing is rotating on its own
+      stage.setAttribute('aria-live', paused ? 'polite' : 'off');
+    };
+    const activate = n => {
+      slides[current].classList.remove('is-active');
+      tabs[current].removeAttribute('aria-current');
+      tabs[current].classList.remove('is-running');
+      current = n;
+      slides[n].classList.add('is-active');
+      tabs[n].setAttribute('aria-current', 'true');
+      // restart the fill: a reflow between removing and adding replays it
+      tabs[n].classList.remove('is-running');
+      void tabs[n].offsetWidth;
+      tabs[n].classList.add('is-running');
+    };
+    const go = n => {
+      want = n;
+      if (isReady(n)) return activate(n);
+      if (isBroken(n) && n !== current) return go((n + 1) % slides.length);
+      fetchImg(n);
+      const img = imgOf(n);
+      img.addEventListener('load', () => { if (want === n) activate(n); }, { once: true });
+      img.addEventListener('error', () => { if (want === n) go((n + 1) % slides.length); }, { once: true });
+    };
+
+    tabs.forEach((tab, n) => {
+      tab.addEventListener('click', () => go(n));
+      tab.addEventListener('animationend', e => { if (e.animationName === 'hero-fill' && n === current) go((n + 1) % slides.length); });
+    });
+    if (pauseBtn) pauseBtn.addEventListener('click', () => {
+      userPaused = !userPaused;
+      pauseBtn.classList.toggle('is-off', userPaused);
+      pauseBtn.setAttribute('aria-label', userPaused ? 'Play slideshow' : 'Pause slideshow');
+      setPaused();
+    });
+    // hover pauses for a mouse only; a tap would otherwise leave it "hovered"
+    show.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { hovered = true; setPaused(); } });
+    show.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { hovered = false; setPaused(); } });
+    // keyboard focus pauses; a mouse click on a tab shouldn't freeze the show
+    show.addEventListener('focusin', e => { if (e.target.matches(':focus-visible')) { focused = true; setPaused(); } });
+    show.addEventListener('focusout', e => { if (!show.contains(e.relatedTarget)) { focused = false; setPaused(); } });
+    document.addEventListener('visibilitychange', setPaused);
+
+    const preload = () => slides.forEach((s, n) => fetchImg(n));
+    if (document.readyState === 'complete') preload(); else window.addEventListener('load', preload, { once: true });
+    setPaused();
+    activate(0);
   });
 
   /* Lightbox: any element with [data-lightbox-group] containing <a href="full.jpg" data-caption="..."> */
