@@ -324,6 +324,41 @@ address { font-style: normal; }
 [data-header="black"] .header { --hd-bg: #161616; }
 [data-header] .header :focus-visible { outline-color: var(--paper); }
 
+/* Ink palette trial: the whole site follows the ink header. Ink replaces the
+   navy for every dark surface (bands, CTA, photo scrims, lightbox) and for the
+   primary button, so the header and body read as one family. The one colour
+   accent is the logo's own blue, kept to small details: labels, link rules,
+   focus rings; a lighter tint of it carries accents on ink. Plain custom
+   properties, so if the client picks ink these fold into :root and the
+   component rules above, and this block goes. */
+[data-header="ink"] {
+  --accent: #1a4d85;
+  --accent-dark: #15406f;
+  --accent-light: #8fb0d6;
+  --deep: #24221f;
+  --line: #d8d0c2;
+}
+[data-header="ink"] .header { --hd-rule: var(--accent-light); }
+[data-header="ink"] .header.is-scrolled { box-shadow: 0 1px 18px rgba(20, 18, 15, 0.28); }
+/* primary action is ink, like the header; blue stays for small details */
+[data-header="ink"] .btn--brand { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+[data-header="ink"] .btn--brand:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+[data-header="ink"] .btn--outline:hover { border-color: var(--accent); color: var(--accent); background: transparent; }
+[data-header="ink"] .btn--outline-light:hover { border-color: var(--accent-light); color: var(--accent-light); background: transparent; }
+[data-header="ink"] .btn--paper:hover { background: var(--accent-light); border-color: var(--accent-light); }
+[data-header="ink"] .link { color: var(--ink); border-bottom-color: var(--accent); }
+[data-header="ink"] .link:hover { color: var(--accent); }
+[data-header="ink"] .link--light { color: var(--paper); border-bottom-color: var(--accent-light); }
+[data-header="ink"] .link--light:hover { color: var(--accent-light); }
+/* accents on dark surfaces */
+[data-header="ink"] .section--ink .label, [data-header="ink"] .cta .label { color: var(--accent-light); }
+[data-header="ink"] .section--ink .rule { background: rgba(143, 176, 214, 0.35); }
+/* photo scrims and the lightbox take the warm ink instead of blue-black */
+[data-header="ink"] .hero__bg::after { background: linear-gradient(to top, rgba(26,24,21,0.86) 0%, rgba(26,24,21,0.56) 45%, rgba(26,24,21,0.6) 100%); }
+[data-header="ink"] .page-hero--image .page-hero__bg::after { background: linear-gradient(to top, rgba(26,24,21,0.78) 0%, rgba(26,24,21,0.25) 60%, rgba(26,24,21,0.35) 100%); }
+[data-header="ink"] .lightbox { background: rgba(26, 24, 21, 0.97); }
+[data-header="ink"] .socials a:hover { background: rgba(26, 77, 133, 0.06); }
+
 /* mobile overlay menu */
 .menu { position: fixed; inset: 0; z-index: 90; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; padding: calc(var(--header-h) + 2rem) var(--gutter) 2.5rem; transform: translateY(-100%); transition: transform 0.55s var(--ease); visibility: hidden; overflow-y: auto; }
 .menu-open .menu { transform: translateY(0); visibility: visible; }
