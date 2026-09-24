@@ -535,12 +535,19 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
 .channel__label { font-family: var(--font-label); font-size: 0.6rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); }
 .channel__value { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.6rem; font-size: 0.92rem; line-height: 1.5; color: var(--ink); overflow-wrap: anywhere; }
 a.channel__value:hover, .channel__value a:hover { color: var(--accent); }
-.channels__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem 1.25rem; margin-top: 1.5rem; }
-@media (min-width: 900px) and (max-width: 1279px) {
-  .channel { grid-template-columns: 4.1rem minmax(0, 1fr); gap: 0.5rem; }
-  .channel__value { font-size: 0.84rem; }
-  .channel__value a[href^="mailto:"] { overflow-wrap: normal; }
-  .copy--icon { width: 1.6rem; height: 1.6rem; }
+.channels__foot { display: flex; justify-content: center; margin-top: 1.5rem; }
+/* the copy button stays on the email's line at every width */
+.channel__value--copy { flex-wrap: nowrap; white-space: nowrap; }
+.channel__value--copy .copy { flex: none; }
+/* the one-third panel is narrow on laptops: tighten, then stack the label */
+@media (min-width: 900px) and (max-width: 1359px) {
+  .channel { grid-template-columns: 3.9rem minmax(0, 1fr); gap: 0.4rem; }
+  .channel__value { font-size: 0.8rem; }
+  .channel__value--copy { gap: 0.4rem; }
+  .copy--icon { width: 1.5rem; height: 1.5rem; }
+}
+@media (min-width: 900px) and (max-width: 1099px) {
+  .channel { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; padding: 0.55rem 0; }
 }
 
 .feature--light .feature__panel { background: var(--paper-3); }
