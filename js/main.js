@@ -122,8 +122,6 @@
         const ok = await write(text);
         const tip = btn.querySelector('.copy__tip');
         if (tip) tip.textContent = ok ? 'Copied' : 'Press \u2318C';
-        const done = btn.querySelector('.copy__done');
-        if (done) done.textContent = ok ? 'Copied' : 'Press \u2318C';
         status.textContent = ok ? text + ' copied to clipboard' : 'Could not copy ' + text;
         btn.classList.add('is-copied');
         clearTimeout(timer);

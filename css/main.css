@@ -528,15 +528,20 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
 .feature__statement::before { margin-bottom: 1.5rem; }
 .feature__statement::after { margin-top: 1.5rem; }
 .feature__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem; margin-top: 2rem; }
-/* contact channels: label over value, hairlines between */
-.channels { margin-top: 0.25rem; }
-.channel { display: grid; justify-items: center; gap: 0.35rem; padding: 1.05rem 0; }
+/* contact channels: label and value on one line, hairlines between */
+.channels { margin-top: 1.5rem; text-align: left; border-block: var(--border) solid var(--line); }
+.channel { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); align-items: baseline; gap: 0.75rem; padding: 0.7rem 0; }
 .channel + .channel { border-top: var(--border) solid var(--line); }
-.channel__label { font-family: var(--font-label); font-size: 0.62rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); }
-.channel__value { font-size: 1rem; line-height: 1.55; color: var(--ink); overflow-wrap: anywhere; transition: color 0.3s; }
-.channel__value:hover { color: var(--accent); }
-.channels__socials { justify-content: center; margin-top: 1.25rem; }
-.feature__cta { margin-top: 1.75rem; }
+.channel__label { font-family: var(--font-label); font-size: 0.6rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); }
+.channel__value { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.6rem; font-size: 0.92rem; line-height: 1.5; color: var(--ink); overflow-wrap: anywhere; }
+a.channel__value:hover, .channel__value a:hover { color: var(--accent); }
+.channels__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem 1.25rem; margin-top: 1.5rem; }
+@media (min-width: 900px) and (max-width: 1279px) {
+  .channel { grid-template-columns: 4.1rem minmax(0, 1fr); gap: 0.5rem; }
+  .channel__value { font-size: 0.84rem; }
+  .channel__value a[href^="mailto:"] { overflow-wrap: normal; }
+  .copy--icon { width: 1.6rem; height: 1.6rem; }
+}
 
 .feature--light .feature__panel { background: var(--paper-3); }
 .feature--dark .feature__panel { background: var(--deep); }
@@ -632,13 +637,11 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
   opacity: 0; transition: opacity 0.25s, transform 0.25s var(--ease);
 }
 .copy.is-copied .copy__tip { opacity: 1; transform: translateY(0); }
-/* pill variant: a visible "Copy email" button that swaps to "Copied" */
-.copy--pill { display: inline-flex; align-items: center; gap: 0.45rem; margin-top: 0.35rem; padding: 0.45rem 0.8rem; border: var(--border) solid var(--line); font-family: var(--font-label); font-size: 0.6rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-2); transition: border-color 0.3s, color 0.3s, background-color 0.3s; }
-.copy--pill .copy__ic { margin: 0; vertical-align: 0; opacity: 1; }
-.copy--pill svg { width: 0.9rem; height: 0.9rem; }
-.copy--pill:hover, .copy--pill:focus-visible { border-color: var(--accent); color: var(--accent); }
-.copy__done { display: none; }
-.copy--pill.is-copied { background: var(--accent); border-color: var(--accent); color: var(--white); }
-.copy--pill.is-copied .copy__say { display: none; }
-.copy--pill.is-copied .copy__done { display: inline; }
-@media (prefers-reduced-motion: reduce) { .copy, .copy__ic, .copy__tip, .copy--pill { transition: none; } }
+/* icon variant: a small bordered copy button beside the address */
+.copy--icon { display: inline-flex; align-items: center; justify-content: center; width: 1.9rem; height: 1.9rem; border: var(--border) solid var(--line); color: var(--ink-2); transition: border-color 0.3s, color 0.3s, background-color 0.3s; }
+.copy--icon .copy__ic { margin: 0; vertical-align: 0; opacity: 1; }
+.copy--icon svg { width: 0.95rem; height: 0.95rem; }
+.copy--icon:hover, .copy--icon:focus-visible { border-color: var(--accent); color: var(--accent); }
+.copy--icon.is-copied { background: var(--accent); border-color: var(--accent); color: var(--white); }
+.copy--icon .copy__tip { left: 50%; translate: -50% 0; }
+@media (prefers-reduced-motion: reduce) { .copy, .copy__ic, .copy__tip, .copy--icon { transition: none; } }
