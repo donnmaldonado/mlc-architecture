@@ -160,13 +160,14 @@
 
   /* Hero slideshow: [data-slideshow] holding .slide figures, one .hero__tab per
      slide and a [data-slideshow-pause] button. Only slide 1 ships with a real
-     src; the rest carry data-src and are fetched after window load, so they
-     never compete with the first paint, and a slide is only shown once its
-     image is in. The active tab's fill is a CSS animation and its end is what
-     advances the show, so pausing the animation pauses the timer, and the
-     bar and the slide can't drift apart. Reduced motion turns that animation
-     off in the CSS, which is all it takes to stop autoplay. The controls are
-     [hidden] in the markup, so without JS there are none to go dead. */
+     src; the rest carry data-src. After window load only the next slide is
+     fetched, one ahead of the show, so a long gallery never downloads all at
+     once, and a slide is only shown once its image is in. The active tab runs
+     an (invisible) CSS animation whose end advances the show, so pausing the
+     animation pauses the timer. Reduced motion turns that animation off in
+     the CSS, which is all it takes to stop autoplay. The controls are
+     [data-slideshow-ui][hidden] in the markup, so without JS there are none
+     to go dead. */
   document.querySelectorAll('[data-slideshow]').forEach(show => {
     const slides = Array.from(show.querySelectorAll('.slide'));
     const tabs = Array.from(show.querySelectorAll('.hero__tab'));
@@ -175,7 +176,7 @@
     if (slides.length < 2 || tabs.length !== slides.length) return;
     show.querySelectorAll('[data-slideshow-ui]').forEach(el => { el.hidden = false; });
 
-    let current = 0, want = 0, userPaused = false, hovered = false, focused = false;
+    let current = 0, want = 0, loaded = false, userPaused = false, hovered = false, focused = false;
     const imgOf = n => slides[n].querySelector('img');
     const fetchImg = n => { const img = imgOf(n); if (img.dataset.src) { img.src = img.dataset.src; img.removeAttribute('data-src'); } };
     const isReady = n => { const img = imgOf(n); return !!img.getAttribute('src') && img.complete && img.naturalWidth > 0; };
@@ -198,6 +199,7 @@
       tabs[n].classList.remove('is-running');
       void tabs[n].offsetWidth;
       tabs[n].classList.add('is-running');
+      if (loaded) fetchImg((n + 1) % slides.length);
     };
     const go = n => {
       want = n;
@@ -227,7 +229,7 @@
     show.addEventListener('focusout', e => { if (!show.contains(e.relatedTarget)) { focused = false; setPaused(); } });
     document.addEventListener('visibilitychange', setPaused);
 
-    const preload = () => slides.forEach((s, n) => fetchImg(n));
+    const preload = () => { loaded = true; fetchImg((current + 1) % slides.length); };
     if (document.readyState === 'complete') preload(); else window.addEventListener('load', preload, { once: true });
     setPaused();
     activate(0);

@@ -395,42 +395,57 @@ address { font-style: normal; }
 .slide.is-active { z-index: 1; opacity: 1; visibility: visible; transition: opacity 1.2s var(--ease); }
 .slide img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); }
 
-.hero__scroll, .hero__controls { position: absolute; z-index: 3; bottom: clamp(1rem, 3vh, 2rem); }
 .hero :focus-visible { outline-color: var(--paper); }
 
-/* scroll cue: the word, and a thin line under it that draws down and away */
-.hero__scroll { left: var(--gutter); display: flex; flex-direction: column; align-items: center; gap: 0.6rem; padding: 0.25rem; font-family: var(--font-label); font-size: 0.64rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--paper); }
-.hero__scroll::after { content: ""; width: 1px; height: 2.5rem; background: var(--paper); transform-origin: top; animation: hero-cue 2.4s var(--ease) infinite; }
-@keyframes hero-cue { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 50.1% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
-/* centred from 900px; below that it keeps to the left so the tabs never meet it */
-@media (min-width: 900px) { .hero__scroll { left: 50%; transform: translateX(-50%); } }
+/* foot: a row of tiles, one per slide, centred over the Scroll link */
+.hero__foot { position: absolute; z-index: 3; left: var(--gutter); right: var(--gutter); bottom: clamp(1rem, 3vh, 2rem); display: flex; flex-direction: column; align-items: center; gap: 0.35rem; pointer-events: none; }
+.hero__foot > * { pointer-events: auto; }
+.hero__scroll { padding: 0.25rem; font-family: var(--font-label); font-size: 0.64rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--paper); }
 
-/* tabs: slim bars with a taller hit area; the active one fills over the interval,
-   and the end of that fill is what advances the show (see js/main.js) */
-.hero__controls { right: var(--gutter); display: flex; align-items: center; gap: 0.5rem; }
-.hero__controls[hidden] { display: none; }
-.hero__tabs { display: flex; gap: 0.35rem; }
-.hero__tab { position: relative; width: 2.5rem; height: 2rem; }
-.hero__tab::before, .hero__tab::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; background: var(--paper); }
-.hero__tab::before { opacity: 0.4; transition: opacity 0.3s var(--ease); }
-.hero__tab:hover::before { opacity: 0.7; }
-.hero__tab::after { transform: scaleX(0); transform-origin: left; }
-.hero__tab[aria-current="true"]::after { transform: scaleX(1); }
+/* tiles: short dashes with a taller hit area (24px wide at least, so they
+   stay tappable on a phone, shrinking a touch rather than wrapping on the
+   narrowest ones); the current one is bright, the rest dim.
+   The active tile also runs an invisible fill over the interval, and the end
+   of that animation is what advances the show (see js/main.js), so pausing
+   the animation pauses the timer. */
+.hero__tabs { display: flex; justify-content: center; width: 100%; }
+.hero__tabs[hidden] { display: none; }
+.hero__tab { position: relative; flex: 0 1 1.5rem; min-width: 0; height: 1.75rem; }
+.hero__tab::before, .hero__tab::after { content: ""; position: absolute; left: 0.2rem; right: 0.2rem; top: 50%; height: 2px; margin-top: -1px; background: var(--paper); }
+.hero__tab::before { opacity: 0.35; transition: opacity 0.4s var(--ease); }
+.hero__tab:hover::before { opacity: 0.65; }
+.hero__tab[aria-current="true"]::before { opacity: 1; }
+.hero__tab::after { opacity: 0; }
 .hero__tab.is-running::after { animation: hero-fill var(--interval) linear forwards; }
 .hero.is-paused .hero__tab::after { animation-play-state: paused; }
 @keyframes hero-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-.hero__pause { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; color: var(--paper); opacity: 0.75; transition: opacity 0.3s var(--ease); }
+@media (min-width: 900px) { .hero__tab { flex-basis: 2rem; } .hero__tab::before, .hero__tab::after { left: 0.3rem; right: 0.3rem; } }
+
+.hero__pause { position: absolute; z-index: 3; right: var(--gutter); bottom: clamp(1rem, 3vh, 2rem); display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; color: var(--paper); opacity: 0.75; transition: opacity 0.3s var(--ease); }
+.hero__pause[hidden] { display: none; }
 .hero__pause:hover { opacity: 1; }
 .hero__pause svg { width: 0.85rem; height: 0.85rem; fill: currentColor; }
 .hero__play-ico, .hero__pause.is-off .hero__pause-ico { display: none; }
 .hero__pause.is-off .hero__play-ico { display: block; }
-@media (min-width: 900px) { .hero__tab { width: 3rem; } }
 
-/* no autoplay, no drawing line, instant swaps; the tabs still work */
+/* no autoplay, instant swaps; the tiles still work */
 @media (prefers-reduced-motion: reduce) {
   .slide, .slide.is-active { transition: none; }
-  .hero__scroll::after, .hero__tab.is-running::after { animation: none; }
+  .hero__tab.is-running::after { animation: none; }
   .hero__pause { display: none; }
+}
+
+/* ---------- gallery (showcase page): every project, two up with wide rows ---------- */
+.gallery { scroll-margin-top: calc(var(--header-h) + var(--border)); }
+.shots { display: grid; grid-template-columns: 1fr; gap: clamp(2.75rem, 5vw, 4.5rem) clamp(20px, 3vw, 44px); }
+.shot { margin: 0; }
+.shot a.media { display: block; }
+.shot figcaption { text-align: center; }
+.shot__desc { font-size: 0.9rem; line-height: 1.7; color: var(--ink-2); margin-top: 0.5rem; max-width: 46ch; margin-inline: auto; }
+@media (min-width: 640px) {
+  .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .shot--wide { grid-column: span 2; }
+  .shot--wide .media { aspect-ratio: 21 / 9; }
 }
 
 /* ---------- page hero (interior pages) ---------- */
