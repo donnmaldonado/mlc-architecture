@@ -293,17 +293,36 @@
       }, { threshold: 0.6 }).observe(stage);
     }
 
-    stage.addEventListener('pointerdown', e => {
+    // A mouse or pen grabs the divider on press. A finger waits to see what
+    // it's doing: a sideways drag grabs it and a tap moves it there, but a
+    // vertical swipe is the page scrolling past (the browser takes it under
+    // touch-action: pan-y and cancels the pointer), so it leaves it alone.
+    // Touch pointers are captured implicitly on press, so the drag is tracked
+    // by id rather than by hasPointerCapture().
+    const SLOP = 8;
+    let touch = null, dragging = null;
+    const grab = e => {
       stopTease();
+      dragging = e.pointerId;
       stage.setPointerCapture(e.pointerId);
       fig.classList.add('is-dragging');
       fromPointer(e);
+    };
+    stage.addEventListener('pointerdown', e => {
+      if (e.pointerType === 'touch') touch = { id: e.pointerId, x: e.clientX, y: e.clientY };
+      else grab(e);
     });
     stage.addEventListener('pointermove', e => {
-      if (stage.hasPointerCapture(e.pointerId)) fromPointer(e);
+      if (dragging === e.pointerId) { fromPointer(e); return; }
+      if (!touch || touch.id !== e.pointerId) return;
+      const dx = Math.abs(e.clientX - touch.x), dy = Math.abs(e.clientY - touch.y);
+      if (dx > SLOP && dx > dy) { touch = null; grab(e); }
     });
-    const release = () => fig.classList.remove('is-dragging');
-    stage.addEventListener('pointerup', release);
+    const release = () => { touch = null; dragging = null; fig.classList.remove('is-dragging'); };
+    stage.addEventListener('pointerup', e => {
+      if (touch && touch.id === e.pointerId) { stopTease(); fromPointer(e); }
+      release();
+    });
     stage.addEventListener('pointercancel', release);
     range.addEventListener('pointerdown', stopTease);
     range.addEventListener('keydown', stopTease);
