@@ -431,7 +431,7 @@ address { font-style: normal; }
   .hero__tab.is-running::after { animation: none; }
 }
 
-/* ---------- gallery (showcase page): every project, two up with wide rows ---------- */
+/* ---------- gallery (all page): every project, two up with wide rows ---------- */
 .gallery { scroll-margin-top: calc(var(--header-h) + var(--border)); }
 .shots { display: grid; grid-template-columns: 1fr; gap: clamp(2.75rem, 5vw, 4.5rem) clamp(20px, 3vw, 44px); }
 .shot { margin: 0; }
