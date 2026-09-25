@@ -229,16 +229,23 @@
   });
 
   /* Before / after comparison: [data-compare] crops its before layer at --pos.
-     It opens on the after photo (divider parked at the left edge) and only
-     moves when the visitor presses or drags on the picture or moves the
-     slider bar underneath; plain hover does nothing. The bar (shipped
-     [hidden], so there's nothing dead without JS) is a range input, so it
-     also takes the keyboard. reset() puts it back on the after photo each
-     time its project is shown. */
+     Before is left of the divider and after is right of it, matching the
+     slider bar's Before / After ends. It opens on the after photo (divider
+     parked at the left edge) and only moves when the visitor presses or
+     drags on the picture or moves the slider bar underneath; plain hover
+     does nothing. The bar (shipped [hidden], so there's nothing dead without
+     JS) is a range input, so it also takes the keyboard. reset() puts it back
+     on the after photo each time its project is shown and arms a one-off
+     tease: once the picture is loaded and mostly on screen, the divider
+     sweeps part way in to show a slice of the before, then glides back.
+     Any press or slider input cancels it; reduced motion skips it. */
   const compares = new WeakMap();
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const easeInOut = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   document.querySelectorAll('[data-compare]').forEach(fig => {
     const stage = fig.querySelector('.compare__stage');
     const range = fig.querySelector('.compare__range');
+    const after = fig.querySelector('.compare__after');
     if (!stage || !range) return;
     fig.querySelectorAll('[data-compare-ui]').forEach(el => { el.hidden = false; });
 
@@ -250,7 +257,43 @@
     };
     const fromPointer = e => { const r = stage.getBoundingClientRect(); set((e.clientX - r.left) / r.width * 100); };
 
+    let armed = false, inView = false, timer = 0, frame = 0;
+    const stopTease = () => {
+      armed = false;
+      clearTimeout(timer); timer = 0;
+      cancelAnimationFrame(frame); frame = 0;
+    };
+    // out to PEAK% before, hold, then back to the after photo
+    const PEAK = 40, OUT = 800, HOLD = 450, BACK = 900;
+    const playTease = () => {
+      armed = false;
+      const start = performance.now();
+      const tick = now => {
+        const t = now - start;
+        if (t >= OUT + HOLD + BACK) { set(0); frame = 0; return; }
+        set(t < OUT ? PEAK * easeInOut(t / OUT)
+          : t < OUT + HOLD ? PEAK
+          : PEAK * (1 - easeInOut((t - OUT - HOLD) / BACK)));
+        frame = requestAnimationFrame(tick);
+      };
+      frame = requestAnimationFrame(tick);
+    };
+    const maybeTease = () => {
+      if (!armed || !inView || timer || frame || reduceMotion.matches) return;
+      if (after && !after.complete) { after.addEventListener('load', maybeTease, { once: true }); return; }
+      if (after && !after.naturalWidth) return;
+      // a beat after it lands, so it isn't lost in the project's fade-in
+      timer = setTimeout(() => { timer = 0; if (armed && inView) playTease(); }, 600);
+    };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        inView = entries[entries.length - 1].isIntersecting;
+        if (inView) maybeTease();
+      }, { threshold: 0.6 }).observe(stage);
+    }
+
     stage.addEventListener('pointerdown', e => {
+      stopTease();
       stage.setPointerCapture(e.pointerId);
       fig.classList.add('is-dragging');
       fromPointer(e);
@@ -261,9 +304,11 @@
     const release = () => fig.classList.remove('is-dragging');
     stage.addEventListener('pointerup', release);
     stage.addEventListener('pointercancel', release);
-    range.addEventListener('input', () => set(+range.value));
+    range.addEventListener('pointerdown', stopTease);
+    range.addEventListener('keydown', stopTease);
+    range.addEventListener('input', () => { stopTease(); set(+range.value); });
 
-    const reset = () => set(0);
+    const reset = () => { stopTease(); set(0); armed = true; maybeTease(); };
     reset();
     compares.set(fig, { reset });
   });
