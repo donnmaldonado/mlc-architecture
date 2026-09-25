@@ -303,6 +303,8 @@ address { font-style: normal; }
   .nav--right { justify-self: end; }
   .menu-btn { display: none; }
   .subnav { display: block; }
+  /* pages with a section nav: tuck it up under the logo row */
+  .header__inner:has(+ .subnav) { padding-bottom: 0.15rem; }
 
   .header { --logo-h: clamp(120px, 11.6vw, 150px); }
   /* condensed: the section nav folds away, the bar shrinks to the logo */
