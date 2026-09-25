@@ -356,7 +356,7 @@ address { font-style: normal; }
 /* the accent underline vanishes on the accent-filled feature panel */
 [data-header="ink"] .feature--medium .link { border-bottom-color: var(--accent-light); }
 /* accents on dark surfaces */
-[data-header="ink"] .section--ink .label, [data-header="ink"] .cta .label { color: var(--accent-light); }
+[data-header="ink"] .section--ink .label { color: var(--accent-light); }
 [data-header="ink"] .section--ink .rule { background: rgba(143, 176, 214, 0.35); }
 /* photo scrims and the lightbox take the warm ink instead of blue-black */
 [data-header="ink"] .hero__bg::after { background: linear-gradient(to top, rgba(26,24,21,0.6) 0%, rgba(26,24,21,0) 35%); }
@@ -621,14 +621,6 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
   .feature:nth-child(even) .feature__media { order: 2; }
   .feature__panel { padding: clamp(2.5rem, 3.5vw, 4rem) clamp(1.75rem, 3vw, 3.5rem); }
 }
-
-/* ---------- CTA ---------- */
-.cta { background: var(--deep); color: var(--paper); text-align: center; }
-.cta__inner { padding-top: clamp(3.5rem, 8vw, 6.5rem); padding-bottom: clamp(3.5rem, 8vw, 6.5rem); max-width: 46rem; margin-inline: auto; }
-.cta .h1, .cta .h2 { color: var(--paper); }
-.cta .label { color: rgba(250,248,243,0.65); }
-.cta .lead { color: rgba(250,248,243,0.8); margin-inline: auto; }
-.cta :focus-visible { outline-color: var(--paper); }
 
 /* ---------- footer ---------- */
 .footer { background: var(--paper-2); color: var(--ink); border-top: var(--border) solid var(--line); padding: clamp(2.5rem, 5vw, 3.5rem) 0; text-align: center; }
