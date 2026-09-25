@@ -353,6 +353,8 @@ address { font-style: normal; }
 [data-header="ink"] .link:hover { color: var(--accent); }
 [data-header="ink"] .link--light { color: var(--paper); border-bottom-color: var(--accent-light); }
 [data-header="ink"] .link--light:hover { color: var(--accent-light); }
+/* the accent underline vanishes on the accent-filled feature panel */
+[data-header="ink"] .feature--medium .link { border-bottom-color: var(--accent-light); }
 /* accents on dark surfaces */
 [data-header="ink"] .section--ink .label, [data-header="ink"] .cta .label { color: var(--accent-light); }
 [data-header="ink"] .section--ink .rule { background: rgba(143, 176, 214, 0.35); }
