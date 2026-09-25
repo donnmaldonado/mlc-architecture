@@ -236,16 +236,13 @@
      does nothing. The bar (shipped [hidden], so there's nothing dead without
      JS) is a range input, so it also takes the keyboard. reset() puts it back
      on the after photo each time its project is shown and arms a one-off
-     tease: once the picture is loaded and mostly on screen, the divider
-     snaps a short way in like a stretched elastic (overshooting, then a
-     small wobble) to show a slice of the before, then eases back out to
-     the after photo. Any press or slider input cancels it; reduced motion
+     tease: once the picture is loaded and mostly on screen, the divider is
+     tossed a short way in like a ball thrown up, slowing to a stop at the
+     top to show a slice of the before, then falls quickly back to the
+     after photo. Any press or slider input cancels it; reduced motion
      skips it. */
   const compares = new WeakMap();
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const easeInOut = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-  // damped spring: overshoots its target by ~13%, dips under by ~2%, settles
-  const easeOutElastic = t => 1 - Math.exp(-6 * t) * Math.cos(3 * Math.PI * t);
   document.querySelectorAll('[data-compare]').forEach(fig => {
     const stage = fig.querySelector('.compare__stage');
     const range = fig.querySelector('.compare__range');
@@ -267,17 +264,17 @@
       clearTimeout(timer); timer = 0;
       cancelAnimationFrame(frame); frame = 0;
     };
-    // snap in to PEAK% before, hold, then ease back out to the after photo
-    const PEAK = 15, OUT = 450, HOLD = 200, BACK = 350;
+    // rise to PEAK% before, slowing into the top, then fall back to the
+    // after photo, speeding up; BACK shorter than UP makes the fall quicker
+    const PEAK = 15, UP = 400, BACK = 280;
     const playTease = () => {
       armed = false;
       const start = performance.now();
       const tick = now => {
         const t = now - start;
-        if (t >= OUT + HOLD + BACK) { set(0); frame = 0; return; }
-        set(t < OUT ? PEAK * easeOutElastic(t / OUT)
-          : t < OUT + HOLD ? PEAK
-          : PEAK * (1 - easeInOut((t - OUT - HOLD) / BACK)));
+        if (t >= UP + BACK) { set(0); frame = 0; return; }
+        const u = t < UP ? 1 - t / UP : (t - UP) / BACK;
+        set(PEAK * (1 - u * u));
         frame = requestAnimationFrame(tick);
       };
       frame = requestAnimationFrame(tick);
