@@ -453,13 +453,14 @@ address { font-style: normal; }
    the first view of a desktop screen: the picture is 3:2 when there's room
    and, when there isn't, keeps its height to that and stays up to twice as
    wide as it is tall, cropping top and bottom rather than shrinking. */
-.showcase { --stage-h: max(14.5rem, calc(100svh - 29.5rem)); --stage-w: min(100%, 1040px, var(--stage-h) * 2); padding-top: clamp(1.25rem, 2vw, 1.75rem); }
+.showcase { --stage-h: max(14.5rem, calc(100svh - 28rem)); --stage-w: min(100%, 1040px, var(--stage-h) * 2); padding-top: clamp(1.25rem, 2vw, 1.75rem); }
 .project { scroll-margin-top: calc(var(--header-h) + var(--border)); }
 .project + .project { margin-top: var(--section); }
 .project[hidden] { display: none; }
 .project.is-entering > :not(.showcase__nav) { animation: project-in 0.7s var(--ease) both; }
 @keyframes project-in { from { opacity: 0; transform: translateY(10px); } }
 .project__head { max-width: 64rem; margin: 0 auto clamp(0.75rem, 1.5vw, 1rem); text-align: center; }
+.project__head .h1 { font-size: clamp(1.9rem, 3vw, 2.75rem); }
 .project__head .lead { margin-top: 0.35rem; }
 .project .compare { width: var(--stage-w); margin-inline: auto; }
 .project .compare__stage { width: 100%; max-height: var(--stage-h); }
