@@ -270,7 +270,7 @@ address { font-style: normal; }
   padding: 0 var(--gutter) 0.6rem;
   display: flex; justify-content: center; gap: clamp(1.5rem, 3vw, 2.75rem);
 }
-.subnav a { font-family: var(--font-label); font-size: 0.7rem; font-weight: 400; letter-spacing: var(--track); text-transform: uppercase; color: var(--hd-text-3); padding: 0.25rem 0; position: relative; transition: color 0.3s var(--ease); }
+.subnav a { font-family: var(--font-label); font-size: 0.82rem; font-weight: 400; letter-spacing: var(--track); text-transform: uppercase; color: var(--hd-text-3); padding: 0.25rem 0; position: relative; transition: color 0.3s var(--ease); }
 .subnav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--hd-rule); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease); }
 .subnav a:hover { color: var(--hd-text); }
 .subnav a:hover::after, .subnav a[aria-current="page"]::after { transform: scaleX(1); }
