@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/main.css?v=21">
+<link rel="stylesheet" href="css/main.css?v=22">
 <script src="js/header-preview.js"></script>
 </head>
 <body>
@@ -72,21 +72,12 @@
 </div>
 
 <main>
-  <!-- PAGE HERO -->
-  <section class="page-hero">
-    <div class="container">
-      <p class="label" data-reveal>14 projects &middot; Long Island &amp; New York City</p>
-      <h1 class="display mt-3" data-reveal style="--d:.1s">Gallery</h1>
-      <p class="lead measure mt-4" data-reveal style="--d:.2s">Residential and commercial work across Long Island and New York City. Filter by type, or select any image to view it full size.</p>
-    </div>
-  </section>
-  <div class="container"><hr class="rule"></div>
-
   <!-- GALLERY: every project, filterable by category. Each .shot is
        self-contained so it can come from a project post; data-cat holds its
        category slugs, and the filter links use ?category= so they can become
        taxonomy term links in WordPress. -->
-  <section class="section section--flush-top gallery">
+  <section class="section gallery" aria-labelledby="gallery-title">
+    <h1 class="sr-only" id="gallery-title">Gallery</h1>
     <div class="container">
       <nav class="filter" aria-label="Filter projects" data-filter>
         <ul class="filter__list">

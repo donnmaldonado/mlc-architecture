@@ -436,7 +436,7 @@ address { font-style: normal; }
 /* ---------- gallery (all page): a row of category filters over a grid of
    project cards, one to three across. Without JS the filter links reload the
    page with ?category= and every card shows; js/main.js filters in place. */
-.gallery { scroll-margin-top: calc(var(--header-h) + var(--border)); }
+.gallery { scroll-margin-top: calc(var(--header-h) + var(--border)); padding-top: clamp(1.25rem, 2vw, 1.75rem); }
 .filter { margin-bottom: clamp(2rem, 4vw, 3rem); }
 .filter__list { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem clamp(1.1rem, 2.5vw, 2rem); list-style: none; margin: 0; padding: 0; }
 .filter__list a { display: inline-block; padding: 0.35rem 0; font-family: var(--font-label); font-size: 0.72rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); border-bottom: var(--border) solid transparent; transition: color 0.3s, border-color 0.3s; }
