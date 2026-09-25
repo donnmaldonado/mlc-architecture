@@ -264,7 +264,7 @@ address { font-style: normal; }
 .header .nav a::after { background: var(--hd-rule); }
 
 /* section nav, sitting under the brandmark; collapses on scroll */
-.subnav { display: none; overflow: hidden; border-top: var(--border) solid var(--hd-line); max-height: 4rem; opacity: 1; transition: max-height 0.45s var(--ease), opacity 0.3s var(--ease), border-color 0.3s var(--ease); }
+.subnav { display: none; overflow: hidden; max-height: 4rem; opacity: 1; transition: max-height 0.45s var(--ease), opacity 0.3s var(--ease); }
 .subnav__inner {
   max-width: calc(var(--wrap) + var(--gutter) * 2); margin-inline: auto;
   padding: 0.6rem var(--gutter);
@@ -308,7 +308,7 @@ address { font-style: normal; }
   /* condensed: the section nav folds away, the bar shrinks to the logo */
   .header.is-condensed .header__inner { padding-top: 0.6rem; padding-bottom: 0.6rem; }
   .header.is-condensed { --logo-h: clamp(66px, 6vw, 82px); }
-  .header.is-condensed .subnav { max-height: 0; opacity: 0; border-top-color: transparent; }
+  .header.is-condensed .subnav { max-height: 0; opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
