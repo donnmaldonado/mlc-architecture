@@ -472,24 +472,25 @@ address { font-style: normal; }
 
 /* ---------- before / after comparison ----------
    The after photo sits underneath; the before layer on top is cropped at
-   --pos, so before shows left of the divider and after to the right. Each
+   --pos, so after shows left of the divider and before to the right. Each
    tag rides in its own layer, so the divider wipes it away as it passes.
    touch-action: pan-y leaves vertical swipes to scroll the page.
-   JS sets --k (0 = all after, 1 = all before); --pos is derived from it.
+   JS sets --k (0 = all after, 1 = all before); --pos is derived from it,
+   running from the right edge (all after) to the left edge (all before).
    Below the picture, the range input is drawn as a slider bar that moves
    with the divider and carries keyboard and screen-reader use. It overhangs
    the picture by half a thumb each side, so the thumb's centre sits right
    under the divider; the track's drawn line is inset to the picture's
-   width, and its fill stop to the thumb's centre.
+   width, and its fill runs from the thumb's centre to the right end.
    Self-contained, so it can become a block pattern or shortcode. */
-.compare { --k: 0.5; --pos: calc(var(--k) * 100%); margin: 0; }
+.compare { --k: 0.5; --pos: calc((1 - var(--k)) * 100%); margin: 0; }
 .compare__stage { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: var(--paper-3); cursor: ew-resize; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
 .compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--obj, 50% 50%); pointer-events: none; -webkit-user-drag: none; }
-.compare__before { position: absolute; inset: 0; clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+.compare__before { position: absolute; inset: 0; clip-path: inset(0 0 0 var(--pos)); }
 /* stand-in until the real before photo arrives: the after shot, washed out */
 .compare__before.is-placeholder img { filter: grayscale(1) sepia(0.2) contrast(0.8) brightness(1.08); }
 .compare__tag { position: absolute; top: 1rem; left: 1rem; background: var(--paper); color: var(--ink); font-family: var(--font-label); font-size: 0.62rem; letter-spacing: var(--track); text-transform: uppercase; padding: 0.45rem 0.7rem; line-height: 1.2; }
-.compare__tag--after { left: auto; right: 1rem; }
+.compare__before .compare__tag { left: auto; right: 1rem; }
 .compare__handle { position: absolute; inset: 0; pointer-events: none; }
 .compare__handle::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(var(--pos) - 0.5px); width: 1px; background: var(--paper); box-shadow: 0 0 8px rgba(16, 21, 27, 0.35); }
 
@@ -497,7 +498,7 @@ address { font-style: normal; }
 .compare__bar[hidden] { display: none; }
 .compare__end:last-child { justify-self: end; }
 .compare__end { font-family: var(--font-label); font-size: 0.62rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); }
-.compare__range { --thumb: 1.1rem; --fill: calc(var(--thumb) / 2 + (100% - var(--thumb)) * var(--k)); --track-bg: linear-gradient(to right, transparent calc(var(--thumb) / 2), var(--accent) 0 var(--fill), var(--line) 0 calc(100% - var(--thumb) / 2), transparent 0); -webkit-appearance: none; appearance: none; grid-column: 1 / -1; order: -1; display: block; width: calc(100% + var(--thumb)); height: 1.75rem; margin: 0 calc(var(--thumb) / -2); background: transparent; cursor: pointer; }
+.compare__range { --thumb: 1.1rem; --fill: calc(var(--thumb) / 2 + (100% - var(--thumb)) * (1 - var(--k))); --track-bg: linear-gradient(to right, transparent calc(var(--thumb) / 2), var(--line) 0 var(--fill), var(--accent) 0 calc(100% - var(--thumb) / 2), transparent 0); -webkit-appearance: none; appearance: none; grid-column: 1 / -1; order: -1; display: block; width: calc(100% + var(--thumb)); height: 1.75rem; margin: 0 calc(var(--thumb) / -2); background: transparent; cursor: pointer; }
 .compare__range:focus-visible { outline: none; }
 .compare__range::-webkit-slider-runnable-track { height: 2px; background: var(--track-bg); }
 .compare__range::-webkit-slider-thumb { -webkit-appearance: none; box-sizing: border-box; width: var(--thumb); height: var(--thumb); margin-top: calc(1px - var(--thumb) / 2); border: 1.5px solid var(--accent); border-radius: 50%; background: var(--paper); transition: transform 0.3s var(--ease); }
