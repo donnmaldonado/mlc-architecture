@@ -244,13 +244,19 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   // overshoots its target by ~10% and settles back
   const easeOutBack = t => 1 + 2.70158 * Math.pow(t - 1, 3) + 1.70158 * Math.pow(t - 1, 2);
-  // lands, then bounces twice, each lower than the last
+  // falls under gravity, lands, then makes small hops; each hop's height is
+  // a fraction of the fall, so the list below sets how bouncy it is
+  const HOPS = [0.06, 0.015];
   const easeOutBounce = t => {
-    const n = 7.5625, d = 2.75;
-    if (t < 1 / d) return n * t * t;
-    if (t < 2 / d) return n * (t -= 1.5 / d) * t + 0.75;
-    if (t < 2.5 / d) return n * (t -= 2.25 / d) * t + 0.9375;
-    return n * (t -= 2.625 / d) * t + 0.984375;
+    const widths = HOPS.map(h => 2 * Math.sqrt(h));
+    let x = t * (1 + widths.reduce((a, w) => a + w, 0));
+    if (x < 1) return x * x;
+    x -= 1;
+    for (let i = 0; i < HOPS.length; i++) {
+      if (x < widths[i]) { const u = x - widths[i] / 2; return 1 - HOPS[i] + u * u; }
+      x -= widths[i];
+    }
+    return 1;
   };
   document.querySelectorAll('[data-compare]').forEach(fig => {
     const stage = fig.querySelector('.compare__stage');
@@ -274,7 +280,7 @@
       cancelAnimationFrame(frame); frame = 0;
     };
     // spring out to PEAK% before, hold, then bounce back to the after photo
-    const PEAK = 40, OUT = 700, HOLD = 350, BACK = 1100;
+    const PEAK = 40, OUT = 700, HOLD = 350, BACK = 900;
     const playTease = () => {
       armed = false;
       const start = performance.now();
