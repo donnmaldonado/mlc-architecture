@@ -237,12 +237,15 @@
      JS) is a range input, so it also takes the keyboard. reset() puts it back
      on the after photo each time its project is shown and arms a one-off
      tease: once the picture is loaded and mostly on screen, the divider
-     eases a short way in to show a slice of the before, then eases back out
-     to the after photo. Any press or slider input cancels it; reduced motion
+     snaps a short way in like a stretched elastic (overshooting, then a
+     small wobble) to show a slice of the before, then eases back out to
+     the after photo. Any press or slider input cancels it; reduced motion
      skips it. */
   const compares = new WeakMap();
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const easeInOut = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  // damped spring: overshoots its target by ~13%, dips under by ~2%, settles
+  const easeOutElastic = t => 1 - Math.exp(-6 * t) * Math.cos(3 * Math.PI * t);
   document.querySelectorAll('[data-compare]').forEach(fig => {
     const stage = fig.querySelector('.compare__stage');
     const range = fig.querySelector('.compare__range');
@@ -264,15 +267,15 @@
       clearTimeout(timer); timer = 0;
       cancelAnimationFrame(frame); frame = 0;
     };
-    // ease in to PEAK% before, hold, then ease back out to the after photo
-    const PEAK = 15, OUT = 500, HOLD = 300, BACK = 500;
+    // snap in to PEAK% before, hold, then ease back out to the after photo
+    const PEAK = 15, OUT = 450, HOLD = 200, BACK = 350;
     const playTease = () => {
       armed = false;
       const start = performance.now();
       const tick = now => {
         const t = now - start;
         if (t >= OUT + HOLD + BACK) { set(0); frame = 0; return; }
-        set(t < OUT ? PEAK * easeInOut(t / OUT)
+        set(t < OUT ? PEAK * easeOutElastic(t / OUT)
           : t < OUT + HOLD ? PEAK
           : PEAK * (1 - easeInOut((t - OUT - HOLD) / BACK)));
         frame = requestAnimationFrame(tick);
