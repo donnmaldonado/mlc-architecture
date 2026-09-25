@@ -442,11 +442,18 @@ address { font-style: normal; }
 .filter__list a { display: inline-block; padding: 0.35rem 0; font-family: var(--font-label); font-size: 0.72rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); border-bottom: var(--border) solid transparent; transition: color 0.3s, border-color 0.3s; }
 .filter__list a:hover { color: var(--ink); }
 .filter__list a[aria-current="true"] { color: var(--ink); border-bottom-color: var(--ink); }
-.shots { display: grid; grid-template-columns: 1fr; gap: clamp(1.75rem, 3vw, 2.5rem) clamp(16px, 2vw, 28px); }
-.shot { margin: 0; }
+.shots { display: grid; grid-template-columns: 1fr; gap: clamp(6px, 0.8vw, 12px); }
+.shot { margin: 0; position: relative; }
 .shot[hidden] { display: none; }
-.shot figcaption { text-align: center; }
-.shot__title { margin-top: 0.85rem; font-family: var(--font-label); font-size: 0.8rem; font-weight: 400; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink); }
+/* Title sits on the picture: a blue wash that fades in on hover or keyboard
+   focus. Clicks pass through to the lightbox link underneath. */
+.shot figcaption { position: absolute; inset: 0; display: grid; place-items: center; padding: 1rem; text-align: center; background: color-mix(in srgb, var(--accent) 84%, transparent); opacity: 0; transition: opacity 0.35s var(--ease); pointer-events: none; }
+.shot:hover figcaption, .shot:focus-within figcaption { opacity: 1; }
+.shot__title { font-family: var(--font-label); font-size: 0.95rem; font-weight: 400; letter-spacing: var(--track); text-transform: uppercase; color: var(--white); }
+/* No hover on touch screens: keep the title showing as a strip along the bottom */
+@media (hover: none) {
+  .shot figcaption { inset: auto 0 0; padding: 0.6rem 1rem; opacity: 1; }
+}
 @media (min-width: 640px) { .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1000px) { .shots { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
