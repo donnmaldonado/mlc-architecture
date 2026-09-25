@@ -233,7 +233,7 @@
      after photo (divider parked at the right edge, the slider bar's thumb on
      its After end) and the divider travels right to left to uncover the
      before; it only moves when the visitor presses or drags on the picture
-     or moves the slider bar underneath; plain hover does nothing. The bar
+     or moves the slider bar above it; plain hover does nothing. The bar
      (shipped [hidden], so there's nothing dead without JS) is a range
      input, so it also takes the keyboard; its value is the divider's place
      from the left, so it runs opposite to the amount of before shown.
@@ -338,19 +338,30 @@
   /* Showcase: one project at a time, stepped by hand with Previous / Next;
      nothing advances on its own. Without JS every project simply stacks and
      the controls stay [hidden]. The open project goes in the URL hash so it
-     can be linked. Hidden projects' photos are lazy, so they are all asked
-     for once the page has loaded, to keep stepping instant. */
+     can be linked. The one Previous / Next bar is moved into the open
+     project, between its heading and its picture, keeping focus on the
+     button that was pressed. Hidden projects' photos are lazy, so they are
+     all asked for once the page has loaded, to keep stepping instant. */
   document.querySelectorAll('[data-showcase]').forEach(sc => {
     const projects = Array.from(sc.querySelectorAll('[data-project]'));
     const count = sc.querySelector('[data-showcase-count]');
+    const nav = sc.querySelector('.showcase__nav');
     if (projects.length < 2) return;
     sc.querySelectorAll('[data-showcase-ui]').forEach(el => { el.hidden = false; });
+    const placeNav = project => {
+      const fig = project.querySelector('[data-compare]');
+      if (!nav || !fig || nav.nextElementSibling === fig) return;
+      const focused = nav.contains(document.activeElement) ? document.activeElement : null;
+      fig.before(nav);
+      if (focused) focused.focus({ preventScroll: true });
+    };
 
     let current = -1;
     const pad = n => String(n).padStart(2, '0');
     const show = (n, animate) => {
       n = (n + projects.length) % projects.length;
       projects.forEach((p, i) => { p.hidden = i !== n; p.classList.remove('is-entering'); });
+      placeNav(projects[n]);
       if (animate) { void projects[n].offsetWidth; projects[n].classList.add('is-entering'); }
       current = n;
       if (count) count.textContent = pad(n + 1) + ' / ' + pad(projects.length);
