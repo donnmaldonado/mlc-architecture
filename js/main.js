@@ -237,27 +237,12 @@
      JS) is a range input, so it also takes the keyboard. reset() puts it back
      on the after photo each time its project is shown and arms a one-off
      tease: once the picture is loaded and mostly on screen, the divider
-     springs part way in (overshooting a little) to show a slice of the
-     before, then drops back and bounces off the left edge before settling.
-     Any press or slider input cancels it; reduced motion skips it. */
+     eases a short way in to show a slice of the before, then eases back out
+     to the after photo. Any press or slider input cancels it; reduced motion
+     skips it. */
   const compares = new WeakMap();
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  // overshoots its target by ~10% and settles back
-  const easeOutBack = t => 1 + 2.70158 * Math.pow(t - 1, 3) + 1.70158 * Math.pow(t - 1, 2);
-  // falls under gravity, lands, then makes small hops; each hop's height is
-  // a fraction of the fall, so the list below sets how bouncy it is
-  const HOPS = [0.06, 0.015];
-  const easeOutBounce = t => {
-    const widths = HOPS.map(h => 2 * Math.sqrt(h));
-    let x = t * (1 + widths.reduce((a, w) => a + w, 0));
-    if (x < 1) return x * x;
-    x -= 1;
-    for (let i = 0; i < HOPS.length; i++) {
-      if (x < widths[i]) { const u = x - widths[i] / 2; return 1 - HOPS[i] + u * u; }
-      x -= widths[i];
-    }
-    return 1;
-  };
+  const easeInOut = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
   document.querySelectorAll('[data-compare]').forEach(fig => {
     const stage = fig.querySelector('.compare__stage');
     const range = fig.querySelector('.compare__range');
@@ -279,17 +264,17 @@
       clearTimeout(timer); timer = 0;
       cancelAnimationFrame(frame); frame = 0;
     };
-    // spring out to PEAK% before, hold, then bounce back to the after photo
-    const PEAK = 40, OUT = 700, HOLD = 350, BACK = 900;
+    // ease in to PEAK% before, hold, then ease back out to the after photo
+    const PEAK = 15, OUT = 500, HOLD = 300, BACK = 500;
     const playTease = () => {
       armed = false;
       const start = performance.now();
       const tick = now => {
         const t = now - start;
         if (t >= OUT + HOLD + BACK) { set(0); frame = 0; return; }
-        set(t < OUT ? PEAK * easeOutBack(t / OUT)
+        set(t < OUT ? PEAK * easeInOut(t / OUT)
           : t < OUT + HOLD ? PEAK
-          : PEAK * (1 - easeOutBounce((t - OUT - HOLD) / BACK)));
+          : PEAK * (1 - easeInOut((t - OUT - HOLD) / BACK)));
         frame = requestAnimationFrame(tick);
       };
       frame = requestAnimationFrame(tick);
