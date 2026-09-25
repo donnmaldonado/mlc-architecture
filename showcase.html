@@ -10,13 +10,8 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/main.css?v=13">
+<link rel="stylesheet" href="css/main.css?v=14">
 <script src="js/header-preview.js"></script>
-<style>
-  /* showcase-only */
-  .work-grid { display: grid; gap: clamp(2rem, 3.5vw, 3rem) clamp(20px, 3vw, 44px); grid-template-columns: 1fr; }
-  @media (min-width: 640px) { .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .work-item--wide { grid-column: span 2; } }
-</style>
 </head>
 <body>
 <header class="header" id="top">
@@ -77,73 +72,106 @@
 </div>
 
 <main>
-  <!-- PAGE HERO -->
-  <section class="page-hero">
+  <!-- SHOWCASE: one project at a time, stepped by hand -->
+  <section class="section showcase" data-showcase aria-labelledby="showcase-title">
+    <h1 class="sr-only" id="showcase-title">Showcase</h1>
     <div class="container">
-      <p class="label" data-reveal>Selected work</p>
-      <h1 class="display mt-3" data-reveal style="--d:.1s">Showcase</h1>
-      <p class="lead measure mt-4" data-reveal style="--d:.2s">A short selection of the practice&rsquo;s residential and commercial work. The full set of projects is under All.</p>
-    </div>
-  </section>
-  <div class="container"><hr class="rule"></div>
-
-  <!-- FEATURE -->
-  <section class="section section--flush-top feature">
-    <a class="feature__media" href="gallery.html" data-reveal>
-      <img src="assets/img/projects/p01.jpg" alt="White modern farmhouse, glass garage door and gravel drive" loading="lazy" width="1178" height="580">
-    </a>
-    <div class="feature__body" data-reveal style="--d:.1s">
-      <p class="label">Residential</p>
-      <h2 class="h2 mt-2">Project 01</h2>
-      <p class="lead">White modern farmhouse with a glass garage door and gravel drive. New construction on Long Island.</p>
-      <p><a class="link" href="gallery.html">View in the gallery</a></p>
-    </div>
-  </section>
-
-  <!-- THE SELECTION -->
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <p class="label" data-reveal>Recent projects</p>
-        <h2 class="h2 mt-2" data-reveal style="--d:.05s">Residential, Commercial, and Interiors</h2>
-        <p class="lead" data-reveal style="--d:.1s">Across Long Island and New York City.</p>
-      </div>
-      <div class="work-grid">
-        <a class="work-item" href="gallery.html" data-reveal>
-          <div class="media media--3x2"><img src="assets/img/projects/thumbs/p03.jpg" alt="Open-plan interior with white kitchen and oak floors" loading="lazy" width="720" height="373"></div>
-          <div class="caption"><b>Project 03</b><span>Interior</span></div>
-        </a>
-        <a class="work-item" href="gallery.html" data-reveal style="--d:.05s">
-          <div class="media media--3x2"><img src="assets/img/projects/thumbs/p04.jpg" alt="White house, rear elevation with two balconies" loading="lazy" width="720" height="413"></div>
-          <div class="caption"><b>Project 04</b><span>Residential</span></div>
-        </a>
-        <a class="work-item" href="gallery.html" data-reveal style="--d:.1s">
-          <div class="media media--3x2"><img src="assets/img/projects/thumbs/p06.jpg" alt="Living room with a wall of glass to the pool" loading="lazy" width="720" height="480"></div>
-          <div class="caption"><b>Project 06</b><span>Interior</span></div>
-        </a>
-        <a class="work-item" href="gallery.html" data-reveal style="--d:.15s">
-          <div class="media media--3x2"><img src="assets/img/projects/thumbs/p13.jpg" alt="Rendering of a brick and stone house with pool" loading="lazy" width="720" height="398"></div>
-          <div class="caption"><b>Project 13</b><span>Rendering</span></div>
-        </a>
-        <a class="work-item work-item--wide" href="gallery.html" data-reveal style="--d:.2s">
-          <div class="media media--16x9"><img src="assets/img/projects/p14.jpg" alt="Rendering of a brick church, front elevation" loading="lazy" width="1600" height="900"></div>
-          <div class="caption"><b>Project 14</b><span>Commercial</span></div>
-        </a>
-      </div>
-      <div class="btn-row btn-row--center mt-6" data-reveal><a class="btn btn--outline" href="gallery.html">View all 14 projects</a></div>
-    </div>
-  </section>
-
-  <!-- FEATURE -->
-  <section class="section section--flush-top feature">
-    <a class="feature__media" href="gallery.html" data-reveal>
-      <img src="assets/img/projects/p11.jpg" alt="Stone and white gable house, front elevation" loading="lazy" width="1600" height="1040">
-    </a>
-    <div class="feature__body" data-reveal style="--d:.1s">
-      <p class="label">Residential</p>
-      <h2 class="h2 mt-2">Project 11</h2>
-      <p class="lead">Stone and white gable house, front elevation. Traditional massing with a contemporary plan.</p>
-      <p><a class="link" href="gallery.html">View the gallery</a></p>
+      <article class="project" id="project-01" data-project>
+        <header class="project__head">
+          <p class="label">Residential</p>
+          <h2 class="h1">Project 01</h2>
+          <p class="lead">White modern farmhouse with a glass garage door and gravel drive. New construction on Long Island.</p>
+        </header>
+        <!-- placeholder: "before" reuses the after photo, washed out, until the real before shot is in -->
+        <figure class="compare" data-compare>
+          <img class="compare__after" src="assets/img/projects/p01.jpg" srcset="assets/img/projects/thumbs/p01.jpg 720w, assets/img/projects/p01.jpg 1178w" sizes="(min-width: 1100px) 1040px, 100vw" alt="After: white modern farmhouse, glass garage door and gravel drive" width="1178" height="580" decoding="async">
+          <span class="compare__tag compare__tag--after" aria-hidden="true">After</span>
+          <div class="compare__before is-placeholder">
+            <img src="assets/img/projects/p01.jpg" srcset="assets/img/projects/thumbs/p01.jpg 720w, assets/img/projects/p01.jpg 1178w" sizes="(min-width: 1100px) 1040px, 100vw" alt="Before: white modern farmhouse, glass garage door and gravel drive" width="1178" height="580" decoding="async">
+            <span class="compare__tag" aria-hidden="true">Before</span>
+          </div>
+          <span class="compare__handle" aria-hidden="true"><span class="compare__knob"><svg viewBox="0 0 24 24" focusable="false"><path d="M9 7 4 12l5 5M15 7l5 5-5 5"/></svg></span></span>
+          <input class="compare__range" type="range" min="0" max="100" value="50" aria-label="Before and after, Project 01" data-compare-ui hidden>
+        </figure>
+      </article>
+      <article class="project" id="project-03" data-project>
+        <header class="project__head">
+          <p class="label">Interior</p>
+          <h2 class="h1">Project 03</h2>
+          <p class="lead">Open-plan interior with a white kitchen and oak floors.</p>
+        </header>
+        <!-- placeholder: "before" reuses the after photo, washed out, until the real before shot is in -->
+        <figure class="compare" data-compare>
+          <img class="compare__after" src="assets/img/projects/p03.jpg" srcset="assets/img/projects/thumbs/p03.jpg 720w, assets/img/projects/p03.jpg 1143w" sizes="(min-width: 1100px) 1040px, 100vw" alt="After: open-plan interior with white kitchen and oak floors" width="1143" height="593" loading="lazy" decoding="async">
+          <span class="compare__tag compare__tag--after" aria-hidden="true">After</span>
+          <div class="compare__before is-placeholder">
+            <img src="assets/img/projects/p03.jpg" srcset="assets/img/projects/thumbs/p03.jpg 720w, assets/img/projects/p03.jpg 1143w" sizes="(min-width: 1100px) 1040px, 100vw" alt="Before: open-plan interior with white kitchen and oak floors" width="1143" height="593" loading="lazy" decoding="async">
+            <span class="compare__tag" aria-hidden="true">Before</span>
+          </div>
+          <span class="compare__handle" aria-hidden="true"><span class="compare__knob"><svg viewBox="0 0 24 24" focusable="false"><path d="M9 7 4 12l5 5M15 7l5 5-5 5"/></svg></span></span>
+          <input class="compare__range" type="range" min="0" max="100" value="50" aria-label="Before and after, Project 03" data-compare-ui hidden>
+        </figure>
+      </article>
+      <article class="project" id="project-04" data-project>
+        <header class="project__head">
+          <p class="label">Residential</p>
+          <h2 class="h1">Project 04</h2>
+          <p class="lead">White house, rear elevation with two balconies. New construction on Long Island.</p>
+        </header>
+        <!-- placeholder: "before" reuses the after photo, washed out, until the real before shot is in -->
+        <figure class="compare" data-compare>
+          <img class="compare__after" src="assets/img/projects/p04.jpg" srcset="assets/img/projects/thumbs/p04.jpg 720w, assets/img/projects/p04.jpg 1600w" sizes="(min-width: 1100px) 1040px, 100vw" alt="After: white house, rear elevation with two balconies" width="1600" height="917" loading="lazy" decoding="async">
+          <span class="compare__tag compare__tag--after" aria-hidden="true">After</span>
+          <div class="compare__before is-placeholder">
+            <img src="assets/img/projects/p04.jpg" srcset="assets/img/projects/thumbs/p04.jpg 720w, assets/img/projects/p04.jpg 1600w" sizes="(min-width: 1100px) 1040px, 100vw" alt="Before: white house, rear elevation with two balconies" width="1600" height="917" loading="lazy" decoding="async">
+            <span class="compare__tag" aria-hidden="true">Before</span>
+          </div>
+          <span class="compare__handle" aria-hidden="true"><span class="compare__knob"><svg viewBox="0 0 24 24" focusable="false"><path d="M9 7 4 12l5 5M15 7l5 5-5 5"/></svg></span></span>
+          <input class="compare__range" type="range" min="0" max="100" value="50" aria-label="Before and after, Project 04" data-compare-ui hidden>
+        </figure>
+      </article>
+      <article class="project" id="project-06" data-project>
+        <header class="project__head">
+          <p class="label">Interior</p>
+          <h2 class="h1">Project 06</h2>
+          <p class="lead">Living room with a wall of glass to the pool.</p>
+        </header>
+        <!-- placeholder: "before" reuses the after photo, washed out, until the real before shot is in -->
+        <figure class="compare" data-compare>
+          <img class="compare__after" src="assets/img/projects/p06.jpg" srcset="assets/img/projects/thumbs/p06.jpg 720w, assets/img/projects/p06.jpg 1536w" sizes="(min-width: 1100px) 1040px, 100vw" alt="After: living room with a wall of glass to the pool" width="1536" height="1024" loading="lazy" decoding="async">
+          <span class="compare__tag compare__tag--after" aria-hidden="true">After</span>
+          <div class="compare__before is-placeholder">
+            <img src="assets/img/projects/p06.jpg" srcset="assets/img/projects/thumbs/p06.jpg 720w, assets/img/projects/p06.jpg 1536w" sizes="(min-width: 1100px) 1040px, 100vw" alt="Before: living room with a wall of glass to the pool" width="1536" height="1024" loading="lazy" decoding="async">
+            <span class="compare__tag" aria-hidden="true">Before</span>
+          </div>
+          <span class="compare__handle" aria-hidden="true"><span class="compare__knob"><svg viewBox="0 0 24 24" focusable="false"><path d="M9 7 4 12l5 5M15 7l5 5-5 5"/></svg></span></span>
+          <input class="compare__range" type="range" min="0" max="100" value="50" aria-label="Before and after, Project 06" data-compare-ui hidden>
+        </figure>
+      </article>
+      <article class="project" id="project-11" data-project>
+        <header class="project__head">
+          <p class="label">Residential</p>
+          <h2 class="h1">Project 11</h2>
+          <p class="lead">Stone and white gable house, front elevation. Traditional massing with a contemporary plan.</p>
+        </header>
+        <!-- placeholder: "before" reuses the after photo, washed out, until the real before shot is in -->
+        <figure class="compare" data-compare>
+          <img class="compare__after" src="assets/img/projects/p11.jpg" srcset="assets/img/projects/thumbs/p11.jpg 720w, assets/img/projects/p11.jpg 1600w" sizes="(min-width: 1100px) 1040px, 100vw" alt="After: stone and white gable house, front elevation" width="1600" height="1040" loading="lazy" decoding="async">
+          <span class="compare__tag compare__tag--after" aria-hidden="true">After</span>
+          <div class="compare__before is-placeholder">
+            <img src="assets/img/projects/p11.jpg" srcset="assets/img/projects/thumbs/p11.jpg 720w, assets/img/projects/p11.jpg 1600w" sizes="(min-width: 1100px) 1040px, 100vw" alt="Before: stone and white gable house, front elevation" width="1600" height="1040" loading="lazy" decoding="async">
+            <span class="compare__tag" aria-hidden="true">Before</span>
+          </div>
+          <span class="compare__handle" aria-hidden="true"><span class="compare__knob"><svg viewBox="0 0 24 24" focusable="false"><path d="M9 7 4 12l5 5M15 7l5 5-5 5"/></svg></span></span>
+          <input class="compare__range" type="range" min="0" max="100" value="50" aria-label="Before and after, Project 11" data-compare-ui hidden>
+        </figure>
+      </article>
+      <nav class="showcase__nav" aria-label="Projects" data-showcase-ui hidden>
+        <button type="button" class="showcase__btn" data-showcase-prev><span class="arrow" aria-hidden="true">&larr;</span> Previous</button>
+        <p class="showcase__count" aria-live="polite"><span class="sr-only">Project </span><span data-showcase-count>01 / 05</span></p>
+        <button type="button" class="showcase__btn" data-showcase-next>Next <span class="arrow" aria-hidden="true">&rarr;</span></button>
+      </nav>
+      <p class="showcase__all"><a class="link" href="gallery.html">View all 14 projects</a></p>
     </div>
   </section>
 
@@ -169,6 +197,6 @@
     </div>
   </div>
 </footer>
-<script src="js/main.js"></script>
+<script src="js/main.js?v=14"></script>
 </body>
 </html>

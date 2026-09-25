@@ -228,6 +228,103 @@
     activate(0);
   });
 
+  /* Before / after comparison: [data-compare] crops its before layer at --pos.
+     Pressing or dragging anywhere on the picture moves the divider, and a
+     mouse also moves it on plain hover. The range input (shipped [hidden], so
+     there's nothing dead without JS) is visually hidden and takes the
+     keyboard. intro() opens on the before photo and sweeps to the middle
+     once both photos are in; any touch of the picture stops it. */
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const compares = new WeakMap();
+  document.querySelectorAll('[data-compare]').forEach(fig => {
+    const range = fig.querySelector('.compare__range');
+    const imgs = Array.from(fig.querySelectorAll('img'));
+    if (!range) return;
+    range.hidden = false;
+    let frame = 0, introId = 0;
+
+    const set = v => {
+      v = Math.max(0, Math.min(100, v));
+      fig.style.setProperty('--pos', v + '%');
+      range.value = String(Math.round(v));
+    };
+    const stop = () => { cancelAnimationFrame(frame); introId++; };
+    const fromPointer = e => { const r = fig.getBoundingClientRect(); set((e.clientX - r.left) / r.width * 100); };
+
+    fig.addEventListener('pointerdown', e => {
+      stop();
+      fig.setPointerCapture(e.pointerId);
+      fig.classList.add('is-dragging');
+      fromPointer(e);
+    });
+    fig.addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse' && !fig.hasPointerCapture(e.pointerId)) return;
+      stop();
+      fromPointer(e);
+    });
+    const release = () => fig.classList.remove('is-dragging');
+    fig.addEventListener('pointerup', release);
+    fig.addEventListener('pointercancel', release);
+    range.addEventListener('input', () => { stop(); set(+range.value); });
+
+    const loaded = img => img.complete ? Promise.resolve() : new Promise(r => {
+      img.addEventListener('load', r, { once: true });
+      img.addEventListener('error', r, { once: true });
+    });
+    const intro = () => {
+      stop();
+      if (reduceMotion.matches) return set(50);
+      const id = introId;
+      set(100);
+      Promise.all(imgs.map(loaded)).then(() => {
+        if (id !== introId) return;
+        let t0;
+        const step = t => {
+          if (t0 === undefined) t0 = t;
+          const k = Math.min(1, (t - t0) / 1400);
+          set(100 - 50 * (1 - Math.pow(1 - k, 3)));
+          if (k < 1) frame = requestAnimationFrame(step);
+        };
+        frame = requestAnimationFrame(step);
+      });
+    };
+    compares.set(fig, { intro });
+  });
+
+  /* Showcase: one project at a time, stepped by hand with Previous / Next;
+     nothing advances on its own. Without JS every project simply stacks and
+     the controls stay [hidden]. The open project goes in the URL hash so it
+     can be linked. Hidden projects' photos are lazy, so they are all asked
+     for once the page has loaded, to keep stepping instant. */
+  document.querySelectorAll('[data-showcase]').forEach(sc => {
+    const projects = Array.from(sc.querySelectorAll('[data-project]'));
+    const count = sc.querySelector('[data-showcase-count]');
+    if (projects.length < 2) return;
+    sc.querySelectorAll('[data-showcase-ui]').forEach(el => { el.hidden = false; });
+
+    let current = -1;
+    const pad = n => String(n).padStart(2, '0');
+    const show = (n, animate) => {
+      n = (n + projects.length) % projects.length;
+      projects.forEach((p, i) => { p.hidden = i !== n; p.classList.remove('is-entering'); });
+      if (animate) { void projects[n].offsetWidth; projects[n].classList.add('is-entering'); }
+      current = n;
+      if (count) count.textContent = pad(n + 1) + ' / ' + pad(projects.length);
+      const compare = compares.get(projects[n].querySelector('[data-compare]'));
+      if (compare) compare.intro();
+    };
+    const step = d => {
+      show(current + d, true);
+      history.replaceState(null, '', '#' + projects[current].id);
+    };
+    sc.querySelector('[data-showcase-prev]').addEventListener('click', () => step(-1));
+    sc.querySelector('[data-showcase-next]').addEventListener('click', () => step(1));
+
+    show(Math.max(0, projects.findIndex(p => '#' + p.id === location.hash)), false);
+    const fetchAll = () => sc.querySelectorAll('img[loading="lazy"]').forEach(img => { img.loading = 'eager'; });
+    if (document.readyState === 'complete') fetchAll(); else window.addEventListener('load', fetchAll, { once: true });
+  });
+
   /* Lightbox: any element with [data-lightbox-group] containing <a href="full.jpg" data-caption="..."> */
   const groups = document.querySelectorAll('[data-lightbox-group]');
   if (groups.length) {
