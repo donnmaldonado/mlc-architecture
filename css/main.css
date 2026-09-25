@@ -474,8 +474,6 @@ address { font-style: normal; }
    The after photo sits underneath; the before layer on top is cropped at
    --pos, so before shows left of the divider and after to the right. Each
    tag rides in its own layer, so the divider wipes it away as it passes.
-   The knob follows the divider but stops half its width short of either
-   edge, so it stays whole while the divider is parked at the after side.
    touch-action: pan-y leaves vertical swipes to scroll the page.
    JS sets --k (0 = all after, 1 = all before); --pos is derived from it.
    Below the picture, the range input is drawn as a slider bar that moves
@@ -494,9 +492,6 @@ address { font-style: normal; }
 .compare__tag--after { left: auto; right: 1rem; }
 .compare__handle { position: absolute; inset: 0; pointer-events: none; }
 .compare__handle::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(var(--pos) - 0.5px); width: 1px; background: var(--paper); box-shadow: 0 0 8px rgba(16, 21, 27, 0.35); }
-.compare__knob { position: absolute; top: 50%; left: clamp(1.375rem, var(--pos), 100% - 1.375rem); width: 2.75rem; height: 2.75rem; transform: translate(-50%, -50%); display: grid; place-items: center; border: 1px solid var(--paper); border-radius: 50%; background: rgba(16, 21, 27, 0.32); color: var(--paper); transition: transform 0.3s var(--ease), background-color 0.3s var(--ease); }
-.compare__knob svg { width: 1.2rem; height: 1.2rem; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.compare__stage:hover .compare__knob, .compare.is-dragging .compare__knob { transform: translate(-50%, -50%) scale(1.08); background: rgba(16, 21, 27, 0.5); }
 
 .compare__bar { display: grid; grid-template-columns: 1fr 1fr; margin-top: 0.5rem; }
 .compare__bar[hidden] { display: none; }
@@ -515,7 +510,6 @@ address { font-style: normal; }
 
 @media (prefers-reduced-motion: reduce) {
   .project.is-entering { animation: none; }
-  .compare__knob { transition: none; }
   .compare__range::-webkit-slider-thumb { transition: none; }
   .compare__range::-moz-range-thumb { transition: none; }
 }
