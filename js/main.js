@@ -379,6 +379,36 @@
     if (document.readyState === 'complete') fetchAll(); else window.addEventListener('load', fetchAll, { once: true });
   });
 
+  /* Gallery filter: [data-filter] links carry ?category=<slug>; cards carry
+     data-cat="<slug> <slug>". Clicking filters in place and keeps the URL in
+     step, so a filtered view can be shared or reloaded. Without JS the links
+     just reload the page with every card showing. */
+  const filter = document.querySelector('[data-filter]');
+  if (filter) {
+    const tabs = Array.from(filter.querySelectorAll('a'));
+    const cards = Array.from(document.querySelectorAll('[data-cat]'));
+    const status = document.querySelector('[data-filter-status]');
+    const slugOf = a => new URL(a.href).searchParams.get('category') || '';
+    const apply = (slug, announce) => {
+      if (!tabs.some(a => slugOf(a) === slug)) slug = '';
+      tabs.forEach(a => { if (slugOf(a) === slug) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+      let n = 0;
+      cards.forEach(c => {
+        const show = !slug || c.dataset.cat.split(/\s+/).includes(slug);
+        c.hidden = !show;
+        if (show) { n++; c.classList.add('is-in'); }
+      });
+      if (status && announce) status.textContent = n + (n === 1 ? ' project' : ' projects') + ' shown';
+    };
+    tabs.forEach(a => a.addEventListener('click', e => {
+      e.preventDefault();
+      const slug = slugOf(a);
+      apply(slug, true);
+      history.replaceState(null, '', slug ? '?category=' + slug : location.pathname);
+    }));
+    apply(new URLSearchParams(location.search).get('category') || '', false);
+  }
+
   /* Lightbox: any element with [data-lightbox-group] containing <a href="full.jpg" data-caption="..."> */
   const groups = document.querySelectorAll('[data-lightbox-group]');
   if (groups.length) {
@@ -405,8 +435,13 @@
     const open = (list, n) => { items = list; lastFocus = document.activeElement; lb.classList.add('is-open'); document.body.style.overflow = 'hidden'; show(n); lb.querySelector('[data-lb-close]').focus(); };
     const close = () => { lb.classList.remove('is-open'); document.body.style.overflow = ''; img.src = ''; if (lastFocus) lastFocus.focus(); };
     groups.forEach(g => {
+      // step through only what's showing, so a filtered gallery stays filtered
       const links = Array.from(g.querySelectorAll('a[href]'));
-      links.forEach((a, n) => a.addEventListener('click', e => { e.preventDefault(); open(links, n); }));
+      links.forEach(a => a.addEventListener('click', e => {
+        e.preventDefault();
+        const shown = links.filter(l => !l.closest('[hidden]'));
+        open(shown, shown.indexOf(a));
+      }));
     });
     lb.querySelector('[data-lb-close]').addEventListener('click', close);
     lb.querySelector('[data-lb-prev]').addEventListener('click', () => show(i - 1));

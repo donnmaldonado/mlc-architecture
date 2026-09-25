@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/main.css?v=20">
+<link rel="stylesheet" href="css/main.css?v=21">
 <script src="js/header-preview.js"></script>
 </head>
 <body>
@@ -77,154 +77,124 @@
     <div class="container">
       <p class="label" data-reveal>14 projects &middot; Long Island &amp; New York City</p>
       <h1 class="display mt-3" data-reveal style="--d:.1s">Gallery</h1>
-      <p class="lead measure mt-4" data-reveal style="--d:.2s">Residential and commercial work across Long Island and New York City. Select any image to view it full size.</p>
+      <p class="lead measure mt-4" data-reveal style="--d:.2s">Residential and commercial work across Long Island and New York City. Filter by type, or select any image to view it full size.</p>
     </div>
   </section>
   <div class="container"><hr class="rule"></div>
 
-  <!-- GALLERY: every project. Each .shot is self-contained so it can come from a
-       project post or a gallery block. -->
+  <!-- GALLERY: every project, filterable by category. Each .shot is
+       self-contained so it can come from a project post; data-cat holds its
+       category slugs, and the filter links use ?category= so they can become
+       taxonomy term links in WordPress. -->
   <section class="section section--flush-top gallery">
     <div class="container">
+      <nav class="filter" aria-label="Filter projects" data-filter>
+        <ul class="filter__list">
+          <li><a href="gallery.html" aria-current="true">All</a></li>
+          <li><a href="gallery.html?category=residential">Residential</a></li>
+          <li><a href="gallery.html?category=interiors">Interiors</a></li>
+          <li><a href="gallery.html?category=commercial">Commercial</a></li>
+          <li><a href="gallery.html?category=renderings">Renderings</a></li>
+        </ul>
+      </nav>
+      <p class="sr-only" role="status" aria-live="polite" data-filter-status></p>
       <div class="shots" data-lightbox-group>
-        <figure class="shot shot--wide" data-reveal>
-          <a class="media media--16x9" href="assets/img/projects/p01.jpg" data-caption="White modern farmhouse, glass garage door and gravel drive">
-            <img src="assets/img/projects/thumbs/p01.jpg" srcset="assets/img/projects/thumbs/p01.jpg 720w, assets/img/projects/p01.jpg 1178w" sizes="(min-width: 640px) 46vw, 100vw" alt="White modern farmhouse, glass garage door and gravel drive" loading="lazy" width="720" height="354">
+        <figure class="shot" data-cat="residential" data-reveal>
+          <a class="media media--3x2" href="assets/img/projects/p01.jpg" data-caption="White modern farmhouse, glass garage door and gravel drive">
+            <img src="assets/img/projects/thumbs/p01.jpg" srcset="assets/img/projects/thumbs/p01.jpg 720w, assets/img/projects/p01.jpg 1178w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="White modern farmhouse, glass garage door and gravel drive" loading="lazy" width="720" height="354">
           </a>
-          <figcaption>
-            <div class="caption"><b>Project 01</b><span>Photo</span></div>
-            <p class="shot__desc">White modern farmhouse, glass garage door and gravel drive</p>
-          </figcaption>
+          <figcaption><h2 class="shot__title">Project 01</h2></figcaption>
         </figure>
 
-        <figure class="shot" data-reveal style="--d:.1s">
+        <figure class="shot" data-cat="residential" data-reveal>
           <a class="media media--3x2" href="assets/img/projects/p02.jpg" data-caption="White farmhouse, rear elevation and lawn">
-            <img src="assets/img/projects/thumbs/p02.jpg" srcset="assets/img/projects/thumbs/p02.jpg 720w, assets/img/projects/p02.jpg 1255w" sizes="(min-width: 640px) 46vw, 100vw" alt="White farmhouse, rear elevation and lawn" loading="lazy" width="720" height="340">
+            <img src="assets/img/projects/thumbs/p02.jpg" srcset="assets/img/projects/thumbs/p02.jpg 720w, assets/img/projects/p02.jpg 1255w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="White farmhouse, rear elevation and lawn" loading="lazy" width="720" height="340">
           </a>
-          <figcaption>
-            <div class="caption"><b>Project 02</b><span>Photo</span></div>
-            <p class="shot__desc">White farmhouse, rear elevation and lawn</p>
-          </figcaption>
+          <figcaption><h2 class="shot__title">Project 02</h2></figcaption>
         </figure>
 
-        <figure class="shot" data-reveal>
+        <figure class="shot" data-cat="residential interiors" data-reveal>
           <a class="media media--3x2" href="assets/img/projects/p03.jpg" data-caption="Open-plan interior with white kitchen and oak floors">
-            <img src="assets/img/projects/thumbs/p03.jpg" srcset="assets/img/projects/thumbs/p03.jpg 720w, assets/img/projects/p03.jpg 1143w" sizes="(min-width: 640px) 46vw, 100vw" alt="Open-plan interior with white kitchen and oak floors" loading="lazy" width="720" height="373">
+            <img src="assets/img/projects/thumbs/p03.jpg" srcset="assets/img/projects/thumbs/p03.jpg 720w, assets/img/projects/p03.jpg 1143w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="Open-plan interior with white kitchen and oak floors" loading="lazy" width="720" height="373">
           </a>
-          <figcaption>
-            <div class="caption"><b>Project 03</b><span>Photo &middot; Interior</span></div>
-            <p class="shot__desc">Open-plan interior with white kitchen and oak floors</p>
-          </figcaption>
+          <figcaption><h2 class="shot__title">Project 03</h2></figcaption>
         </figure>
 
-        <figure class="shot" data-reveal style="--d:.1s">
+        <figure class="shot" data-cat="residential" data-reveal>
           <a class="media media--3x2" href="assets/img/projects/p04.jpg" data-caption="White house, rear elevation with two balconies. New construction on Long Island.">
-            <img src="assets/img/projects/thumbs/p04.jpg" srcset="assets/img/projects/thumbs/p04.jpg 720w, assets/img/projects/p04.jpg 1600w" sizes="(min-width: 640px) 46vw, 100vw" alt="White house, rear elevation with two balconies" loading="lazy" width="720" height="413">
+            <img src="assets/img/projects/thumbs/p04.jpg" srcset="assets/img/projects/thumbs/p04.jpg 720w, assets/img/projects/p04.jpg 1600w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="White house, rear elevation with two balconies" loading="lazy" width="720" height="413">
           </a>
-          <figcaption>
-            <div class="caption"><b>Project 04</b><span>Photo</span></div>
-            <p class="shot__desc">White house, rear elevation with two balconies</p>
-          </figcaption>
+          <figcaption><h2 class="shot__title">Project 04</h2></figcaption>
         </figure>
 
-        <figure class="shot" data-reveal>
+        <figure class="shot" data-cat="residential renderings" data-reveal>
           <a class="media media--3x2" href="assets/img/projects/p05.jpg" data-caption="White board-and-batten farmhouse with black garage doors">
-            <img src="assets/img/projects/thumbs/p05.jpg" srcset="assets/img/projects/thumbs/p05.jpg 720w, assets/img/projects/p05.jpg 1600w" sizes="(min-width: 640px) 46vw, 100vw" alt="White board-and-batten farmhouse with black garage doors" loading="lazy" width="720" height="409">
+            <img src="assets/img/projects/thumbs/p05.jpg" srcset="assets/img/projects/thumbs/p05.jpg 720w, assets/img/projects/p05.jpg 1600w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="White board-and-batten farmhouse with black garage doors" loading="lazy" width="720" height="409">
           </a>
-          <figcaption>
-            <div class="caption"><b>Project 05</b><span>Rendering</span></div>
-            <p class="shot__desc">White board-and-batten farmhouse with black garage doors</p>
-          </figcaption>
+          <figcaption><h2 class="shot__title">Project 05</h2></figcaption>
         </figure>
 
-        <figure class="shot shot--wide" data-reveal style="--d:.1s">
-          <a class="media media--16x9" href="assets/img/projects/p06.jpg" data-caption="Living room with a wall of glass to the pool">
-            <img src="assets/img/projects/thumbs/p06.jpg" srcset="assets/img/projects/thumbs/p06.jpg 720w, assets/img/projects/p06.jpg 1536w" sizes="(min-width: 640px) 46vw, 100vw" alt="Living room with a wall of glass to the pool" loading="lazy" width="720" height="480">
+        <figure class="shot" data-cat="residential interiors" data-reveal>
+          <a class="media media--3x2" href="assets/img/projects/p06.jpg" data-caption="Living room with a wall of glass to the pool">
+            <img src="assets/img/projects/thumbs/p06.jpg" srcset="assets/img/projects/thumbs/p06.jpg 720w, assets/img/projects/p06.jpg 1536w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="Living room with a wall of glass to the pool" loading="lazy" width="720" height="480">
           </a>
-          <figcaption>
-            <div class="caption"><b>Project 06</b><span>Photo &middot; Interior</span></div>
-            <p class="shot__desc">Living room with a wall of glass to the pool</p>
-          </figcaption>
+          <figcaption><h2 class="shot__title">Project 06</h2></figcaption>
         </figure>
 
-        <figure class="shot" data-reveal>
+        <figure class="shot" data-cat="residential" data-reveal>
           <a class="media media--3x2" href="assets/img/projects/p07.jpg" data-caption="White house, rear elevation with pool and spa">
-            <img src="assets/img/projects/thumbs/p07.jpg" srcset="assets/img/projects/thumbs/p07.jpg 720w, assets/img/projects/p07.jpg 1536w" sizes="(min-width: 640px) 46vw, 100vw" alt="White house, rear elevation with pool and spa" loading="lazy" width="720" height="480">
+            <img src="assets/img/projects/thumbs/p07.jpg" srcset="assets/img/projects/thumbs/p07.jpg 720w, assets/img/projects/p07.jpg 1536w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="White house, rear elevation with pool and spa" loading="lazy" width="720" height="480">
           </a>
-          <figcaption>
-            <div class="caption"><b>Project 07</b><span>Photo</span></div>
-            <p class="shot__desc">White house, rear elevation with pool and spa</p>
-          </figcaption>
+          <figcaption><h2 class="shot__title">Project 07</h2></figcaption>
         </figure>
 
-        <figure class="shot" data-reveal style="--d:.1s">
+        <figure class="shot" data-cat="residential" data-reveal>
           <a class="media media--3x2" href="assets/img/projects/p08.jpg" data-caption="White two-story house with attached garage and gravel drive">
-            <img src="assets/img/projects/thumbs/p08.jpg" srcset="assets/img/projects/thumbs/p08.jpg 720w, assets/img/projects/p08.jpg 1433w" sizes="(min-width: 640px) 46vw, 100vw" alt="White two-story house with attached garage and gravel drive" loading="lazy" width="720" height="417">
+            <img src="assets/img/projects/thumbs/p08.jpg" srcset="assets/img/projects/thumbs/p08.jpg 720w, assets/img/projects/p08.jpg 1433w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="White two-story house with attached garage and gravel drive" loading="lazy" width="720" height="417">
           </a>
-          <figcaption>
-            <div class="caption"><b>Project 08</b><span>Photo</span></div>
-            <p class="shot__desc">White two-story house with attached garage and gravel drive</p>
-          </figcaption>
+          <figcaption><h2 class="shot__title">Project 08</h2></figcaption>
         </figure>
 
-        <figure class="shot" data-reveal>
+        <figure class="shot" data-cat="residential" data-reveal>
           <a class="media media--3x2" href="assets/img/projects/p09.jpg" data-caption="Aerial view of a house with pool">
-            <img src="assets/img/projects/thumbs/p09.jpg" srcset="assets/img/projects/thumbs/p09.jpg 720w, assets/img/projects/p09.jpg 948w" sizes="(min-width: 640px) 46vw, 100vw" alt="Aerial view of a house with pool" loading="lazy" width="720" height="446">
+            <img src="assets/img/projects/thumbs/p09.jpg" srcset="assets/img/projects/thumbs/p09.jpg 720w, assets/img/projects/p09.jpg 948w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="Aerial view of a house with pool" loading="lazy" width="720" height="446">
           </a>
-          <figcaption>
-            <div class="caption"><b>Project 09</b><span>Photo</span></div>
-            <p class="shot__desc">Aerial view of a house with pool</p>
-          </figcaption>
+          <figcaption><h2 class="shot__title">Project 09</h2></figcaption>
         </figure>
 
-        <figure class="shot" data-reveal style="--d:.1s">
+        <figure class="shot" data-cat="residential" data-reveal>
           <a class="media media--3x2" href="assets/img/projects/p10.jpg" data-caption="Stone and white gable house under construction">
-            <img src="assets/img/projects/thumbs/p10.jpg" srcset="assets/img/projects/thumbs/p10.jpg 720w, assets/img/projects/p10.jpg 1600w" sizes="(min-width: 640px) 46vw, 100vw" alt="Stone and white gable house under construction" loading="lazy" width="720" height="484">
+            <img src="assets/img/projects/thumbs/p10.jpg" srcset="assets/img/projects/thumbs/p10.jpg 720w, assets/img/projects/p10.jpg 1600w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="Stone and white gable house under construction" loading="lazy" width="720" height="484">
           </a>
-          <figcaption>
-            <div class="caption"><b>Project 10</b><span>Photo</span></div>
-            <p class="shot__desc">Stone and white gable house under construction</p>
-          </figcaption>
+          <figcaption><h2 class="shot__title">Project 10</h2></figcaption>
         </figure>
 
-        <figure class="shot shot--wide" data-reveal>
-          <a class="media media--16x9" href="assets/img/projects/p11.jpg" data-caption="Stone and white gable house, front elevation">
-            <img src="assets/img/projects/thumbs/p11.jpg" srcset="assets/img/projects/thumbs/p11.jpg 720w, assets/img/projects/p11.jpg 1600w" sizes="(min-width: 640px) 46vw, 100vw" alt="Stone and white gable house, front elevation" loading="lazy" width="720" height="468">
+        <figure class="shot" data-cat="residential" data-reveal>
+          <a class="media media--3x2" href="assets/img/projects/p11.jpg" data-caption="Stone and white gable house, front elevation">
+            <img src="assets/img/projects/thumbs/p11.jpg" srcset="assets/img/projects/thumbs/p11.jpg 720w, assets/img/projects/p11.jpg 1600w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="Stone and white gable house, front elevation" loading="lazy" width="720" height="468">
           </a>
-          <figcaption>
-            <div class="caption"><b>Project 11</b><span>Photo</span></div>
-            <p class="shot__desc">Stone and white gable house, front elevation</p>
-          </figcaption>
+          <figcaption><h2 class="shot__title">Project 11</h2></figcaption>
         </figure>
 
-        <figure class="shot" data-reveal style="--d:.1s">
+        <figure class="shot" data-cat="residential renderings" data-reveal>
           <a class="media media--3x2" href="assets/img/projects/p12.jpg" data-caption="Pair of dark stone and wood cottages">
-            <img src="assets/img/projects/thumbs/p12.jpg" srcset="assets/img/projects/thumbs/p12.jpg 720w, assets/img/projects/p12.jpg 1600w" sizes="(min-width: 640px) 46vw, 100vw" alt="Pair of dark stone and wood cottages" loading="lazy" width="720" height="405">
+            <img src="assets/img/projects/thumbs/p12.jpg" srcset="assets/img/projects/thumbs/p12.jpg 720w, assets/img/projects/p12.jpg 1600w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="Pair of dark stone and wood cottages" loading="lazy" width="720" height="405">
           </a>
-          <figcaption>
-            <div class="caption"><b>Project 12</b><span>Rendering</span></div>
-            <p class="shot__desc">Pair of dark stone and wood cottages</p>
-          </figcaption>
+          <figcaption><h2 class="shot__title">Project 12</h2></figcaption>
         </figure>
 
-        <figure class="shot" data-reveal>
+        <figure class="shot" data-cat="residential renderings" data-reveal>
           <a class="media media--3x2" href="assets/img/projects/p13.jpg" data-caption="Brick and stone house with pool">
-            <img src="assets/img/projects/thumbs/p13.jpg" srcset="assets/img/projects/thumbs/p13.jpg 720w, assets/img/projects/p13.jpg 1600w" sizes="(min-width: 640px) 46vw, 100vw" alt="Brick and stone house with pool" loading="lazy" width="720" height="398">
+            <img src="assets/img/projects/thumbs/p13.jpg" srcset="assets/img/projects/thumbs/p13.jpg 720w, assets/img/projects/p13.jpg 1600w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="Brick and stone house with pool" loading="lazy" width="720" height="398">
           </a>
-          <figcaption>
-            <div class="caption"><b>Project 13</b><span>Rendering</span></div>
-            <p class="shot__desc">Brick and stone house with pool</p>
-          </figcaption>
+          <figcaption><h2 class="shot__title">Project 13</h2></figcaption>
         </figure>
 
-        <figure class="shot shot--wide" data-reveal style="--d:.1s">
-          <a class="media media--16x9" href="assets/img/projects/p14.jpg" data-caption="Brick church, front elevation">
-            <img src="assets/img/projects/thumbs/p14.jpg" srcset="assets/img/projects/thumbs/p14.jpg 720w, assets/img/projects/p14.jpg 1600w" sizes="(min-width: 640px) 46vw, 100vw" alt="Brick church, front elevation" loading="lazy" width="720" height="405">
+        <figure class="shot" data-cat="commercial renderings" data-reveal>
+          <a class="media media--3x2" href="assets/img/projects/p14.jpg" data-caption="Brick church, front elevation">
+            <img src="assets/img/projects/thumbs/p14.jpg" srcset="assets/img/projects/thumbs/p14.jpg 720w, assets/img/projects/p14.jpg 1600w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="Brick church, front elevation" loading="lazy" width="720" height="405">
           </a>
-          <figcaption>
-            <div class="caption"><b>Project 14</b><span>Rendering &middot; Commercial</span></div>
-            <p class="shot__desc">Brick church, front elevation</p>
-          </figcaption>
+          <figcaption><h2 class="shot__title">Project 14</h2></figcaption>
         </figure>
       </div>
     </div>
@@ -244,6 +214,6 @@
     </div>
   </div>
 </footer>
-<script src="js/main.js?v=20"></script>
+<script src="js/main.js?v=21"></script>
 </body>
 </html>

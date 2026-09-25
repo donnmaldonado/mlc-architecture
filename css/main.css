@@ -433,18 +433,22 @@ address { font-style: normal; }
   .hero__tab.is-running::after { animation: none; }
 }
 
-/* ---------- gallery (all page): every project, two up with wide rows ---------- */
+/* ---------- gallery (all page): a row of category filters over a grid of
+   project cards, one to three across. Without JS the filter links reload the
+   page with ?category= and every card shows; js/main.js filters in place. */
 .gallery { scroll-margin-top: calc(var(--header-h) + var(--border)); }
-.shots { display: grid; grid-template-columns: 1fr; gap: clamp(2.75rem, 5vw, 4.5rem) clamp(20px, 3vw, 44px); }
+.filter { margin-bottom: clamp(2rem, 4vw, 3rem); }
+.filter__list { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem clamp(1.1rem, 2.5vw, 2rem); list-style: none; margin: 0; padding: 0; }
+.filter__list a { display: inline-block; padding: 0.35rem 0; font-family: var(--font-label); font-size: 0.72rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); border-bottom: var(--border) solid transparent; transition: color 0.3s, border-color 0.3s; }
+.filter__list a:hover { color: var(--ink); }
+.filter__list a[aria-current="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+.shots { display: grid; grid-template-columns: 1fr; gap: clamp(1.75rem, 3vw, 2.5rem) clamp(16px, 2vw, 28px); }
 .shot { margin: 0; }
-.shot a.media { display: block; }
+.shot[hidden] { display: none; }
 .shot figcaption { text-align: center; }
-.shot__desc { font-size: 0.9rem; line-height: 1.7; color: var(--ink-2); margin-top: 0.5rem; max-width: 46ch; margin-inline: auto; }
-@media (min-width: 640px) {
-  .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .shot--wide { grid-column: span 2; }
-  .shot--wide .media { aspect-ratio: 21 / 9; }
-}
+.shot__title { margin-top: 0.85rem; font-family: var(--font-label); font-size: 0.8rem; font-weight: 400; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink); }
+@media (min-width: 640px) { .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1000px) { .shots { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
 /* ---------- showcase: one project at a time, stepped by hand ----------
    Every project is in the markup and they simply stack without JS; js/main.js
