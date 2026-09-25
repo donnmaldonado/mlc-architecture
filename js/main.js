@@ -230,34 +230,37 @@
 
   /* Before / after comparison: [data-compare] crops its before layer at --pos.
      It opens on the after photo (divider parked at the left edge) and only
-     moves when the visitor presses or drags on the picture; plain hover does
-     nothing. The range input (shipped [hidden], so there's nothing dead
-     without JS) is visually hidden and takes the keyboard. reset() puts it
-     back on the after photo each time its project is shown. */
+     moves when the visitor presses or drags on the picture or moves the
+     slider bar underneath; plain hover does nothing. The bar (shipped
+     [hidden], so there's nothing dead without JS) is a range input, so it
+     also takes the keyboard. reset() puts it back on the after photo each
+     time its project is shown. */
   const compares = new WeakMap();
   document.querySelectorAll('[data-compare]').forEach(fig => {
+    const stage = fig.querySelector('.compare__stage');
     const range = fig.querySelector('.compare__range');
-    if (!range) return;
-    range.hidden = false;
+    if (!stage || !range) return;
+    fig.querySelectorAll('[data-compare-ui]').forEach(el => { el.hidden = false; });
 
     const set = v => {
       v = Math.max(0, Math.min(100, v));
-      fig.style.setProperty('--pos', v + '%');
+      fig.style.setProperty('--k', String(v / 100));
       range.value = String(Math.round(v));
+      range.setAttribute('aria-valuetext', v < 1 ? 'After' : v > 99 ? 'Before' : Math.round(v) + '% before');
     };
-    const fromPointer = e => { const r = fig.getBoundingClientRect(); set((e.clientX - r.left) / r.width * 100); };
+    const fromPointer = e => { const r = stage.getBoundingClientRect(); set((e.clientX - r.left) / r.width * 100); };
 
-    fig.addEventListener('pointerdown', e => {
-      fig.setPointerCapture(e.pointerId);
+    stage.addEventListener('pointerdown', e => {
+      stage.setPointerCapture(e.pointerId);
       fig.classList.add('is-dragging');
       fromPointer(e);
     });
-    fig.addEventListener('pointermove', e => {
-      if (fig.hasPointerCapture(e.pointerId)) fromPointer(e);
+    stage.addEventListener('pointermove', e => {
+      if (stage.hasPointerCapture(e.pointerId)) fromPointer(e);
     });
     const release = () => fig.classList.remove('is-dragging');
-    fig.addEventListener('pointerup', release);
-    fig.addEventListener('pointercancel', release);
+    stage.addEventListener('pointerup', release);
+    stage.addEventListener('pointercancel', release);
     range.addEventListener('input', () => set(+range.value));
 
     const reset = () => set(0);

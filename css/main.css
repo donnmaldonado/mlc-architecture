@@ -449,7 +449,7 @@ address { font-style: normal; }
    hides all but one and un-hides the Previous / Next bar. The picture and the
    bar share one width, capped by the viewport height so that, once the header
    has condensed, the whole picture and its controls fit on a laptop screen. */
-.showcase { --stage-w: min(100%, 1040px, max(22rem, calc((100svh - 17rem) * 1.5))); padding-top: clamp(2.5rem, 5vw, 4rem); }
+.showcase { --stage-w: min(100%, 1040px, max(22rem, calc((100svh - 20.5rem) * 1.5))); padding-top: clamp(2.5rem, 5vw, 4rem); }
 .project { scroll-margin-top: calc(var(--header-h) + var(--border)); }
 .project + .project { margin-top: var(--section); }
 .project[hidden] { display: none; }
@@ -476,10 +476,16 @@ address { font-style: normal; }
    tag rides in its own layer, so the divider wipes it away as it passes.
    The knob follows the divider but stops half its width short of either
    edge, so it stays whole while the divider is parked at the after side.
-   touch-action: pan-y leaves vertical swipes to scroll the page; the range
-   input is visually hidden and carries keyboard and screen-reader use.
+   touch-action: pan-y leaves vertical swipes to scroll the page.
+   JS sets --k (0 = all after, 1 = all before); --pos is derived from it.
+   Below the picture, the range input is drawn as a slider bar that moves
+   with the divider and carries keyboard and screen-reader use. It overhangs
+   the picture by half a thumb each side, so the thumb's centre sits right
+   under the divider; the track's drawn line is inset to the picture's
+   width, and its fill stop to the thumb's centre.
    Self-contained, so it can become a block pattern or shortcode. */
-.compare { --pos: 50%; position: relative; margin: 0; aspect-ratio: 3 / 2; overflow: hidden; background: var(--paper-3); cursor: ew-resize; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.compare { --k: 0.5; --pos: calc(var(--k) * 100%); margin: 0; }
+.compare__stage { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: var(--paper-3); cursor: ew-resize; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
 .compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--obj, 50% 50%); pointer-events: none; -webkit-user-drag: none; }
 .compare__before { position: absolute; inset: 0; clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
 /* stand-in until the real before photo arrives: the after shot, washed out */
@@ -490,13 +496,28 @@ address { font-style: normal; }
 .compare__handle::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(var(--pos) - 0.5px); width: 1px; background: var(--paper); box-shadow: 0 0 8px rgba(16, 21, 27, 0.35); }
 .compare__knob { position: absolute; top: 50%; left: clamp(1.375rem, var(--pos), 100% - 1.375rem); width: 2.75rem; height: 2.75rem; transform: translate(-50%, -50%); display: grid; place-items: center; border: 1px solid var(--paper); border-radius: 50%; background: rgba(16, 21, 27, 0.32); color: var(--paper); transition: transform 0.3s var(--ease), background-color 0.3s var(--ease); }
 .compare__knob svg { width: 1.2rem; height: 1.2rem; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.compare:hover .compare__knob, .compare.is-dragging .compare__knob { transform: translate(-50%, -50%) scale(1.08); background: rgba(16, 21, 27, 0.5); }
-.compare:has(.compare__range:focus-visible) .compare__knob { outline: 2px solid var(--paper); outline-offset: 3px; }
-.compare__range { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; opacity: 0; }
+.compare__stage:hover .compare__knob, .compare.is-dragging .compare__knob { transform: translate(-50%, -50%) scale(1.08); background: rgba(16, 21, 27, 0.5); }
+
+.compare__bar { display: grid; grid-template-columns: 1fr 1fr; margin-top: 0.5rem; }
+.compare__bar[hidden] { display: none; }
+.compare__end:last-child { justify-self: end; }
+.compare__end { font-family: var(--font-label); font-size: 0.62rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); }
+.compare__range { --thumb: 1.1rem; --fill: calc(var(--thumb) / 2 + (100% - var(--thumb)) * var(--k)); --track-bg: linear-gradient(to right, transparent calc(var(--thumb) / 2), var(--accent) 0 var(--fill), var(--line) 0 calc(100% - var(--thumb) / 2), transparent 0); -webkit-appearance: none; appearance: none; grid-column: 1 / -1; order: -1; display: block; width: calc(100% + var(--thumb)); height: 1.75rem; margin: 0 calc(var(--thumb) / -2); background: transparent; cursor: pointer; }
+.compare__range:focus-visible { outline: none; }
+.compare__range::-webkit-slider-runnable-track { height: 2px; background: var(--track-bg); }
+.compare__range::-webkit-slider-thumb { -webkit-appearance: none; box-sizing: border-box; width: var(--thumb); height: var(--thumb); margin-top: calc(1px - var(--thumb) / 2); border: 1.5px solid var(--accent); border-radius: 50%; background: var(--paper); transition: transform 0.3s var(--ease); }
+.compare__range:hover::-webkit-slider-thumb, .compare__range:active::-webkit-slider-thumb { transform: scale(1.15); }
+.compare__range:focus-visible::-webkit-slider-thumb { outline: 2px solid var(--accent); outline-offset: 2px; }
+.compare__range::-moz-range-track { height: 2px; background: var(--track-bg); }
+.compare__range::-moz-range-thumb { box-sizing: border-box; width: var(--thumb); height: var(--thumb); border: 1.5px solid var(--accent); border-radius: 50%; background: var(--paper); transition: transform 0.3s var(--ease); }
+.compare__range:hover::-moz-range-thumb, .compare__range:active::-moz-range-thumb { transform: scale(1.15); }
+.compare__range:focus-visible::-moz-range-thumb { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 @media (prefers-reduced-motion: reduce) {
   .project.is-entering { animation: none; }
   .compare__knob { transition: none; }
+  .compare__range::-webkit-slider-thumb { transition: none; }
+  .compare__range::-moz-range-thumb { transition: none; }
 }
 
 /* ---------- page hero (interior pages) ---------- */
