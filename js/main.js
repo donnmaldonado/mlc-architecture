@@ -338,9 +338,9 @@
   /* Showcase: one project at a time, stepped by hand with Previous / Next;
      nothing advances on its own. Without JS every project simply stacks and
      the controls stay [hidden]. The open project goes in the URL hash so it
-     can be linked. The one Previous / Next bar is moved into the open
-     project, between its heading and its picture, keeping focus on the
-     button that was pressed. Hidden projects' photos are lazy, so they are
+     can be linked. The one Previous / Next bar is moved to the top of the
+     open project, above its heading, so it stays put however long the
+     description runs; focus stays on the button that was pressed. Hidden projects' photos are lazy, so they are
      all asked for once the page has loaded, to keep stepping instant. */
   document.querySelectorAll('[data-showcase]').forEach(sc => {
     const projects = Array.from(sc.querySelectorAll('[data-project]'));
@@ -349,10 +349,9 @@
     if (projects.length < 2) return;
     sc.querySelectorAll('[data-showcase-ui]').forEach(el => { el.hidden = false; });
     const placeNav = project => {
-      const fig = project.querySelector('[data-compare]');
-      if (!nav || !fig || nav.nextElementSibling === fig) return;
+      if (!nav || project.firstElementChild === nav) return;
       const focused = nav.contains(document.activeElement) ? document.activeElement : null;
-      fig.before(nav);
+      project.prepend(nav);
       if (focused) focused.focus({ preventScroll: true });
     };
 

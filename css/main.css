@@ -446,16 +446,16 @@ address { font-style: normal; }
 
 /* ---------- showcase: one project at a time, stepped by hand ----------
    Every project is in the markup and they simply stack without JS; js/main.js
-   hides all but one, un-hides the Previous / Next bar and moves it in
-   between the open project's heading and its picture. The picture and its
+   hides all but one, un-hides the Previous / Next bar and moves it to the
+   top of the open project, above its heading. The picture and its
    controls share one width. --stage-h is the height left under the
    full-height header, heading and controls, so the whole project fits in
    the first view of a desktop screen: the picture is 3:2 when there's room
    and, when there isn't, keeps its height to that and stays up to twice as
    wide as it is tall, cropping top and bottom rather than shrinking. */
-.showcase { --stage-h: max(14.5rem, calc(100svh - 28rem)); --stage-w: min(100%, 1040px, var(--stage-h) * 2); padding-top: clamp(1.25rem, 2vw, 1.75rem); }
+.showcase { --stage-h: max(14.5rem, calc(100svh - 29rem)); --stage-w: min(100%, 1040px, var(--stage-h) * 2); padding-top: clamp(1.25rem, 2vw, 1.75rem); }
 .project { scroll-margin-top: calc(var(--header-h) + var(--border)); }
-.project + .project { margin-top: var(--section); }
+.project:not([hidden]) + .project:not([hidden]) { margin-top: var(--section); }
 .project[hidden] { display: none; }
 .project.is-entering > :not(.showcase__nav) { animation: project-in 0.7s var(--ease) both; }
 @keyframes project-in { from { opacity: 0; transform: translateY(10px); } }
@@ -465,7 +465,7 @@ address { font-style: normal; }
 .project .compare { width: var(--stage-w); margin-inline: auto; }
 .project .compare__stage { width: 100%; max-height: var(--stage-h); }
 
-.showcase__nav { width: var(--stage-w); margin: 0 auto; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; }
+.showcase__nav { width: var(--stage-w); margin: 0 auto clamp(0.75rem, 1.5vw, 1rem); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; }
 .showcase__nav[hidden] { display: none; }
 .showcase__btn { justify-self: start; display: inline-flex; align-items: center; gap: 0.6em; padding: 0.35rem 0; font-family: var(--font-label); font-size: 0.72rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-2); transition: color 0.3s var(--ease); }
 .showcase__btn[data-showcase-next] { justify-self: end; }
