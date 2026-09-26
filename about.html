@@ -10,13 +10,17 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/main.css?v=23">
+<link rel="stylesheet" href="css/main.css?v=24">
 <script src="js/header-preview.js"></script>
 <style>
   /* about-only */
-  .approach__close { text-align: center; max-width: 40rem; margin: clamp(3rem, 6vw, 5rem) auto 0; padding-top: clamp(2.5rem, 5vw, 4rem); border-top: var(--border) solid rgba(250,248,243,0.2); }
-  .approach__close .btn-row { justify-content: center; margin-top: 2rem; }
-  .mission-media .caption { justify-content: flex-start; }
+  .about-intro .lead { max-width: 44rem; margin-inline: auto; }
+  .about-intro .facts { margin-top: clamp(3rem, 6vw, 4.5rem); text-align: left; }
+  .closing { text-align: center; }
+  .closing .h2::before, .closing .h2::after { content: "\2014"; display: block; font-size: 1rem; line-height: 1; opacity: 0.55; }
+  .closing .h2::before { margin-bottom: 1.5rem; }
+  .closing .h2::after { margin-top: 1.5rem; }
+  .closing .btn-row { margin-top: 2rem; }
 </style>
 </head>
 <body>
@@ -80,86 +84,69 @@
 
 <main>
   <!-- PAGE HERO -->
-  <section class="page-hero page-hero--image">
-    <div class="page-hero__bg" aria-hidden="true"><img src="assets/img/projects/p04.jpg" alt="" width="1600" height="917" fetchpriority="high"></div>
+  <section class="page-hero">
     <div class="container">
       <p class="label" data-reveal>The firm</p>
-      <div class="page-hero__head mt-3">
-        <h1 class="display" data-reveal style="--d:.1s">About Us</h1>
-        <p class="lead measure" data-reveal style="--d:.2s">MLC Architecture P.C., a full-service architectural firm based in Patchogue, New York, brings its professional expertise to clients across Long Island and New York City.</p>
-      </div>
+      <h1 class="display mt-3" data-reveal style="--d:.1s">About Us</h1>
+      <p class="lead measure mt-4" data-reveal style="--d:.2s">MLC Architecture P.C., a full-service architectural firm based in Patchogue, New York, brings its professional expertise to clients across Long Island and New York City.</p>
     </div>
   </section>
 
-  <!-- INTRO -->
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <p class="label" data-reveal>Our office</p>
-        <h2 class="h2 mt-2" data-reveal style="--d:.05s">A Full-Service Architectural Firm in Patchogue, New York</h2>
-      </div>
-      <div class="grid">
-        <div class="col-12 md:col-6">
-          <p class="lead" data-reveal>MLC Architecture P.C., a full-service architectural firm based in Patchogue, New York, brings its professional expertise to clients across Long Island and New York City. Founded on the belief of delivering customized solutions, MLC offers an efficient design process that seamlessly integrates all project elements for residential and commercial clients.</p>
-        </div>
-        <div class="col-12 md:col-6 md:start-7">
-          <p class="lead" data-reveal style="--d:.1s">Our clients&rsquo; lives are enriched and enhanced by these designs that are timeless, functional, and aesthetic.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- OUR MISSION -->
-  <section class="section section--flush-top">
-    <div class="container">
-      <div class="grid">
-        <div class="col-12 md:col-5 mission-media" data-reveal>
-          <div class="media media--4x3"><img src="assets/img/projects/p11.jpg" alt="Stone and white gable house, front elevation" loading="lazy" width="1600" height="1040"></div>
-          <div class="caption"><b>Project 11</b><span>Residential</span></div>
-        </div>
-        <div class="col-12 md:col-6 md:start-7">
+  <!-- MISSION + APPROACH: the home page's feature rows, split evenly for longer copy -->
+  <section class="features" aria-label="Our mission and approach">
+    <div class="feature feature--prose feature--light">
+      <a class="feature__media" href="gallery.html" style="--pos: 50% 55%">
+        <img src="assets/img/projects/p11.jpg" alt="Stone and white gable house, front elevation" loading="lazy" width="1600" height="1040">
+        <span class="feature__title">Project 11 &mdash; Residential</span>
+      </a>
+      <div class="feature__panel">
+        <div class="feature__content">
           <p class="label" data-reveal>Our mission</p>
-          <h2 class="h2 mt-2" data-reveal style="--d:.05s">Design That Transforms Lives</h2>
-          <p class="lead mt-4" data-reveal style="--d:.1s">At MLC Architecture P.C., we are passionate about design&rsquo;s ability to transform lives. Through innovation, sustainability, and close collaboration, we create inspiring, functional, and enduring spaces for residential and commercial clients.</p>
-          <p class="body mt-3" data-reveal style="--d:.2s">Since our founding, we have been committed to exceeding expectations by delivering exceptional architectural solutions tailored to each client&rsquo;s unique vision. We believe in the power of thoughtful design, technical expertise, and personalized service to create environments that enhance lives and communities.</p>
+          <h2 class="h2" data-reveal style="--d:.05s">Design That Transforms Lives</h2>
+          <p class="lead" data-reveal style="--d:.1s">At MLC Architecture P.C., we are passionate about design&rsquo;s ability to transform lives. Through innovation, sustainability, and close collaboration, we create inspiring, functional, and enduring spaces for residential and commercial clients.</p>
+          <p class="body" data-reveal style="--d:.15s">Since our founding, we have been committed to exceeding expectations by delivering exceptional architectural solutions tailored to each client&rsquo;s unique vision. We believe in the power of thoughtful design, technical expertise, and personalized service to create environments that enhance lives and communities.</p>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- OUR APPROACH -->
-  <section class="section section--ink">
-    <div class="container">
-      <div class="section-head">
-        <p class="label" data-reveal>Our approach</p>
-        <h2 class="h2 mt-2" data-reveal style="--d:.05s">Passion Meets Precision</h2>
-      </div>
-      <div class="grid">
-        <div class="col-12 md:col-6">
+    <div class="feature feature--prose feature--dark">
+      <a class="feature__media" href="gallery.html" style="--pos: 40% 60%">
+        <img src="assets/img/projects/p04.jpg" alt="White house, rear elevation with two balconies" loading="lazy" width="1600" height="917">
+      </a>
+      <div class="feature__panel">
+        <div class="feature__content">
+          <p class="label" data-reveal>Our approach</p>
+          <h2 class="h2" data-reveal style="--d:.05s">Passion Meets Precision</h2>
           <p class="lead" data-reveal style="--d:.1s">At MLC Architecture P.C., passion meets precision. We bring a collaborative approach and unwavering commitment to excellence to every project.</p>
-        </div>
-        <div class="col-12 md:col-6 md:start-7">
           <p class="lead" data-reveal style="--d:.15s">We listen closely to understand your vision and translate it into a tailored solution that exceeds expectations. Our meticulous attention to detail ensures exceptional results, from concept to completion.</p>
         </div>
       </div>
-      <div class="approach__close">
-        <h3 class="h2" data-reveal>Let&rsquo;s Turn Your Dream Space Into Reality</h3>
-        <div class="btn-row" data-reveal style="--d:.1s">
-          <a class="btn btn--paper" href="contact.html">Contact us</a>
-          <a class="btn btn--outline-light" href="services.html">Our services</a>
-        </div>
-      </div>
     </div>
   </section>
 
-  <!-- FACTS -->
-  <section class="section section--tight">
-    <div class="container">
+  <!-- OUR OFFICE -->
+  <section class="section about-intro">
+    <div class="container center">
+      <p class="label" data-reveal>Our office</p>
+      <h2 class="h2 mt-2" data-reveal style="--d:.05s">A Full-Service Architectural Firm in Patchogue, New York</h2>
+      <p class="lead mt-4" data-reveal style="--d:.1s">MLC Architecture P.C., a full-service architectural firm based in Patchogue, New York, brings its professional expertise to clients across Long Island and New York City. Founded on the belief of delivering customized solutions, MLC offers an efficient design process that seamlessly integrates all project elements for residential and commercial clients.</p>
+      <p class="lead" data-reveal style="--d:.15s">Our clients&rsquo; lives are enriched and enhanced by these designs that are timeless, functional, and aesthetic.</p>
       <div class="facts" data-reveal>
         <div><p class="label">Based in</p><p class="val">Patchogue, New York</p></div>
         <div><p class="label">Serving</p><p class="val">Long Island &amp; New York City</p></div>
         <div><p class="label">Sectors</p><p class="val">Residential &amp; Commercial</p></div>
         <div><p class="label">Practice</p><p class="val">Full-service architectural firm</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="section section--ink closing">
+    <div class="container">
+      <h2 class="h2" data-reveal>Let&rsquo;s Turn Your Dream Space Into Reality</h2>
+      <div class="btn-row btn-row--center" data-reveal style="--d:.1s">
+        <a class="btn btn--paper" href="contact.html">Contact us</a>
+        <a class="btn btn--outline-light" href="services.html">Our services</a>
       </div>
     </div>
   </section>

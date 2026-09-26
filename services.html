@@ -10,11 +10,11 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/main.css?v=23">
+<link rel="stylesheet" href="css/main.css?v=24">
 <script src="js/header-preview.js"></script>
 <style>
   /* services-only */
-  .svc__aside { display: grid; gap: clamp(2rem, 4vw, 2.75rem); align-content: start; }
+  .svc { padding-top: clamp(2.5rem, 5vw, 4rem); }
   .svc__sub { margin-top: clamp(2.25rem, 4vw, 3rem); }
 </style>
 </head>
@@ -86,71 +86,70 @@
       <p class="lead measure mt-4" data-reveal style="--d:.2s">We guide you from start to finish, handling every step of the design process, from initial sketches to final construction documents.</p>
     </div>
   </section>
-  <div class="container"><hr class="rule"></div>
 
-  <!-- RESIDENTIAL -->
-  <section class="section svc" id="residential">
+  <!-- RESIDENTIAL: a feature row, then the list of services under it -->
+  <section class="features" id="residential" aria-labelledby="residential-title">
+    <div class="feature feature--prose feature--dark">
+      <a class="feature__media" href="gallery.html" style="--pos: 60% 55%">
+        <img src="assets/img/projects/p07.jpg" alt="White house rear with pool" loading="lazy" width="1536" height="1024">
+      </a>
+      <div class="feature__panel">
+        <div class="feature__content">
+          <p class="label" data-reveal>Residential</p>
+          <h2 class="h2" id="residential-title" data-reveal style="--d:.05s">Residential Architecture</h2>
+          <p class="lead" data-reveal style="--d:.1s">Ready to renovate, build an addition, or design your dream home? We guide you from start to finish, handling every step of the design process, from initial sketches to final construction documents.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section svc" aria-label="Residential services">
     <div class="container">
-      <div class="grid">
-        <div class="col-12 md:col-5">
-          <div class="svc__aside">
-            <div>
-              <p class="label" data-reveal>Residential</p>
-              <h2 class="h2 mt-2" data-reveal>Residential Architecture</h2>
-              <p class="lead mt-4" data-reveal style="--d:.1s">Ready to renovate, build an addition, or design your dream home? We guide you from start to finish, handling every step of the design process, from initial sketches to final construction documents.</p>
-            </div>
-            <div class="media media--4x3" data-reveal style="--d:.2s"><img src="assets/img/projects/thumbs/p07.jpg" alt="White house rear with pool" loading="lazy" width="720" height="480"></div>
-          </div>
-        </div>
-        <div class="col-12 md:col-6 md:start-7">
-          <ul class="list-rules" data-reveal>
-            <li><span class="txt">New Construction</span></li>
-            <li><span class="txt">Additions and Renovations</span></li>
-            <li><span class="txt">Residential Sanitary Systems</span></li>
-            <li><span class="txt">Sustainable (green) Architecture</span></li>
-            <li><span class="txt">Waterfront House Design</span></li>
-            <li><span class="txt">FEMA Compliant House Design</span></li>
-            <li><span class="txt">Elevated House Design</span></li>
-            <li><span class="txt">Interior Layout and Renovations</span></li>
-          </ul>
-          <div class="svc__sub">
-            <p class="label mb-3" data-reveal>Visualization</p>
-            <ul class="list-rules" data-reveal style="--d:.1s">
-            <li><span class="txt">Image Renderings</span></li>
-            <li><span class="txt">Rendered Movies</span></li>
-            <li><span class="txt">Interior Walk-Throughs</span></li>
-            </ul>
-          </div>
-        </div>
+      <ul class="list-rules" data-reveal>
+        <li><span class="txt">New Construction</span></li>
+        <li><span class="txt">Additions and Renovations</span></li>
+        <li><span class="txt">Residential Sanitary Systems</span></li>
+        <li><span class="txt">Sustainable (green) Architecture</span></li>
+        <li><span class="txt">Waterfront House Design</span></li>
+        <li><span class="txt">FEMA Compliant House Design</span></li>
+        <li><span class="txt">Elevated House Design</span></li>
+        <li><span class="txt">Interior Layout and Renovations</span></li>
+      </ul>
+      <div class="svc__sub">
+        <p class="label mb-3" data-reveal>Visualization</p>
+        <ul class="list-rules" data-reveal style="--d:.1s">
+          <li><span class="txt">Image Renderings</span></li>
+          <li><span class="txt">Rendered Movies</span></li>
+          <li><span class="txt">Interior Walk-Throughs</span></li>
+        </ul>
       </div>
     </div>
   </section>
 
   <!-- COMMERCIAL -->
-  <section class="section section--paper2 svc" id="commercial">
-    <div class="container">
-      <div class="grid">
-        <div class="col-12 md:col-5">
-          <div class="svc__aside">
-            <div>
-              <p class="label" data-reveal>Commercial</p>
-              <h2 class="h2 mt-2" data-reveal>Commercial Architecture</h2>
-              <p class="lead mt-4" data-reveal style="--d:.1s">Envisioning a new office space? Expanding your retail footprint? We&rsquo;ll transform your vision into reality. Our comprehensive design services encompass everything from conceptualizing your ideal workspace to delivering detailed construction documents for large commercial spaces, ensuring a smooth transition from concept to completion.</p>
-            </div>
-            <div class="media media--16x9" data-reveal style="--d:.2s"><img src="assets/img/projects/thumbs/p14.jpg" alt="Rendering of a brick church, front elevation" loading="lazy" width="720" height="405"></div>
-          </div>
-        </div>
-        <div class="col-12 md:col-6 md:start-7">
-          <ul class="list-rules" data-reveal>
-            <li><span class="txt">Multi-Family and Apartment Design</span></li>
-            <li><span class="txt">Mixed Use</span></li>
-            <li><span class="txt">Restaurant Design</span></li>
-            <li><span class="txt">Office Design</span></li>
-            <li><span class="txt">Tenant Fit-Outs</span></li>
-            <li><span class="txt">Hotel and Hospitality Design</span></li>
-          </ul>
+  <section class="features" id="commercial" aria-labelledby="commercial-title">
+    <div class="feature feature--prose feature--medium feature--flip">
+      <a class="feature__media" href="gallery.html" style="--pos: 45% 55%">
+        <img src="assets/img/projects/p14.jpg" alt="Rendering of a brick church, front elevation" loading="lazy" width="1600" height="900">
+      </a>
+      <div class="feature__panel">
+        <div class="feature__content">
+          <p class="label" data-reveal>Commercial</p>
+          <h2 class="h2" id="commercial-title" data-reveal style="--d:.05s">Commercial Architecture</h2>
+          <p class="lead" data-reveal style="--d:.1s">Envisioning a new office space? Expanding your retail footprint? We&rsquo;ll transform your vision into reality. Our comprehensive design services encompass everything from conceptualizing your ideal workspace to delivering detailed construction documents for large commercial spaces, ensuring a smooth transition from concept to completion.</p>
         </div>
       </div>
+    </div>
+  </section>
+  <section class="section svc" aria-label="Commercial services">
+    <div class="container">
+      <ul class="list-rules" data-reveal>
+        <li><span class="txt">Multi-Family and Apartment Design</span></li>
+        <li><span class="txt">Mixed Use</span></li>
+        <li><span class="txt">Restaurant Design</span></li>
+        <li><span class="txt">Office Design</span></li>
+        <li><span class="txt">Tenant Fit-Outs</span></li>
+        <li><span class="txt">Hotel and Hospitality Design</span></li>
+      </ul>
     </div>
   </section>
 </main>
