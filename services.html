@@ -73,19 +73,30 @@
 </div>
 
 <main class="firm fit">
-  <div class="container firm-grid svc__grid">
+  <div class="container firm-grid firm-grid--3">
     <h1 class="firm__title label">Services</h1>
 
-    <section class="firm-band firm-band--2" aria-labelledby="overview-title" data-reveal>
-      <div class="firm-band__head">
-        <p class="label">Overview</p>
-        <h2 class="h2" id="overview-title">Full Residential &amp; Commercial Architectural Services</h2>
-      </div>
+    <dl class="firm-facts" data-reveal>
+      <div><dt class="label label--ink">Sectors</dt><dd>Residential &amp; Commercial</dd></div>
+      <div><dt class="label label--ink">Scope</dt><dd>Initial sketches to construction documents</dd></div>
+      <div><dt class="label label--ink">Serving</dt><dd>Long Island &amp; New York City</dd></div>
+      <div><dt class="label label--ink">Practice</dt><dd>Full-service architecture</dd></div>
+    </dl>
+
+    <section class="firm-band firm-band--col" aria-labelledby="overview-title" data-reveal style="--d: 0.1s">
+      <h2 class="h2" id="overview-title">Full Residential &amp; Commercial Architectural Services</h2>
       <p class="lead">We guide you from start to finish, handling every step of the design process, from initial sketches to final construction documents.</p>
+      <div class="firm-band__sub">
+        <p class="label">Visualization</p>
+        <ul class="svc__list" aria-label="Visualization services">
+          <li>Image Renderings</li>
+          <li>Rendered Movies</li>
+          <li>Interior Walk-Throughs</li>
+        </ul>
+      </div>
     </section>
 
-    <section class="firm-col svc__col" id="residential" aria-labelledby="residential-title" data-reveal style="--d: 0.1s">
-      <p class="label">Residential</p>
+    <section class="firm-col" id="residential" aria-labelledby="residential-title" data-reveal style="--d: 0.2s">
       <h2 class="h3" id="residential-title">Residential Architecture</h2>
       <p class="body">Ready to renovate, build an addition, or design your dream home? We guide you from start to finish, handling every step of the design process, from initial sketches to final construction documents.</p>
       <ul class="svc__list" aria-label="Residential services">
@@ -98,18 +109,9 @@
         <li>Elevated House Design</li>
         <li>Interior Layout and Renovations</li>
       </ul>
-      <div class="svc__sub">
-        <p class="label label--ink">Visualization</p>
-        <ul class="svc__list" aria-label="Visualization services">
-          <li>Image Renderings</li>
-          <li>Rendered Movies</li>
-          <li>Interior Walk-Throughs</li>
-        </ul>
-      </div>
     </section>
 
-    <section class="firm-col svc__col" id="commercial" aria-labelledby="commercial-title" data-reveal style="--d: 0.2s">
-      <p class="label">Commercial</p>
+    <section class="firm-col" id="commercial" aria-labelledby="commercial-title" data-reveal style="--d: 0.3s">
       <h2 class="h3" id="commercial-title">Commercial Architecture</h2>
       <p class="body">Envisioning a new office space? Expanding your retail footprint? We&rsquo;ll transform your vision into reality. Our comprehensive design services encompass everything from conceptualizing your ideal workspace to delivering detailed construction documents for large commercial spaces, ensuring a smooth transition from concept to completion.</p>
       <ul class="svc__list" aria-label="Commercial services">
@@ -120,10 +122,6 @@
         <li>Tenant Fit-Outs</li>
         <li>Hotel and Hospitality Design</li>
       </ul>
-      <div class="btn-row">
-        <a class="btn btn--brand" href="contact.html">Contact us</a>
-        <a class="btn btn--outline" href="showcase.html">See our work</a>
-      </div>
     </section>
   </div>
 </main>
