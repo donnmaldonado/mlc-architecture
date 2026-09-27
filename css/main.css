@@ -529,56 +529,48 @@ address { font-style: normal; }
   .compare__range::-moz-range-thumb { transition: none; }
 }
 
-/* ---------- firm pages (About, Services, Contact): text only ----------
-   No photos and no page head: the subnav names the page. Each topic is a
-   hairline-ruled row, a small label on the left and quiet copy on the right. */
-.firm { padding-top: clamp(2.5rem, 6vw, 5.5rem); padding-bottom: var(--section); }
+/* ---------- firm pages (About, Services, Contact) ----------
+   No page head: the subnav names the page. Layout is in the one-screen
+   block further down. */
 .firm .container { max-width: calc(66rem + var(--gutter) * 2); }
 /* the subnav only shows from 900px, so below that the page names itself */
-.firm__title { margin-bottom: 2.25rem; }
+.firm__title { margin-bottom: -1rem; }
 @media (min-width: 900px) { .firm__title { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; } }
-.firm__row { scroll-margin-top: calc(var(--header-h) + var(--border)); display: grid; gap: 1.1rem; padding-block: clamp(2.75rem, 5.5vw, 4.75rem); border-top: var(--border) solid var(--line-soft); }
-.firm__row:first-of-type { border-top: 0; padding-top: 0; }
-.firm__body { max-width: 40rem; }
-.firm__body .h3 + .lead, .firm__body .h3 + .body { margin-top: 1.25rem; }
-.firm__body > * + :is(.firm__list, .firm__defs, .firm__links, .firm__sub, .form) { margin-top: 2.25rem; }
-.firm__sub > .label { margin-bottom: 0.75rem; }
-@media (min-width: 900px) {
-  .firm__row { grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr); column-gap: clamp(2.5rem, 6vw, 6rem); }
-  /* drop the label onto the heading's cap line; rows without a heading start flush */
-  .firm__row:has(.firm__body > .h3:first-child) > .label { padding-top: 0.55rem; }
-}
-/* service lists: two quiet columns of hairline rows */
-.firm__list { display: grid; column-gap: clamp(20px, 3vw, 40px); border-top: var(--border) solid var(--line-soft); }
-.firm__list > li { padding: 0.8rem 0; border-bottom: var(--border) solid var(--line-soft); font-size: 0.97rem; line-height: 1.5; color: var(--ink); }
-@media (min-width: 640px) { .firm__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-/* label / value pairs (facts, contact details) */
-.firm__defs { display: grid; gap: 1.5rem clamp(20px, 3vw, 40px); margin: 0; }
-.firm__defs dt { margin-bottom: 0.35rem; }
-.firm__defs dd { margin: 0; font-size: 0.97rem; line-height: 1.65; color: var(--ink); }
-.firm__defs dd a:hover { color: var(--accent); }
-@media (min-width: 640px) { .firm__defs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.firm__links { display: flex; flex-wrap: wrap; gap: 1rem 2rem; }
-/* closing line: centred, set off by a short rule */
-.firm__close { padding-top: clamp(3rem, 6vw, 5rem); border-top: var(--border) solid var(--line-soft); text-align: center; }
-.firm__close .firm__links { justify-content: center; margin-top: 1.75rem; }
 
-/* About: everything on one screen on desktop. A dark mission column, then
-   approach and office columns, with the facts and the closing call to action
-   in a row beneath. From 1100px the page is the viewport minus the header
-   (js/main.js measures it into --hero-offset), so the footer starts at the
-   fold. Below that it stacks in normal flow. */
-.about { padding-block: clamp(1.5rem, 4vw, 3rem) var(--section); }
-.about__grid { display: grid; gap: 2.5rem; }
-.about__col .h2, .about__col .h3 { margin-top: 0.7rem; }
-.about__col .h2 + .lead, .about__col .h3 + .body { margin-top: 1rem; }
-.about__mission { padding: clamp(2rem, 5vw, 3rem); background: var(--deep); color: var(--paper); }
-.about__mission .h2 { color: var(--paper); }
-.about__mission-head + .lead { margin-top: 1.25rem; }
-.about__mission .label { color: rgba(250, 248, 243, 0.62); }
-.about__mission .lead { color: var(--paper); }
-.about__mission .body { color: rgba(250, 248, 243, 0.76); }
-[data-header="ink"] .about__mission .label { color: var(--accent-light); }
+/* ---------- firm pages on one screen (About, Services, Contact) ----------
+   From 1100px each page is the viewport minus the header (js/main.js
+   measures it into --hero-offset), with its content centred in it, so the
+   footer starts at the fold. Each opens with a dark band holding the page's
+   statement, then columns beneath. Below 1100px everything stacks in
+   normal flow. */
+.fit { padding-block: clamp(1.5rem, 4vw, 3rem) var(--section); }
+.firm-grid { display: grid; gap: 2.5rem; }
+.firm-col .h3 { margin-top: 0.7rem; }
+.firm-col .h3 + .body { margin-top: 1rem; }
+.firm-band { padding: clamp(2rem, 5vw, 3rem); background: var(--deep); color: var(--paper); }
+.firm-band .h2 { margin-top: 0.7rem; color: var(--paper); }
+.firm-band__head + * { margin-top: 1.25rem; }
+.firm-band .label { color: rgba(250, 248, 243, 0.62); }
+.firm-band .lead { color: var(--paper); }
+.firm-band .body { color: rgba(250, 248, 243, 0.76); }
+.firm-band .btn-row { margin-top: 1.5rem; }
+[data-header="ink"] .firm-band .label { color: var(--accent-light); }
+@media (min-width: 1100px) {
+  .fit { display: flex; flex-direction: column; justify-content: center; min-height: calc(100vh - var(--hero-offset, calc(var(--header-h) + var(--border)))); min-height: calc(100svh - var(--hero-offset, calc(var(--header-h) + var(--border)))); padding-block: clamp(0.9rem, 2vh, 2.5rem); }
+  .fit .container { max-width: calc(var(--wrap) + var(--gutter) * 2); }
+  .firm-grid { gap: clamp(1.1rem, 2.6vh, 2.5rem) clamp(2rem, 3.5vw, 3.5rem); align-items: start; }
+  .firm-band { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(2rem, 3.5vw, 3.5rem); align-items: start; padding: clamp(1.1rem, 2.6vh, 2.5rem) clamp(1.75rem, 2.5vw, 2.5rem); }
+  .firm-band--2 { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+  .firm-band .h2 { font-size: clamp(1.8rem, 2.4vw, 2.5rem); }
+  .firm-band > .firm-band__head ~ * { margin-top: 0; }
+  .firm-band .lead { font-size: 0.95rem; line-height: 1.55; }
+  .firm-band .body { font-size: 0.87rem; line-height: 1.62; }
+  .firm-col .body { font-size: 0.87rem; line-height: 1.62; }
+  .firm-col .h3 { font-size: clamp(1.25rem, 1.55vw, 1.5rem); }
+  .firm-col .h3 + .body { margin-top: 0.7rem; }
+}
+
+/* About: mission band, then approach, office, and facts + call to action */
 .about__steps { margin-top: 1.5rem; border-top: var(--border) solid var(--line-soft); }
 .about__steps > li { display: grid; grid-template-columns: 2.75rem minmax(0, 1fr); padding-block: 0.9rem; border-bottom: var(--border) solid var(--line-soft); }
 .about__num { grid-row: span 2; font-family: var(--font-display); font-size: 1.35rem; line-height: 1.1; color: var(--accent); }
@@ -592,20 +584,7 @@ address { font-style: normal; }
 .about__close-title { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; line-height: 1.25; color: var(--ink); text-wrap: balance; }
 .about__close .btn-row { margin-top: 1.1rem; }
 @media (min-width: 1100px) {
-  .about { display: flex; flex-direction: column; justify-content: center; min-height: calc(100vh - var(--hero-offset, calc(var(--header-h) + var(--border)))); min-height: calc(100svh - var(--hero-offset, calc(var(--header-h) + var(--border)))); padding-block: clamp(0.9rem, 2vh, 2.5rem); }
-  .about .container { max-width: calc(var(--wrap) + var(--gutter) * 2); }
-  .about__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-areas: "mission mission mission" "approach office aside"; gap: clamp(1.1rem, 2.6vh, 2.5rem) clamp(2rem, 3.5vw, 3.5rem); align-items: start; }
-  .about__mission { grid-area: mission; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(2rem, 3.5vw, 3.5rem); align-items: start; padding: clamp(1.1rem, 2.6vh, 2.5rem) clamp(1.75rem, 2.5vw, 2.5rem); }
-  .about__approach { grid-area: approach; }
-  .about__office { grid-area: office; }
-  .about__aside { grid-area: aside; }
-  .about__mission .h2 { font-size: clamp(1.8rem, 2.4vw, 2.5rem); }
-  .about__mission .lead, .about__mission .body { margin-top: 0; }
-  .about__mission .lead { font-size: 0.95rem; line-height: 1.55; }
-  .about__mission .body { line-height: 1.55; }
-  .about__col .body { font-size: 0.87rem; line-height: 1.62; }
-  .about__col .h3 { font-size: clamp(1.25rem, 1.55vw, 1.5rem); }
-  .about__col .h3 + .body { margin-top: 0.7rem; }
+  .about__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .about__steps { margin-top: 1rem; }
   .about__steps > li { display: block; position: relative; padding: 0.45rem 0 0.45rem 2.5rem; font-size: 0.87rem; line-height: 1.5; }
   .about__num { position: absolute; left: 0; top: 0.4rem; font-size: 1.1rem; line-height: 1.3; }
@@ -613,8 +592,43 @@ address { font-style: normal; }
   .about__step { font-size: 1rem; line-height: inherit; }
   .about__step::after { content: " \2014  "; color: var(--ink-3); }
   .about__quote { margin-top: 0.9rem; font-size: 0.98rem; line-height: 1.4; }
-  .about__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.25rem; padding-top: 0; border-top: 0; }
+  .about__facts { gap: 1rem 1.25rem; padding-top: 0; border-top: 0; }
   .about__close { margin-top: 1.25rem; padding-top: 1.25rem; border-top: var(--border) solid var(--line-soft); }
+}
+
+/* Services: overview band, then residential and commercial side by side */
+.svc__list { display: grid; margin-top: 1.25rem; border-top: var(--border) solid var(--line-soft); }
+.svc__list > li { padding: 0.6rem 0; border-bottom: var(--border) solid var(--line-soft); font-size: 0.95rem; line-height: 1.45; color: var(--ink); }
+@media (min-width: 640px) { .svc__list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(20px, 2.5vw, 32px); } }
+.svc__sub { margin-top: 1.75rem; }
+.svc__sub .svc__list { margin-top: 0.6rem; }
+.svc__col .btn-row { margin-top: 1.75rem; }
+@media (min-width: 1100px) {
+  .svc__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .svc__list { margin-top: 1rem; }
+  .svc__list > li { padding: 0.4rem 0; font-size: 0.87rem; }
+  .svc__sub .svc__list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .svc__sub { margin-top: 1.1rem; }
+  .svc__col .btn-row { margin-top: 1.25rem; }
+}
+
+/* Contact: reach-us band, then the details beside the form */
+.contact__defs { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 1.25rem 1.5rem; margin: 1rem 0 0; }
+.contact__defs > .contact__wide { grid-column: 1 / -1; }
+.contact__defs dt { margin-bottom: 0.3rem; }
+.contact__defs dd { margin: 0; font-size: 0.93rem; line-height: 1.6; color: var(--ink); }
+.contact__defs dd a:not(.link):hover { color: var(--accent); }
+.contact__defs .link { margin-top: 0.6rem; }
+.contact__form .form { margin-top: 1rem; }
+@media (min-width: 1100px) {
+  .contact__grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.6fr); }
+  .contact__defs { grid-template-columns: auto auto; justify-content: start; column-gap: 2.25rem; }
+  .contact__defs dd { font-size: 0.87rem; }
+  .contact__form .form { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(2rem, 3vw, 3rem); gap: 1rem clamp(2rem, 3vw, 3rem); }
+  .contact__form .field--wide { grid-column: 2; grid-row: 1 / span 3; display: flex; flex-direction: column; }
+  .contact__form .field--wide textarea { flex: 1; min-height: 0; }
+  .contact__form .form__foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; margin-top: 0.25rem; }
+  .contact__form .field input { padding-block: 0.6rem; }
 }
 
 /* ---------- media ---------- */
