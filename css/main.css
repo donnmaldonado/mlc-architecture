@@ -570,25 +570,20 @@ address { font-style: normal; }
   .firm-col .h3 + .body { margin-top: 0.7rem; }
 }
 
-/* About: mission, approach and about-us as three columns, then facts + call
-   to action as a strip beneath */
-.about__facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 1.5rem; margin: 0; padding-top: 1.5rem; border-top: var(--border) solid var(--line-soft); }
+/* About: facts strip, then mission, approach and about-us as three columns */
+.about__facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 1.5rem; margin: 0; padding-bottom: 1.5rem; border-bottom: var(--border) solid var(--line-soft); }
 .about__facts dt { margin-bottom: 0.25rem; }
 .about__facts dd { margin: 0; font-family: var(--font-serif); font-size: 1rem; line-height: 1.35; color: var(--ink); }
 .about__grid .h2, .about__grid .h3 { margin-top: 0; }
 .about__mission .h2 + * { margin-top: 1.25rem; }
-.about__aside .about__close { margin-top: 2.5rem; }
 @media (min-width: 1100px) {
   .about__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .about__facts { grid-column: 1 / -1; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: clamp(2rem, 3.5vw, 3.5rem); padding-bottom: clamp(0.9rem, 2vh, 1.5rem); }
   .about__mission { grid-column: auto; display: block; align-self: stretch; }
   .about__mission .h2 { font-size: clamp(1.4rem, 1.8vw, 1.85rem); }
   .about__mission .h2 + * { margin-top: 0.8rem; }
   .about__mission .lead { font-size: 0.9rem; line-height: 1.5; }
   .about__mission .body { font-size: 0.82rem; line-height: 1.55; }
-  .about__aside { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); column-gap: clamp(2rem, 3.5vw, 3.5rem); align-items: center; padding-top: clamp(0.9rem, 2vh, 1.5rem); border-top: var(--border) solid var(--line-soft); }
-  .about__aside .about__facts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .about__aside .about__close { margin-top: 0; }
-  .about__facts { gap: 1rem 1.25rem; padding-top: 0; border-top: 0; }
 }
 
 /* Services: overview band, then residential and commercial side by side */
