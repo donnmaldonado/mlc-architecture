@@ -529,9 +529,39 @@ address { font-style: normal; }
   .compare__range::-moz-range-thumb { transition: none; }
 }
 
-/* ---------- page hero (interior pages): a short centred head over the mat ---------- */
-.page-hero { padding-top: clamp(2.75rem, 5.5vw, 4.5rem); padding-bottom: clamp(2.25rem, 4.5vw, 3.5rem); text-align: center; }
-.page-hero .lead { margin-inline: auto; }
+/* ---------- firm pages (About, Services, Contact): text only ----------
+   No photos and no page head: the subnav names the page. Each topic is a
+   hairline-ruled row, a small label on the left and quiet copy on the right. */
+.firm { padding-top: clamp(2.5rem, 6vw, 5.5rem); padding-bottom: var(--section); }
+.firm .container { max-width: calc(66rem + var(--gutter) * 2); }
+/* the subnav only shows from 900px, so below that the page names itself */
+.firm__title { margin-bottom: 2.25rem; }
+@media (min-width: 900px) { .firm__title { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; } }
+.firm__row { scroll-margin-top: calc(var(--header-h) + var(--border)); display: grid; gap: 1.1rem; padding-block: clamp(2.75rem, 5.5vw, 4.75rem); border-top: var(--border) solid var(--line-soft); }
+.firm__row:first-of-type { border-top: 0; padding-top: 0; }
+.firm__body { max-width: 40rem; }
+.firm__body .h3 + .lead, .firm__body .h3 + .body { margin-top: 1.25rem; }
+.firm__body > * + :is(.firm__list, .firm__defs, .firm__links, .firm__sub, .form) { margin-top: 2.25rem; }
+.firm__sub > .label { margin-bottom: 0.75rem; }
+@media (min-width: 900px) {
+  .firm__row { grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr); column-gap: clamp(2.5rem, 6vw, 6rem); }
+  /* drop the label onto the heading's cap line; rows without a heading start flush */
+  .firm__row:has(.firm__body > .h3:first-child) > .label { padding-top: 0.55rem; }
+}
+/* service lists: two quiet columns of hairline rows */
+.firm__list { display: grid; column-gap: clamp(20px, 3vw, 40px); border-top: var(--border) solid var(--line-soft); }
+.firm__list > li { padding: 0.8rem 0; border-bottom: var(--border) solid var(--line-soft); font-size: 0.97rem; line-height: 1.5; color: var(--ink); }
+@media (min-width: 640px) { .firm__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* label / value pairs (facts, contact details) */
+.firm__defs { display: grid; gap: 1.5rem clamp(20px, 3vw, 40px); margin: 0; }
+.firm__defs dt { margin-bottom: 0.35rem; }
+.firm__defs dd { margin: 0; font-size: 0.97rem; line-height: 1.65; color: var(--ink); }
+.firm__defs dd a:hover { color: var(--accent); }
+@media (min-width: 640px) { .firm__defs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.firm__links { display: flex; flex-wrap: wrap; gap: 1rem 2rem; }
+/* closing line: centred, set off by a short rule */
+.firm__close { padding-top: clamp(3rem, 6vw, 5rem); border-top: var(--border) solid var(--line-soft); text-align: center; }
+.firm__close .firm__links { justify-content: center; margin-top: 1.75rem; }
 
 /* ---------- media ---------- */
 .media { display: block; position: relative; overflow: hidden; background: var(--paper-3); }
@@ -554,21 +584,6 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
 .feature__body .lead { margin-top: 1rem; }
 .feature__body .btn-row, .feature__body .link { margin-top: 1.75rem; }
 @media (min-width: 900px) { .feature__media { aspect-ratio: 21 / 9; } }
-
-/* ---------- lists: hairline rows, one to three across ---------- */
-.list-rules { display: grid; grid-template-columns: 1fr; column-gap: clamp(20px, 3vw, 44px); }
-.list-rules > li { padding: 1rem 0; margin-top: calc(-1 * var(--border)); border-block: var(--border) solid var(--line-soft); }
-.list-rules .txt { font-family: var(--font-sans); font-size: 1.1rem; font-weight: 400; line-height: 1.4; color: var(--ink); }
-@media (min-width: 640px) { .list-rules { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 1000px) { .list-rules { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-
-/* fact row */
-.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border-top: var(--border) solid var(--line-soft); }
-.facts > div { padding: 1.5rem 1rem 1.5rem 0; border-bottom: var(--border) solid var(--line-soft); }
-.facts .label { margin-bottom: 0.6rem; }
-.facts .val { font-family: var(--font-sans); font-size: 1.15rem; line-height: 1.5; color: var(--ink); }
-.facts .val a:hover { color: var(--accent); }
-@media (min-width: 900px) { .facts { grid-template-columns: repeat(4, minmax(0, 1fr)); } .facts > div { padding-right: 2.25rem; } }
 
 /* cards */
 .cards { display: grid; grid-template-columns: 1fr; gap: 0; }
@@ -625,17 +640,6 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
   .feature:nth-child(even), .feature--flip { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
   :is(.feature:nth-child(even), .feature--flip) .feature__media { order: 2; }
   .feature__panel { padding: clamp(2.5rem, 3.5vw, 4rem) clamp(1.75rem, 3vw, 3.5rem); }
-}
-
-/* prose rows (the firm pages): longer copy, so photo and panel split evenly
-   and the copy sits left in a wider column */
-.feature--prose .feature__panel { justify-content: flex-start; text-align: left; }
-.feature--prose .feature__content { max-width: 34rem; }
-.feature--prose .h2 { margin-top: 0.9rem; }
-.feature--prose .h2 + .lead { margin-top: 1.5rem; }
-@media (min-width: 900px) {
-  .feature--prose, .feature--prose:nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: clamp(28rem, 42vw, 48rem); }
-  .feature--prose .feature__panel { padding: clamp(3rem, 5vw, 6rem); }
 }
 
 /* ---------- footer ---------- */
