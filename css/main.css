@@ -563,42 +563,59 @@ address { font-style: normal; }
 .firm__close { padding-top: clamp(3rem, 6vw, 5rem); border-top: var(--border) solid var(--line-soft); text-align: center; }
 .firm__close .firm__links { justify-content: center; margin-top: 1.75rem; }
 
-/* About: a statement opening, the firm at a glance, the approach as three
-   steps, then the office on a paper band and a dark closing call to action.
-   Each section stands alone so it can become a block pattern. */
-.about { padding-bottom: 0; }
-.about__intro { max-width: 46rem; margin-inline: auto; text-align: center; }
-.about__intro .h1 { margin-top: 1.1rem; }
-.about__intro .lead { margin-top: 1.75rem; color: var(--ink); }
-.about__intro .body { max-width: 38rem; margin-inline: auto; }
-.about__facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: clamp(3rem, 6vw, 5rem) 0 0; border-block: var(--border) solid var(--line-soft); }
-.about__facts > div { padding: 1.5rem 1rem; text-align: center; }
-.about__facts > div:nth-child(n+3) { border-top: var(--border) solid var(--line-soft); }
-.about__facts > div:nth-child(even) { border-left: var(--border) solid var(--line-soft); }
-.about__facts dt { margin-bottom: 0.5rem; }
-.about__facts dd { margin: 0; font-family: var(--font-serif); font-size: clamp(1rem, 1.3vw, 1.2rem); line-height: 1.35; color: var(--ink); text-wrap: balance; }
-@media (min-width: 900px) {
-  .about__facts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .about__facts > div { padding-block: 2rem; }
-  .about__facts > div:nth-child(n+3) { border-top: 0; }
-  .about__facts > div + div { border-left: var(--border) solid var(--line-soft); }
+/* About: everything on one screen on desktop. A dark mission column, then
+   approach and office columns, with the facts and the closing call to action
+   in a row beneath. From 1100px the page is the viewport minus the header
+   (js/main.js measures it into --hero-offset), so the footer starts at the
+   fold. Below that it stacks in normal flow. */
+.about { padding-block: clamp(1.5rem, 4vw, 3rem) var(--section); }
+.about__grid { display: grid; gap: 2.5rem; }
+.about__col .h2, .about__col .h3 { margin-top: 0.7rem; }
+.about__col .h2 + .lead, .about__col .h3 + .body { margin-top: 1rem; }
+.about__mission { padding: clamp(2rem, 5vw, 3rem); background: var(--deep); color: var(--paper); }
+.about__mission .h2 { color: var(--paper); }
+.about__mission-head + .lead { margin-top: 1.25rem; }
+.about__mission .label { color: rgba(250, 248, 243, 0.62); }
+.about__mission .lead { color: var(--paper); }
+.about__mission .body { color: rgba(250, 248, 243, 0.76); }
+[data-header="ink"] .about__mission .label { color: var(--accent-light); }
+.about__steps { margin-top: 1.5rem; border-top: var(--border) solid var(--line-soft); }
+.about__steps > li { display: grid; grid-template-columns: 2.75rem minmax(0, 1fr); padding-block: 0.9rem; border-bottom: var(--border) solid var(--line-soft); }
+.about__num { grid-row: span 2; font-family: var(--font-display); font-size: 1.35rem; line-height: 1.1; color: var(--accent); }
+.about__step { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 400; line-height: 1.3; color: var(--ink); }
+.about__steps .body { margin-top: 0.2rem; }
+.about__quote { margin-top: 1.5rem; padding-left: 1.1rem; border-left: 2px solid var(--accent); font-family: var(--font-serif); font-size: 1.15rem; line-height: 1.45; color: var(--ink); text-wrap: balance; }
+.about__facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 1.5rem; margin: 0; padding-top: 1.5rem; border-top: var(--border) solid var(--line-soft); }
+.about__facts dt { margin-bottom: 0.25rem; }
+.about__facts dd { margin: 0; font-family: var(--font-serif); font-size: 1rem; line-height: 1.35; color: var(--ink); }
+.about__aside .about__close { margin-top: 2.5rem; }
+.about__close-title { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; line-height: 1.25; color: var(--ink); text-wrap: balance; }
+.about__close .btn-row { margin-top: 1.1rem; }
+@media (min-width: 1100px) {
+  .about { display: flex; flex-direction: column; justify-content: center; min-height: calc(100vh - var(--hero-offset, calc(var(--header-h) + var(--border)))); min-height: calc(100svh - var(--hero-offset, calc(var(--header-h) + var(--border)))); padding-block: clamp(0.9rem, 2vh, 2.5rem); }
+  .about .container { max-width: calc(var(--wrap) + var(--gutter) * 2); }
+  .about__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-areas: "mission mission mission" "approach office aside"; gap: clamp(1.1rem, 2.6vh, 2.5rem) clamp(2rem, 3.5vw, 3.5rem); align-items: start; }
+  .about__mission { grid-area: mission; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(2rem, 3.5vw, 3.5rem); align-items: start; padding: clamp(1.1rem, 2.6vh, 2.5rem) clamp(1.75rem, 2.5vw, 2.5rem); }
+  .about__approach { grid-area: approach; }
+  .about__office { grid-area: office; }
+  .about__aside { grid-area: aside; }
+  .about__mission .h2 { font-size: clamp(1.8rem, 2.4vw, 2.5rem); }
+  .about__mission .lead, .about__mission .body { margin-top: 0; }
+  .about__mission .lead { font-size: 0.95rem; line-height: 1.55; }
+  .about__mission .body { line-height: 1.55; }
+  .about__col .body { font-size: 0.87rem; line-height: 1.62; }
+  .about__col .h3 { font-size: clamp(1.25rem, 1.55vw, 1.5rem); }
+  .about__col .h3 + .body { margin-top: 0.7rem; }
+  .about__steps { margin-top: 1rem; }
+  .about__steps > li { display: block; position: relative; padding: 0.45rem 0 0.45rem 2.5rem; font-size: 0.87rem; line-height: 1.5; }
+  .about__num { position: absolute; left: 0; top: 0.4rem; font-size: 1.1rem; line-height: 1.3; }
+  .about__step, .about__steps .body { display: inline; margin: 0; }
+  .about__step { font-size: 1rem; line-height: inherit; }
+  .about__step::after { content: " \2014  "; color: var(--ink-3); }
+  .about__quote { margin-top: 0.9rem; font-size: 0.98rem; line-height: 1.4; }
+  .about__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.25rem; padding-top: 0; border-top: 0; }
+  .about__close { margin-top: 1.25rem; padding-top: 1.25rem; border-top: var(--border) solid var(--line-soft); }
 }
-.about__approach { display: grid; gap: clamp(2.5rem, 5vw, 4rem); padding-block: var(--section); }
-.about__head .h2 { margin-top: 0.9rem; }
-.about__head .lead { margin-top: 1.25rem; }
-.about__steps { border-top: var(--border) solid var(--line-soft); }
-.about__steps > li { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr); column-gap: 1rem; padding-block: 1.6rem; border-bottom: var(--border) solid var(--line-soft); }
-.about__num { grid-row: span 2; font-family: var(--font-display); font-size: 1.9rem; line-height: 1; color: var(--accent); }
-.about__steps .body { margin-top: 0.4rem; }
-@media (min-width: 900px) {
-  .about__approach { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); column-gap: clamp(3rem, 7vw, 7rem); align-items: start; }
-  .about__steps > li { grid-template-columns: 4.5rem minmax(0, 1fr); }
-}
-.about__office .h2 { max-width: 28ch; margin-top: 0.9rem; }
-.about__cols { display: grid; gap: 2rem; margin-top: clamp(2rem, 4vw, 3rem); }
-.about__quote { padding-left: 1.5rem; border-left: 2px solid var(--accent); font-family: var(--font-serif); font-size: clamp(1.25rem, 1.9vw, 1.6rem); line-height: 1.4; color: var(--ink); text-wrap: balance; }
-@media (min-width: 900px) { .about__cols { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); column-gap: clamp(3rem, 7vw, 7rem); align-items: center; } }
-.about__close .btn-row { margin-top: 2rem; }
 
 /* ---------- media ---------- */
 .media { display: block; position: relative; overflow: hidden; background: var(--paper-3); }

@@ -49,13 +49,14 @@
       header.classList.toggle('is-scrolled', window.scrollY > 8);
       apply();
     };
-    /* Full-screen hero: its height is the viewport minus this bar, so hand the
-       bar's real height to the CSS as --hero-offset. Only measure the full-size
+    /* Full-screen hero (and the one-screen About page): its height is the
+       viewport minus this bar, so hand the bar's real height to the CSS as
+       --hero-offset. Only measure the full-size
        bar: re-measuring as it condenses would resize the hero mid-scroll. If it
        is condensed (or mid-transition) when the window resizes, wait until it
        has expanded again. Measured before onScroll() below, which may condense
        it on a reload part-way down the page. */
-    const hasHero = !!document.querySelector('.hero');
+    const hasHero = !!document.querySelector('.hero, .about');
     let heroStale = false;
     const measureHero = () => {
       if (!hasHero) return;
