@@ -595,15 +595,19 @@ address { font-style: normal; }
   .firm-band--col .firm-band__sub { margin-top: 1.1rem; }
 }
 
-/* Services: residential and commercial lists */
+/* Services: residential and commercial side by side */
 .svc__list { display: grid; margin-top: 1.25rem; border-top: var(--border) solid var(--line-soft); }
 .svc__list > li { padding: 0.6rem 0; border-bottom: var(--border) solid var(--line-soft); font-size: 0.95rem; line-height: 1.45; color: var(--ink); }
 @media (min-width: 640px) { .svc__list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(20px, 2.5vw, 32px); } }
-.firm-band .svc__list { margin-top: 0; border-color: rgba(250, 248, 243, 0.2); grid-template-columns: none; }
-.firm-band .svc__list > li { border-color: rgba(250, 248, 243, 0.2); color: var(--paper); }
+.svc__sub { margin-top: 1.75rem; }
+.svc__sub .svc__list { margin-top: 0.6rem; }
 @media (min-width: 1100px) {
-  .svc__list { margin-top: 1rem; grid-template-columns: none; }
+  .svc__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .svc__grid .h3 { margin-top: 0; }
+  .svc__list { margin-top: 1rem; }
   .svc__list > li { padding: 0.4rem 0; font-size: 0.87rem; }
+  .svc__sub .svc__list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .svc__sub { margin-top: 1.1rem; }
 }
 
 /* Contact: details in the band, the form spans the two columns beside it */
