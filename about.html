@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/main.css?v=25">
+<link rel="stylesheet" href="css/main.css?v=26">
 <script src="js/header-preview.js"></script>
 </head>
 <body>
@@ -72,51 +72,58 @@
   </div>
 </div>
 
-<main class="firm">
+<main class="firm about">
   <div class="container">
     <h1 class="firm__title label">About us</h1>
 
-    <section class="firm__row" aria-labelledby="mission-title" data-reveal>
+    <section class="about__intro" aria-labelledby="mission-title" data-reveal>
       <p class="label">Our mission</p>
-      <div class="firm__body">
-        <h2 class="h3" id="mission-title">Design That Transforms Lives</h2>
-        <p class="lead">At MLC Architecture P.C., we are passionate about design&rsquo;s ability to transform lives. Through innovation, sustainability, and close collaboration, we create inspiring, functional, and enduring spaces for residential and commercial clients.</p>
-        <p class="body">Since our founding, we have been committed to exceeding expectations by delivering exceptional architectural solutions tailored to each client&rsquo;s unique vision. We believe in the power of thoughtful design, technical expertise, and personalized service to create environments that enhance lives and communities.</p>
-      </div>
+      <h2 class="h1" id="mission-title">Design That Transforms Lives</h2>
+      <p class="lead">At MLC Architecture P.C., we are passionate about design&rsquo;s ability to transform lives. Through innovation, sustainability, and close collaboration, we create inspiring, functional, and enduring spaces for residential and commercial clients.</p>
+      <p class="body">Since our founding, we have been committed to exceeding expectations by delivering exceptional architectural solutions tailored to each client&rsquo;s unique vision. We believe in the power of thoughtful design, technical expertise, and personalized service to create environments that enhance lives and communities.</p>
     </section>
 
-    <section class="firm__row" aria-labelledby="approach-title" data-reveal>
-      <p class="label">Our approach</p>
-      <div class="firm__body">
-        <h2 class="h3" id="approach-title">Passion Meets Precision</h2>
+    <dl class="about__facts" data-reveal>
+      <div><dt class="label label--ink">Based in</dt><dd>Patchogue, New York</dd></div>
+      <div><dt class="label label--ink">Serving</dt><dd>Long Island &amp; New York City</dd></div>
+      <div><dt class="label label--ink">Sectors</dt><dd>Residential &amp; Commercial</dd></div>
+      <div><dt class="label label--ink">Practice</dt><dd>Full-service architecture</dd></div>
+    </dl>
+
+    <section class="about__approach" aria-labelledby="approach-title" data-reveal>
+      <div class="about__head">
+        <p class="label">Our approach</p>
+        <h2 class="h2" id="approach-title">Passion Meets Precision</h2>
         <p class="lead">At MLC Architecture P.C., passion meets precision. We bring a collaborative approach and unwavering commitment to excellence to every project.</p>
-        <p class="body">We listen closely to understand your vision and translate it into a tailored solution that exceeds expectations. Our meticulous attention to detail ensures exceptional results, from concept to completion.</p>
       </div>
-    </section>
-
-    <section class="firm__row" aria-labelledby="office-title" data-reveal>
-      <p class="label">Our office</p>
-      <div class="firm__body">
-        <h2 class="h3" id="office-title">A Full-Service Architectural Firm in Patchogue, New York</h2>
-        <p class="lead">MLC Architecture P.C., a full-service architectural firm based in Patchogue, New York, brings its professional expertise to clients across Long Island and New York City. Founded on the belief of delivering customized solutions, MLC offers an efficient design process that seamlessly integrates all project elements for residential and commercial clients.</p>
-        <p class="body">Our clients&rsquo; lives are enriched and enhanced by these designs that are timeless, functional, and aesthetic.</p>
-        <dl class="firm__defs">
-          <div><dt class="label label--ink">Based in</dt><dd>Patchogue, New York</dd></div>
-          <div><dt class="label label--ink">Serving</dt><dd>Long Island &amp; New York City</dd></div>
-          <div><dt class="label label--ink">Sectors</dt><dd>Residential &amp; Commercial</dd></div>
-          <div><dt class="label label--ink">Practice</dt><dd>Full-service architectural firm</dd></div>
-        </dl>
-      </div>
-    </section>
-
-    <section class="firm__close" aria-labelledby="close-title" data-reveal>
-      <h2 class="h3" id="close-title">Let&rsquo;s Turn Your Dream Space Into Reality</h2>
-      <div class="firm__links">
-        <a class="link" href="contact.html">Contact us</a>
-        <a class="link" href="services.html">Our services</a>
-      </div>
+      <ol class="about__steps">
+        <li><span class="about__num" aria-hidden="true">01</span><h3 class="h4">Listen</h3><p class="body">We listen closely to understand your vision.</p></li>
+        <li><span class="about__num" aria-hidden="true">02</span><h3 class="h4">Tailor</h3><p class="body">We translate it into a tailored solution that exceeds expectations.</p></li>
+        <li><span class="about__num" aria-hidden="true">03</span><h3 class="h4">Deliver</h3><p class="body">Our meticulous attention to detail ensures exceptional results, from concept to completion.</p></li>
+      </ol>
     </section>
   </div>
+
+  <section class="section section--paper2 about__office" aria-labelledby="office-title">
+    <div class="container" data-reveal>
+      <p class="label">Our office</p>
+      <h2 class="h2" id="office-title">A Full-Service Architectural Firm in Patchogue, New York</h2>
+      <div class="about__cols">
+        <p class="lead">MLC Architecture P.C., a full-service architectural firm based in Patchogue, New York, brings its professional expertise to clients across Long Island and New York City. Founded on the belief of delivering customized solutions, MLC offers an efficient design process that seamlessly integrates all project elements for residential and commercial clients.</p>
+        <p class="about__quote">Our clients&rsquo; lives are enriched and enhanced by these designs that are timeless, functional, and aesthetic.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink about__close" aria-labelledby="close-title">
+    <div class="container center" data-reveal>
+      <h2 class="h2" id="close-title">Let&rsquo;s Turn Your Dream Space Into Reality</h2>
+      <div class="btn-row btn-row--center">
+        <a class="btn btn--paper" href="contact.html">Contact us</a>
+        <a class="btn btn--outline-light" href="services.html">Our services</a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="footer">
