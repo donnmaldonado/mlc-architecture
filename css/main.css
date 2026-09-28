@@ -566,16 +566,15 @@ address { font-style: normal; }
      the Visualization strip takes the third across the full width */
   .fit .svc__grid { grid-template-rows: auto 1fr auto; }
   .svc__col { grid-row: span 2; grid-template-rows: subgrid; row-gap: normal; }
-  /* the strip sits as close under the cards as the cards sit to each other, and its label and
-     three items fall on the four list columns above (each 1fr here equals one of those) */
+  /* the strip sits as close under the cards as the cards sit to each other; its label sits over
+     three items that fall on the list columns above (each 1fr here equals one of those) */
   .svc__col--wide { grid-column: 1 / -1; grid-row: auto; display: block; margin-top: calc(var(--svc-gap) - clamp(1.1rem, 2.6vh, 2.5rem)); }
-  .svc__col--wide .firm-tile { display: grid; grid-template-columns: var(--svc-pad) 1fr var(--svc-list-gap) 1fr calc(var(--svc-pad) * 2 + var(--svc-gap)) 1fr var(--svc-list-gap) 1fr var(--svc-pad); align-items: baseline; padding: clamp(0.9rem, 2vh, 1.4rem) 0; }
-  .svc__label { grid-column: 2; }
-  .svc__label::after { display: inline-block; vertical-align: middle; margin: 0 0 0 0.75rem; }
-  .svc__list.svc__list--row { grid-column: 3 / 9; display: grid; grid-template-columns: subgrid; column-gap: 0; columns: auto; }
-  .svc__list--row > li:nth-child(1) { grid-column: 2; }
-  .svc__list--row > li:nth-child(2) { grid-column: 4; }
-  .svc__list--row > li:nth-child(3) { grid-column: 6; }
+  .svc__col--wide .firm-tile { display: grid; grid-template-columns: var(--svc-pad) 1fr var(--svc-list-gap) 1fr calc(var(--svc-pad) * 2 + var(--svc-gap)) 1fr var(--svc-list-gap) 1fr var(--svc-pad); padding: clamp(0.8rem, 1.8vh, 1.25rem) 0; }
+  .svc__label { grid-column: 2 / -2; }
+  .svc__label::after { margin: 0.35rem 0 0.4rem; }
+  .svc__list.svc__list--row { grid-column: 2 / -2; display: grid; grid-template-columns: subgrid; column-gap: 0; columns: auto; }
+  .svc__list--row > li:nth-child(2) { grid-column: 3; }
+  .svc__list--row > li:nth-child(3) { grid-column: 5; }
   .svc__grid .body { font-size: 1rem; line-height: 1.7; }
   .svc__list { margin-top: clamp(1.25rem, 3vh, 1.75rem); padding-top: clamp(1rem, 2.5vh, 1.5rem); column-gap: var(--svc-list-gap); }
   .svc__list > li { padding: clamp(0.25rem, 0.6vh, 0.4rem) 0; font-size: 1rem; }
