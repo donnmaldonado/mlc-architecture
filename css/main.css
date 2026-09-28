@@ -422,8 +422,8 @@ address { font-style: normal; }
 .project .compare__stage { width: 100%; max-height: var(--stage-h); }
 
 .showcase__nav { grid-row: 2; display: grid; grid-template-columns: minmax(0, 1fr) var(--stage-w) minmax(0, 1fr); align-items: center; pointer-events: none; }
-.showcase__nav [data-showcase-prev] { grid-column: 1; justify-self: end; }
-.showcase__nav [data-showcase-next] { grid-column: 3; justify-self: start; }
+.showcase__nav [data-showcase-prev] { grid-column: 1; justify-self: end; margin-right: clamp(0.25rem, 1vw, 0.75rem); }
+.showcase__nav [data-showcase-next] { grid-column: 3; justify-self: start; margin-left: clamp(0.25rem, 1vw, 0.75rem); }
 .showcase__nav[hidden] { display: none; }
 .showcase__btn { pointer-events: auto; display: grid; place-items: center; width: var(--side); height: var(--side); font-size: clamp(1.25rem, 2vw, 1.6rem); color: var(--ink-2); transition: color 0.3s var(--ease); }
 .showcase__btn:hover { color: var(--accent); }
