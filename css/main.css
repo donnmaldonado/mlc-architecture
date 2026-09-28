@@ -312,13 +312,9 @@ address { font-style: normal; }
 .menu__grp { padding-top: 1.6rem; }
 .menu__grp:first-child { padding-top: 0; }
 .menu__grp-head { font-family: var(--font-label); font-size: 0.64rem; font-weight: 400; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); padding-bottom: 0.4rem; }
-.menu__foot { margin-top: auto; padding-top: 2.5rem; display: grid; gap: 1.25rem; }
-.menu__foot .label { color: var(--ink-3); }
-.menu__foot .contact-line { font-size: 0.95rem; line-height: 1.8; }
-/* label / value pairs in two aligned columns (opening hours, contact details) */
+/* label / value pairs in two aligned columns (opening hours on the contact page) */
 .pairs { display: inline-grid; grid-template-columns: auto auto; column-gap: 1.25rem; text-align: left; font-variant-numeric: tabular-nums; }
 .pairs > :nth-child(odd) { color: var(--ink-3); }
-.menu__legal { font-family: var(--font-label); font-size: 0.66rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); }
 @media (min-width: 900px) { .menu { display: none; } }
 
 /* ---------- hero (home): full-screen slideshow ----------
