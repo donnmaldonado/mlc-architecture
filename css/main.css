@@ -549,7 +549,6 @@ address { font-style: normal; }
 .firm-col .h3 + .body { margin-top: 1rem; }
 .firm-band { padding: clamp(2rem, 5vw, 3rem); background: var(--deep); color: var(--paper); }
 .firm-band .h2 { margin-top: 0.7rem; color: var(--paper); }
-.firm-band__head + * { margin-top: 1.25rem; }
 .firm-band .label { color: rgba(250, 248, 243, 0.62); }
 .firm-band .lead { color: var(--paper); }
 .firm-band .body { color: rgba(250, 248, 243, 0.76); }
@@ -560,9 +559,7 @@ address { font-style: normal; }
   .fit .container { max-width: calc(var(--wrap) + var(--gutter) * 2); }
   .firm-grid { gap: clamp(1.1rem, 2.6vh, 2.5rem) clamp(2rem, 3.5vw, 3.5rem); align-items: start; }
   .firm-band { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(2rem, 3.5vw, 3.5rem); align-items: start; padding: clamp(1.1rem, 2.6vh, 2.5rem) clamp(1.75rem, 2.5vw, 2.5rem); }
-  .firm-band--2 { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
   .firm-band .h2 { font-size: clamp(1.8rem, 2.4vw, 2.5rem); }
-  .firm-band > .firm-band__head ~ * { margin-top: 0; }
   .firm-band .lead { font-size: 0.95rem; line-height: 1.55; }
   .firm-band .body { font-size: 0.87rem; line-height: 1.62; }
   .firm-col .body { font-size: 0.87rem; line-height: 1.62; }
@@ -570,59 +567,67 @@ address { font-style: normal; }
   .firm-col .h3 + .body { margin-top: 0.7rem; }
 }
 
-/* Facts strip, then three columns: a dark band as the first column and
-   plain columns beside it (About, Services, Contact) */
-.firm-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 1.5rem; margin: 0; padding-bottom: 1.5rem; border-bottom: var(--border) solid var(--line-soft); }
-.firm-facts dt { margin-bottom: 0.25rem; }
-.firm-facts dd { margin: 0; font-family: var(--font-serif); font-size: 1rem; line-height: 1.35; color: var(--ink); }
-.firm-facts dd a:not(.link):hover { color: var(--accent); }
-.firm-facts .link { margin-top: 0.4rem; font-family: var(--font-sans); }
-.firm-grid--3 .h2, .firm-grid--3 .h3 { margin-top: 0; }
-.firm-band--col .h2 + * { margin-top: 1.25rem; }
-.firm-band--col .firm-band__sub { margin-top: 1.5rem; }
-.firm-band--col .firm-band__sub .label { margin-bottom: 0.6rem; }
-.firm-band .socials a { border-color: rgba(250, 248, 243, 0.28); color: var(--paper); }
-.firm-band .socials a:hover { border-color: var(--paper); color: var(--paper); background: rgba(250, 248, 243, 0.08); }
+/* About: a two-line intro, then three beige tiles */
+.firm-intro { margin: 0; padding-bottom: 1.5rem; border-bottom: var(--border) solid var(--line-soft); font-family: var(--font-serif); font-size: clamp(1.25rem, 2.2vw, 1.75rem); line-height: 1.35; color: var(--ink); text-align: center; }
+.firm-intro > span { display: block; }
+.firm-intro > span + span { margin-top: 0.5rem; font-size: 0.62em; letter-spacing: 0.04em; color: var(--ink-3); }
+.firm-grid--3 .h3 { margin-top: 0; }
+.firm-tile { padding: clamp(1.75rem, 5vw, 2.5rem); }
+.firm-tile--light { background: var(--paper-3); }
 @media (min-width: 1100px) {
-  .firm-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .firm-facts { grid-column: 1 / -1; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: clamp(2rem, 3.5vw, 3.5rem); padding-bottom: clamp(0.9rem, 2vh, 1.5rem); }
-  .firm-facts dd { font-size: 0.95rem; }
-  .firm-band--col { grid-column: auto; display: block; align-self: stretch; }
-  .firm-band--col .h2 { font-size: clamp(1.4rem, 1.8vw, 1.85rem); }
-  .firm-band--col .h2 + * { margin-top: 0.8rem; }
-  .firm-band--col .lead { font-size: 0.9rem; line-height: 1.5; }
-  .firm-band--col .body { font-size: 0.82rem; line-height: 1.55; }
-  .firm-band--col .firm-band__sub { margin-top: 1.1rem; }
+  .firm-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(0.75rem, 1vw, 1rem); }
+  .firm-intro { grid-column: 1 / -1; padding-bottom: clamp(0.9rem, 2vh, 1.5rem); }
+  .firm-tile { align-self: stretch; padding: clamp(1.5rem, 3.5vh, 2.75rem) clamp(1.5rem, 2.2vw, 2.25rem); }
 }
 
-/* Services: residential and commercial side by side */
+/* Services: residential and commercial side by side, at full reading size */
 .svc__list { display: grid; margin-top: 1.25rem; border-top: var(--border) solid var(--line-soft); }
 .svc__list > li { padding: 0.6rem 0; border-bottom: var(--border) solid var(--line-soft); font-size: 0.95rem; line-height: 1.45; color: var(--ink); }
 @media (min-width: 640px) { .svc__list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(20px, 2.5vw, 32px); } }
 .svc__sub { margin-top: 1.75rem; }
 .svc__sub .svc__list { margin-top: 0.6rem; }
 @media (min-width: 1100px) {
-  .svc__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .svc__grid .h3 { margin-top: 0; }
-  .svc__list { margin-top: 1rem; }
-  .svc__list > li { padding: 0.4rem 0; font-size: 0.87rem; }
+  .svc__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(3rem, 5.5vw, 6rem); }
+  .svc__grid .h3 { margin-top: 0; font-size: clamp(1.6rem, 2.1vw, 2.1rem); }
+  .svc__grid .h3 + .body { margin-top: 1rem; font-size: 1rem; line-height: 1.7; }
+  .svc__list { margin-top: 1.5rem; column-gap: clamp(1.5rem, 2.5vw, 2.5rem); }
+  .svc__list > li { padding: clamp(0.5rem, 1.3vh, 0.8rem) 0; font-size: 1rem; }
   .svc__sub .svc__list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .svc__sub { margin-top: 1.1rem; }
+  .svc__sub { margin-top: clamp(1.25rem, 3vh, 2rem); }
 }
 
-/* Contact: details in the band, the form spans the two columns beside it */
-.contact__defs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.5rem; margin-bottom: 0; }
+/* Contact: one dark band, the details beside the form */
+.contact-band .h2 { margin-top: 0; }
+.contact-band .h2 + .lead { margin-top: 1.25rem; }
+.contact__defs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.5rem; margin: 1.5rem 0 0; }
 .contact__defs > .contact__wide { grid-column: 1 / -1; }
 .contact__defs dt { margin-bottom: 0.2rem; }
 .contact__defs dd { margin: 0; font-size: 0.93rem; line-height: 1.55; color: var(--paper); }
 .contact__defs dd a:not(.link):hover { color: var(--accent-light); }
+.firm-band .socials a { border-color: rgba(250, 248, 243, 0.28); color: var(--paper); }
+.firm-band .socials a:hover { border-color: var(--paper); color: var(--paper); background: rgba(250, 248, 243, 0.08); }
 .firm-band .contact__defs .link { margin-top: 0.3rem; color: var(--paper); }
+.contact__form { margin-top: 2.5rem; padding-top: 2.5rem; border-top: var(--border) solid rgba(250, 248, 243, 0.18); }
 .contact__form .form { margin-top: 1rem; }
+/* the form on the dark band */
+.firm-band .field label { color: rgba(250, 248, 243, 0.62); }
+.firm-band .field input, .firm-band .field textarea { color: var(--paper); border-bottom-color: rgba(250, 248, 243, 0.3); }
+.firm-band .field input::placeholder, .firm-band .field textarea::placeholder { color: rgba(250, 248, 243, 0.35); }
+.firm-band .field input:focus, .firm-band .field textarea:focus { border-bottom-color: var(--accent-light); }
+.firm-band .form-msg { color: rgba(250, 248, 243, 0.62); }
+.firm-band .form-msg a { color: var(--paper); }
+.firm-band .form-msg--ok { color: var(--accent-light); }
+.firm-band .btn--brand { background: var(--paper); border-color: var(--paper); color: var(--ink); }
+.firm-band .btn--brand:hover { background: var(--accent-light); border-color: var(--accent-light); color: var(--ink); }
 @media (min-width: 1100px) {
-  .contact__form { grid-column: span 2; }
-  .contact__defs { gap: 0.75rem 1.25rem; }
+  .contact-band { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); column-gap: 0; padding: clamp(1.5rem, 3.5vh, 3rem) clamp(2rem, 3.5vw, 3.5rem); }
+  .contact-band__info { padding-right: clamp(2rem, 3.5vw, 3.5rem); }
+  .contact-band .h2 { font-size: clamp(1.6rem, 2vw, 2.1rem); }
+  .contact-band .h2 + .lead { margin-top: 0.8rem; }
+  .contact__defs { margin-top: 1.25rem; gap: 0.75rem 1.25rem; }
   .contact__defs dd { font-size: 0.85rem; line-height: 1.5; }
-  .contact__form .form { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(2rem, 3vw, 3rem); gap: 1rem clamp(2rem, 3vw, 3rem); }
+  .contact__form { margin-top: 0; padding: 0 0 0 clamp(2rem, 3.5vw, 3.5rem); border-top: 0; border-left: var(--border) solid rgba(250, 248, 243, 0.18); align-self: stretch; }
+  .contact__form .form { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem clamp(1.5rem, 2.5vw, 2.5rem); }
   .contact__form .field--wide { grid-column: 2; grid-row: 1 / span 3; display: flex; flex-direction: column; }
   .contact__form .field--wide textarea { flex: 1; min-height: 0; }
   .contact__form .form__foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; margin-top: 0.25rem; }
