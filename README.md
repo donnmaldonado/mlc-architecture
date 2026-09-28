@@ -35,16 +35,12 @@ change should port cleanly to a WordPress theme. In practice:
 If a change would be hard to reproduce in a WordPress theme, flag it before
 building it.
 
-## Header colour trial (temporary)
+## Colour
 
-The client is choosing between three dark headers. Add `?header=` to any page
-URL to preview one site-wide; the choice sticks while you click between pages.
-
-- `?header=navy`: deep navy (`--deep`)
-- `?header=ink`: warm charcoal (`--ink`)
-- `?header=black`: near-black
-- `?header=paper` or no parameter: the current paper header
-
-Once one is picked, move its values into the `.header` defaults in
-`css/main.css`, delete the trial block there, and delete `js/header-preview.js`
-and its `<script>` tag on every page. None of it should reach WordPress.
+The palette lives in the `:root` custom properties at the top of `css/main.css`
+and maps straight onto a WordPress theme's `theme.json` palette. Ink (`--ink`)
+is the header and every dark surface; the logo's blue (`--accent`) is kept to
+small details: labels, link underlines, active states, focus rings, and the
+short rule under page titles. On dark surfaces use `--accent-light` for accents
+and `--on-dark` / `--on-dark-2` / `--on-dark-3` for text rather than new
+colour values.
