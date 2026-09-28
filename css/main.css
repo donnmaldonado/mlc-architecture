@@ -573,15 +573,17 @@ address { font-style: normal; }
   .firm-col .h3 + .body { margin-top: 0.7rem; }
 }
 
-/* About: a two-line intro, then three beige tiles */
-.firm-intro { margin: 0; padding-bottom: 1.5rem; border-bottom: var(--border) solid var(--line-soft); font-family: var(--font-serif); font-size: clamp(1.25rem, 2.2vw, 1.75rem); line-height: 1.35; color: var(--ink); text-align: center; }
+/* About: a two-line intro, then three beige tiles. Contact opens with the
+   same intro (one line); each Services column carries its own. */
+.firm-intro { margin: 0; padding-bottom: 1.5rem; font-weight: inherit; border-bottom: var(--border) solid var(--line-soft); font-family: var(--font-serif); font-size: clamp(1.25rem, 2.2vw, 1.75rem); line-height: 1.35; color: var(--ink); text-align: center; }
 .firm-intro > span { display: block; }
 .firm-intro > span + span { margin-top: 0.5rem; font-size: 0.62em; letter-spacing: 0.04em; color: var(--ink-3); }
 .firm-grid--3 .h3 { margin-top: 0; }
 .firm-tile { padding: clamp(1.75rem, 5vw, 2.5rem); }
 .firm-tile--light { background: var(--paper-3); }
 @media (min-width: 1100px) {
-  .fit .firm-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto 1fr; column-gap: clamp(0.75rem, 1vw, 1rem); }
+  .fit .firm-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(0.75rem, 1vw, 1rem); }
+  .fit .firm-grid--3, .fit .firm-grid--intro, .fit .svc__grid { grid-template-rows: auto 1fr; }
   .firm-intro { grid-column: 1 / -1; padding-bottom: clamp(0.9rem, 2vh, 1.5rem); }
   .firm-tile { align-self: stretch; padding: clamp(1.5rem, 3.5vh, 2.75rem) clamp(1.5rem, 2.2vw, 2.5rem); }
   .firm-grid--3 .h3 { font-size: clamp(1.4rem, 1.8vw, 1.8rem); }
@@ -589,7 +591,8 @@ address { font-style: normal; }
   .firm-grid--3 .firm-col .body { font-size: clamp(0.85rem, 0.45rem + 0.8vh, 0.97rem); line-height: 1.72; }
 }
 
-/* Services: residential and commercial side by side in beige tiles, at full reading size */
+/* Services: residential and commercial side by side, each an intro over a beige tile, at full reading size */
+.svc__col { display: grid; gap: 2.5rem; }
 .svc__list { display: grid; margin-top: 1.25rem; border-top: var(--border) solid var(--line-soft); }
 .svc__list > li { padding: 0.6rem 0; border-bottom: var(--border) solid var(--line-soft); font-size: 0.95rem; line-height: 1.45; color: var(--ink); }
 @media (min-width: 640px) { .svc__list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(20px, 2.5vw, 32px); } }
@@ -597,17 +600,17 @@ address { font-style: normal; }
 .svc__sub .svc__list { margin-top: 0.6rem; }
 @media (min-width: 1100px) {
   .svc__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(0.75rem, 1vw, 1rem); }
-  .svc__grid .h3 { margin-top: 0; font-size: clamp(1.6rem, 2.1vw, 2.1rem); }
-  .svc__grid .h3 + .body { margin-top: 1rem; font-size: 1rem; line-height: 1.7; }
+  /* both columns share the grid's two rows, so the intros and their rules line up */
+  .svc__col { grid-row: span 2; grid-template-rows: subgrid; row-gap: normal; }
+  .svc__grid .body { font-size: 1rem; line-height: 1.7; }
   .svc__list { margin-top: 1.5rem; column-gap: clamp(1.5rem, 2.5vw, 2.5rem); }
   .svc__list > li { padding: clamp(0.5rem, 1.3vh, 0.8rem) 0; font-size: 1rem; }
   .svc__sub .svc__list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .svc__sub { margin-top: clamp(1.25rem, 3vh, 2rem); }
 }
 
-/* Contact: one beige tile — heading, then the details, then the form (side by side when wide) */
-.contact-band .h2 { margin-top: 0; text-align: center; }
-.contact__defs { display: grid; gap: 1.75rem 0; margin: 1.75rem 0 0; text-align: center; }
+/* Contact: the intro, then one beige tile — the details, then the form (side by side when wide) */
+.contact__defs { display: grid; gap: 1.75rem 0; margin: 0; text-align: center; }
 .contact__defs > div { display: flex; flex-direction: column; align-items: center; padding-inline: 1rem; }
 .contact__defs dt::after, .contact__form > .label::after { content: ""; display: block; width: 1.5rem; margin: 0.55rem auto 0.7rem; border-top: var(--border) solid var(--accent); opacity: 0.6; }
 .contact__defs dd { flex: 1; display: flex; flex-direction: column; align-items: center; margin: 0; font-size: 1rem; line-height: 1.7; color: var(--ink); }
@@ -630,9 +633,8 @@ address { font-style: normal; }
 .contact-band .field label { font-size: 0.74rem; color: var(--ink-2); }
 .contact-band .label { font-size: 0.78rem; color: var(--ink-2); }
 @media (min-width: 1100px) {
-  /* wide: heading across the top, details stacked on the left, the form on the right */
-  .contact-band { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-rows: auto 1fr; align-content: center; column-gap: clamp(2rem, 4vw, 4rem); padding: clamp(1.5rem, 3.5vh, 3rem) clamp(2rem, 3.5vw, 3.5rem); }
-  .contact-band .h2 { grid-column: 1 / -1; margin-bottom: clamp(1.25rem, 3vh, 2rem); font-size: clamp(1.6rem, 2vw, 2.1rem); }
+  /* wide: details stacked on the left, the form on the right */
+  .contact-band { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(2rem, 4vw, 4rem); padding: clamp(1.5rem, 3.5vh, 3rem) clamp(2rem, 3.5vw, 3.5rem); }
   .contact__defs { grid-template-columns: none; gap: 0; margin: 0; text-align: left; }
   .contact__defs > div, .contact__defs dd { align-items: flex-start; }
   .contact__defs > div { padding: clamp(0.75rem, 1.8vh, 1.1rem) 0; }
