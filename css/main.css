@@ -567,13 +567,11 @@ address { font-style: normal; }
   .firm-col .h3 + .body { margin-top: 0.7rem; }
 }
 
-/* About: a two-line intro, then three tiles in the home page's panel tones */
+/* About: a two-line intro, then three beige tiles */
 .firm-intro { margin: 0; padding-bottom: 1.5rem; border-bottom: var(--border) solid var(--line-soft); font-family: var(--font-serif); font-size: clamp(1.25rem, 2.2vw, 1.75rem); line-height: 1.35; color: var(--ink); text-align: center; }
 .firm-intro > span { display: block; }
 .firm-grid--3 .h3 { margin-top: 0; }
 .firm-tile { padding: clamp(1.75rem, 5vw, 2.5rem); }
-.firm-tile--dark { background: var(--deep); }
-.firm-tile--medium { background: var(--accent); }
 .firm-tile--light { background: var(--paper-3); }
 @media (min-width: 1100px) {
   .firm-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(0.75rem, 1vw, 1rem); }
@@ -694,13 +692,13 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
 .feature--light .feature__panel { background: var(--paper-3); }
 .feature--dark .feature__panel { background: var(--deep); }
 .feature--medium .feature__panel { background: var(--accent); }
-:is(.feature--dark, .feature--medium) .feature__panel, .firm-tile--dark, .firm-tile--medium {
+:is(.feature--dark, .feature--medium) .feature__panel {
   color: var(--paper);
   /* re-point the ink and line tokens so ordinary components read on the dark panel */
   --ink: var(--paper); --ink-2: rgba(250, 248, 243, 0.8); --ink-3: rgba(250, 248, 243, 0.62); --ink-4: rgba(250, 248, 243, 0.45);
   --line: rgba(250, 248, 243, 0.3); --line-soft: rgba(250, 248, 243, 0.16);
 }
-:is(.feature--dark, .feature--medium, .firm-tile--dark, .firm-tile--medium) :is(.h3, .link) { color: var(--paper); }
+:is(.feature--dark, .feature--medium) :is(.h3, .link) { color: var(--paper); }
 :is(.feature--dark, .feature--medium) .link:hover { color: var(--white); }
 :is(.feature--dark, .feature--medium) .label { color: rgba(250, 248, 243, 0.65); }
 :is(.feature--dark, .feature--medium) :focus-visible { outline-color: var(--paper); }
