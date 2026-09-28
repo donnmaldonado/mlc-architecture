@@ -4,8 +4,8 @@
 <meta name="robots" content="noindex, nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>All projects &mdash; MLC Architecture P.C.</title>
-<meta name="description" content="Every project: residential and commercial work by MLC Architecture P.C. across Long Island and New York City.">
+<title>Modern Farmhouse &mdash; MLC Architecture P.C.</title>
+<meta name="description" content="Modern Farmhouse by MLC Architecture P.C.">
 <link rel="icon" href="assets/img/favicon.png" sizes="any">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -30,7 +30,7 @@
   <nav class="subnav" aria-label="Projects section">
     <div class="subnav__inner">
       <a href="showcase.html">Featured</a>
-      <a href="gallery.html" aria-current="page">All</a>
+      <a href="gallery.html">All</a>
     </div>
   </nav>
 </header>
@@ -41,7 +41,7 @@
       <p class="menu__grp-head">Projects</p>
       <ul>
       <li><a href="showcase.html">Featured</a></li>
-      <li><a href="gallery.html" aria-current="page">All</a></li>
+      <li><a href="gallery.html">All</a></li>
       </ul>
     </li>
     <li class="menu__grp">
@@ -72,70 +72,30 @@
 </div>
 
 <main>
-  <!-- ALL PROJECTS: one card per project, filterable by category. Each
-       .shot is self-contained so it can come from a project post (its
-       primary picture and title, linking to the project page); data-cat holds its
-       category slugs, and the filter links use ?category= so they can become
-       taxonomy term links in WordPress. -->
-  <section class="section gallery" aria-labelledby="gallery-title">
-    <h1 class="sr-only" id="gallery-title">All projects</h1>
+  <!-- PROJECT: one project post (single-project template). Its primary
+       picture leads, the rest follow; any photo opens the lightbox, which
+       steps through the whole set. Previous / Next walk the project list. -->
+  <article class="section project-page" aria-labelledby="project-title">
     <div class="container">
-      <nav class="filter" aria-label="Filter projects" data-filter>
-        <ul class="filter__list">
-          <li><a href="gallery.html" aria-current="true">All</a></li>
-          <li><a href="gallery.html?category=residential">Residential</a></li>
-          <li><a href="gallery.html?category=interiors">Interiors</a></li>
-          <li><a href="gallery.html?category=commercial">Commercial</a></li>
-          <li><a href="gallery.html?category=renderings">Renderings</a></li>
-        </ul>
-      </nav>
-      <p class="sr-only" role="status" aria-live="polite" data-filter-status></p>
-      <div class="shots">
-        <figure class="shot" data-cat="residential renderings" data-reveal>
-          <a class="media media--3x2" href="project-modern-farmhouse.html">
-            <img src="assets/img/projects/thumbs/p01.jpg" srcset="assets/img/projects/thumbs/p01.jpg 720w, assets/img/projects/p01.jpg 1178w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="White modern farmhouse, glass garage door and gravel drive" loading="lazy" width="720" height="354">
-          </a>
-          <figcaption><h2 class="shot__title">Modern Farmhouse</h2></figcaption>
-        </figure>
-        <figure class="shot" data-cat="residential interiors" data-reveal>
-          <a class="media media--3x2" href="project-twin-balcony-house.html">
-            <img src="assets/img/projects/thumbs/p03.jpg" srcset="assets/img/projects/thumbs/p03.jpg 720w, assets/img/projects/p03.jpg 1143w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="Open-plan interior with white kitchen and oak floors" loading="lazy" width="720" height="373">
-          </a>
-          <figcaption><h2 class="shot__title">Twin Balcony House</h2></figcaption>
-        </figure>
-        <figure class="shot" data-cat="residential" data-reveal>
-          <a class="media media--3x2" href="project-woodland-pool-house.html">
-            <img src="assets/img/projects/thumbs/p07.jpg" srcset="assets/img/projects/thumbs/p07.jpg 720w, assets/img/projects/p07.jpg 1536w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="White house, rear elevation with pool and spa" loading="lazy" width="720" height="480">
-          </a>
-          <figcaption><h2 class="shot__title">Woodland Pool House</h2></figcaption>
-        </figure>
-        <figure class="shot" data-cat="residential" data-reveal>
-          <a class="media media--3x2" href="project-stone-gable-house.html">
-            <img src="assets/img/projects/thumbs/p11.jpg" srcset="assets/img/projects/thumbs/p11.jpg 720w, assets/img/projects/p11.jpg 1600w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="Stone and white gable house, front elevation" loading="lazy" width="720" height="468">
-          </a>
-          <figcaption><h2 class="shot__title">Stone Gable House</h2></figcaption>
-        </figure>
-        <figure class="shot" data-cat="residential renderings" data-reveal>
-          <a class="media media--3x2" href="project-stone-timber-cottages.html">
-            <img src="assets/img/projects/thumbs/p12.jpg" srcset="assets/img/projects/thumbs/p12.jpg 720w, assets/img/projects/p12.jpg 1600w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="Pair of dark stone and wood cottages" loading="lazy" width="720" height="405">
-          </a>
-          <figcaption><h2 class="shot__title">Stone &amp; Timber Cottages</h2></figcaption>
-        </figure>
-        <figure class="shot" data-cat="residential renderings" data-reveal>
-          <a class="media media--3x2" href="project-brick-stone-residence.html">
-            <img src="assets/img/projects/thumbs/p13.jpg" srcset="assets/img/projects/thumbs/p13.jpg 720w, assets/img/projects/p13.jpg 1600w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="Brick and stone house with pool" loading="lazy" width="720" height="398">
-          </a>
-          <figcaption><h2 class="shot__title">Brick &amp; Stone Residence</h2></figcaption>
-        </figure>
-        <figure class="shot" data-cat="commercial renderings" data-reveal>
-          <a class="media media--3x2" href="project-brick-church.html">
-            <img src="assets/img/projects/thumbs/p14.jpg" srcset="assets/img/projects/thumbs/p14.jpg 720w, assets/img/projects/p14.jpg 1600w" sizes="(min-width: 1000px) 31vw, (min-width: 640px) 46vw, 100vw" alt="Brick church, front elevation" loading="lazy" width="720" height="405">
-          </a>
-          <figcaption><h2 class="shot__title">Brick Church</h2></figcaption>
-        </figure>
+      <h1 class="firm-intro" id="project-title">Modern Farmhouse</h1>
+      <div class="plates" data-lightbox-group>
+        <a class="plate plate--lead" href="assets/img/projects/p01.jpg" data-caption="Modern Farmhouse">
+          <img src="assets/img/projects/p01.jpg" srcset="assets/img/projects/thumbs/p01.jpg 720w, assets/img/projects/p01.jpg 1178w" sizes="(min-width: 1100px) 1040px, 100vw" alt="White modern farmhouse, glass garage door and gravel drive" width="1178" height="580" decoding="async">
+        </a>
+        <a class="plate media media--3x2" href="assets/img/projects/p02.jpg" data-caption="Modern Farmhouse" data-reveal>
+          <img src="assets/img/projects/thumbs/p02.jpg" srcset="assets/img/projects/thumbs/p02.jpg 720w, assets/img/projects/p02.jpg 1255w" sizes="(min-width: 1100px) 515px, (min-width: 640px) 48vw, 100vw" alt="White farmhouse, rear elevation and lawn" width="720" height="340" loading="lazy" decoding="async">
+        </a>
+        <a class="plate media media--3x2" href="assets/img/projects/p05.jpg" data-caption="Modern Farmhouse" data-reveal>
+          <img src="assets/img/projects/thumbs/p05.jpg" srcset="assets/img/projects/thumbs/p05.jpg 720w, assets/img/projects/p05.jpg 1600w" sizes="(min-width: 1100px) 515px, (min-width: 640px) 48vw, 100vw" alt="White board-and-batten farmhouse with black garage doors" width="720" height="409" loading="lazy" decoding="async">
+        </a>
       </div>
+      <nav class="project-pager" aria-label="More projects">
+        <a class="link" href="project-brick-church.html" rel="prev"><span class="arrow" aria-hidden="true">&larr;</span> Brick Church</a>
+        <a class="link project-pager__all" href="gallery.html">All projects</a>
+        <a class="link" href="project-twin-balcony-house.html" rel="next">Twin Balcony House <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      </nav>
     </div>
-  </section>
+  </article>
 </main>
 
 <footer class="footer">
