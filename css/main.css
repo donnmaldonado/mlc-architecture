@@ -603,9 +603,10 @@ address { font-style: normal; }
 }
 
 /* Contact: one beige tile — heading, then the details, then the form */
-.contact-band .h2 { margin-top: 0; }
-.contact__defs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.5rem; margin: 1.5rem 0 0; }
-.contact__defs > .contact__wide { grid-column: 1 / -1; }
+.contact-band .h2 { margin-top: 0; text-align: center; }
+.contact__defs { display: grid; gap: 1rem 1.5rem; margin-top: 1.5rem; }
+.contact__col { display: grid; gap: 1rem; margin: 0; align-content: start; }
+@media (min-width: 640px) { .contact__defs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .contact__defs dt { margin-bottom: 0.2rem; }
 .contact__defs dd { margin: 0; font-size: 0.93rem; line-height: 1.55; color: var(--ink); }
 .contact__defs dd a:not(.link):hover { color: var(--accent); }
@@ -616,8 +617,8 @@ address { font-style: normal; }
 @media (min-width: 1100px) {
   .contact-band { display: flex; flex-direction: column; justify-content: center; padding: clamp(1.5rem, 3.5vh, 3rem) clamp(2rem, 3.5vw, 3.5rem); }
   .contact-band .h2 { font-size: clamp(1.6rem, 2vw, 2.1rem); }
-  .contact__defs { grid-template-columns: 1.25fr 0.9fr 0.9fr 1.25fr 1.1fr; margin-top: clamp(1rem, 2.5vh, 1.75rem); gap: 0.75rem clamp(1.25rem, 2vw, 2rem); }
-  .contact__defs > .contact__wide { grid-column: auto; }
+  .contact__defs { margin-top: clamp(1rem, 2.5vh, 1.75rem); column-gap: clamp(1.5rem, 2.5vw, 2.5rem); }
+  .contact__col { gap: 0.75rem; }
   .contact__defs dd { font-size: 0.85rem; line-height: 1.5; }
   .contact__form { margin-top: clamp(1.25rem, 3vh, 2rem); padding-top: clamp(1.25rem, 3vh, 2rem); }
   .contact__form .form { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem clamp(1.5rem, 2.5vw, 2.5rem); }
