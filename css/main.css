@@ -380,6 +380,9 @@ address { font-style: normal; }
 .menu__foot { margin-top: auto; padding-top: 2.5rem; display: grid; gap: 1.25rem; }
 .menu__foot .label { color: var(--ink-3); }
 .menu__foot .contact-line { font-size: 0.95rem; line-height: 1.8; }
+/* label / value pairs in two aligned columns (opening hours, contact details) */
+.pairs { display: inline-grid; grid-template-columns: auto auto; column-gap: 1.25rem; text-align: left; font-variant-numeric: tabular-nums; }
+.pairs > :nth-child(odd) { color: var(--ink-3); }
 .menu__legal { font-family: var(--font-label); font-size: 0.66rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); }
 @media (min-width: 900px) { .menu { display: none; } }
 
@@ -602,18 +605,19 @@ address { font-style: normal; }
   .svc__sub { margin-top: clamp(1.25rem, 3vh, 2rem); }
 }
 
-/* Contact: one beige tile — heading, then the details, then the form */
+/* Contact: one beige tile — heading, then the details, then the form (side by side when wide) */
 .contact-band .h2 { margin-top: 0; text-align: center; }
 .contact__defs { display: grid; gap: 1.75rem 0; margin: 1.75rem 0 0; text-align: center; }
 .contact__defs > div { display: flex; flex-direction: column; align-items: center; padding-inline: 1rem; }
 .contact__defs dt::after { content: ""; display: block; width: 1.5rem; margin: 0.55rem auto 0.7rem; border-top: var(--border) solid var(--accent); opacity: 0.6; }
-.contact__defs dd { flex: 1; display: flex; flex-direction: column; align-items: center; margin: 0; font-size: 0.93rem; line-height: 1.6; color: var(--ink); }
+.contact__defs dd { flex: 1; display: flex; flex-direction: column; align-items: center; margin: 0; font-size: 1rem; line-height: 1.7; color: var(--ink); }
+.contact-band .contact__defs dt, .contact-band .contact__form > .label { font-size: 0.9rem; }
 .contact__defs dd a:not(.link):hover { color: var(--accent); }
 .contact__defs .link, .contact__defs .socials { margin-top: auto; }
 .contact__defs dd > :nth-last-child(2) { margin-bottom: 0.7rem; }
 .contact__defs .socials { justify-content: center; gap: 0.4rem; }
-.contact__defs .socials a { width: 30px; height: 30px; }
-.contact__defs .socials svg { width: 13px; height: 13px; }
+.contact__defs .socials a, .contact__defs .socials .copy--icon { width: 34px; height: 34px; }
+.contact__defs .socials svg { width: 15px; height: 15px; }
 @media (min-width: 640px) {
   .contact__defs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .contact__defs > :nth-child(2) { border-left: var(--border) solid var(--line-soft); }
@@ -622,16 +626,25 @@ address { font-style: normal; }
 .contact__form { margin-top: 2.5rem; padding-top: 2.5rem; border-top: var(--border) solid var(--line-soft); }
 .contact__form .form { margin-top: 1rem; }
 .contact-band .field input, .contact-band .field textarea { border-bottom-color: rgba(44, 42, 38, 0.28); }
+.contact-band .field label { font-size: 0.74rem; color: var(--ink-2); }
+.contact-band .label { font-size: 0.78rem; color: var(--ink-2); }
 @media (min-width: 1100px) {
-  .contact-band { display: flex; flex-direction: column; justify-content: center; padding: clamp(1.5rem, 3.5vh, 3rem) clamp(2rem, 3.5vw, 3.5rem); }
-  .contact-band .h2 { font-size: clamp(1.6rem, 2vw, 2.1rem); }
-  .contact__defs { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: clamp(1.25rem, 3vh, 2rem); }
-  .contact__defs > :last-child { grid-column: auto; border-left: var(--border) solid var(--line-soft); }
-  .contact__defs dd { font-size: 0.85rem; line-height: 1.6; }
-  .contact__form { margin-top: clamp(1.25rem, 3vh, 2rem); padding-top: clamp(1.25rem, 3vh, 2rem); }
-  .contact__form .form { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem clamp(1.5rem, 2.5vw, 2.5rem); }
-  .contact__form .field--wide { grid-column: 2; grid-row: 1 / span 3; display: flex; flex-direction: column; }
-  .contact__form .field--wide textarea { flex: 1; min-height: 0; }
+  /* wide: heading across the top, details stacked on the left, the form on the right */
+  .contact-band { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-rows: auto 1fr; align-content: center; column-gap: clamp(2rem, 4vw, 4rem); padding: clamp(1.5rem, 3.5vh, 3rem) clamp(2rem, 3.5vw, 3.5rem); }
+  .contact-band .h2 { grid-column: 1 / -1; margin-bottom: clamp(1.25rem, 3vh, 2rem); font-size: clamp(1.6rem, 2vw, 2.1rem); }
+  .contact__defs { grid-template-columns: none; gap: 0; margin: 0; text-align: left; }
+  .contact__defs > div, .contact__defs dd { align-items: flex-start; }
+  .contact__defs > div { padding: clamp(0.75rem, 1.8vh, 1.1rem) 0; }
+  .contact__defs > :nth-child(n + 2) { border-left: 0; border-top: var(--border) solid var(--line-soft); }
+  .contact__defs > :first-child { padding-top: 0; }
+  .contact__defs > :last-child { grid-column: auto; padding-bottom: 0; }
+  .contact__defs dt::after { margin-inline: 0; }
+  .contact__defs .socials { justify-content: flex-start; margin-top: 0; }
+  .contact__defs dd { font-size: 1rem; line-height: 1.7; }
+  .contact__form { margin: 0; padding: 0 0 0 clamp(2rem, 4vw, 4rem); border-top: 0; border-left: var(--border) solid var(--line-soft); }
+  .contact__form .form { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem clamp(1.25rem, 2vw, 2rem); }
+  .contact__form .field:first-child, .contact__form .field--wide { grid-column: 1 / -1; }
+  .contact__form .field--wide textarea { min-height: 110px; }
   .contact__form .form__foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; margin-top: 0.25rem; }
   .contact__form .field input { padding-block: 0.6rem; }
 }
