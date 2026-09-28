@@ -620,6 +620,7 @@ address { font-style: normal; }
   .contact-band .h2 { font-size: clamp(1.6rem, 2vw, 2.1rem); }
   .contact__defs { margin-top: clamp(1rem, 2.5vh, 1.75rem); column-gap: clamp(1.5rem, 2.5vw, 2.5rem); }
   .contact__col { gap: 0.75rem; }
+  .contact__col--pair { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(1rem, 1.5vw, 1.5rem); }
   .contact__defs dd { font-size: 0.85rem; line-height: 1.5; }
   .contact__form { margin-top: clamp(1.25rem, 3vh, 2rem); padding-top: clamp(1.25rem, 3vh, 2rem); }
   .contact__form .form { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem clamp(1.5rem, 2.5vw, 2.5rem); }
