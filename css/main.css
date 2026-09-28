@@ -555,18 +555,20 @@ address { font-style: normal; }
 .svc__list { margin-top: 1.5rem; padding-top: 1.25rem; border-top: var(--border) solid var(--line-soft); }
 .svc__list > li { padding: 0.3rem 0; font-size: 0.95rem; line-height: 1.45; color: var(--ink); break-inside: avoid; }
 @media (min-width: 640px) { .svc__list { columns: 2; column-gap: clamp(20px, 2.5vw, 32px); } }
-.svc__sub { margin-top: 1.75rem; }
-.svc__sub .svc__list { margin-top: 0; padding-top: 0; border-top: 0; }
-.svc__sub .label { color: var(--ink-3); }
-.svc__sub .label::after { content: ""; display: block; width: 1.5rem; margin: 0.45rem 0 0.6rem; border-top: var(--border) solid var(--accent); opacity: 0.6; }
+/* Visualization: a full-width third tile under the two, its three items in one row */
+.svc__list.svc__list--row { margin-top: 0; padding-top: 0; border-top: 0; }
+@media (min-width: 640px) { .svc__list--row { columns: 3; text-align: center; } }
 @media (min-width: 1100px) {
   .svc__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(0.75rem, 1vw, 1rem); }
-  /* both columns share the grid's two rows, so the intros and their rules line up */
+  /* both columns share the grid's first two rows, so the intros and their rules line up;
+     Visualization takes the next two across the full width */
+  .fit .svc__grid { grid-template-rows: auto 1fr auto auto; }
   .svc__col { grid-row: span 2; grid-template-rows: subgrid; row-gap: normal; }
+  .svc__col--wide { grid-column: 1 / -1; }
+  .svc__col--wide .firm-tile { padding-block: clamp(1rem, 2.5vh, 1.75rem); }
   .svc__grid .body { font-size: 1rem; line-height: 1.7; }
   .svc__list { margin-top: clamp(1.25rem, 3vh, 1.75rem); padding-top: clamp(1rem, 2.5vh, 1.5rem); column-gap: clamp(1.5rem, 2.5vw, 2.5rem); }
   .svc__list > li { padding: clamp(0.25rem, 0.6vh, 0.4rem) 0; font-size: 1rem; }
-  .svc__sub { margin-top: clamp(1.25rem, 3vh, 2rem); }
 }
 
 /* Contact: the intro, then one beige tile — the details, then the form (side by side when wide) */
