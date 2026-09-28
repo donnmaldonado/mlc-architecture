@@ -495,8 +495,8 @@ address { font-style: normal; }
    No page head: the subnav names the page. Layout is in the one-screen
    block further down. */
 .firm .container { max-width: calc(66rem + var(--gutter) * 2); }
-/* the subnav only shows from 900px, so below that the page names itself */
-.firm__title { margin-bottom: -1rem; }
+/* the subnav only shows from 900px, so below that the page names itself, centred over the intro */
+.firm__title { margin-bottom: -1rem; text-align: center; }
 @media (min-width: 900px) { .firm__title { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; } }
 
 /* ---------- firm pages on one screen (About, Services, Contact) ----------
