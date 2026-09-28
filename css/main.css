@@ -405,7 +405,7 @@ address { font-style: normal; }
    3:2 when there's room and, when there isn't, keeps its height to that and
    stays up to twice as wide as it is tall, cropping top and bottom rather
    than shrinking. */
-.showcase { --side: clamp(2.25rem, 6vw, 4.5rem); --stage-h: max(14.5rem, calc(100svh - 27rem)); --stage-w: min(100% - var(--side) * 2, 1040px, var(--stage-h) * 2); padding-top: clamp(1.25rem, 2vw, 1.75rem); }
+.showcase { --side: clamp(2rem, 6vw, 4.5rem); --stage-h: max(15.5rem, calc(100svh - 24rem)); --stage-w: min(100% - var(--side) * 2, 1120px, var(--stage-h) * 2); padding-top: clamp(1.25rem, 2vw, 1.75rem); }
 .project { display: grid; grid-template-columns: minmax(0, 1fr) var(--stage-w) minmax(0, 1fr); scroll-margin-top: calc(var(--header-h) + var(--border)); }
 .project > * { grid-column: 1 / -1; }
 .project:not([hidden]) + .project:not([hidden]) { margin-top: var(--section); }
