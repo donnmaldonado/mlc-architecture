@@ -564,16 +564,17 @@ address { font-style: normal; }
 }
 @media (min-width: 1100px) {
   .svc__grid { --svc-gap: clamp(0.75rem, 1vw, 1rem); --svc-list-gap: clamp(1.5rem, 2.5vw, 2.5rem); grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--svc-gap); }
-  /* both columns share the grid's first two rows, so the intros and their rules line up;
-     the Visualization strip takes the third across the full width */
-  .fit .svc__grid { grid-template-rows: auto 1fr auto; }
-  .svc__col { grid-row: span 2; grid-template-rows: subgrid; row-gap: normal; }
+  /* both columns share the grid's first three rows (heading, intro, list), so the headings, the
+     intros and the rules above the lists all line up; the Visualization strip takes the fourth */
+  .fit .svc__grid { grid-template-rows: auto auto 1fr auto; }
+  .svc__col { grid-row: span 3; grid-template-rows: subgrid; row-gap: normal; }
+  .svc__col > .firm-tile { grid-row: span 2; display: grid; grid-template-rows: subgrid; row-gap: 0; align-content: start; }
   /* the strip sits as close under the cards as the cards sit to each other */
   .svc__col--wide { grid-column: 1 / -1; grid-row: auto; display: block; margin-top: calc(var(--svc-gap) - clamp(1.1rem, 2.6vh, 2.5rem)); }
   .svc__col--wide .firm-tile { padding-block: clamp(0.9rem, 2vh, 1.4rem); }
   .svc__grid .body { font-size: 1rem; line-height: 1.7; }
-  .svc__list { margin-top: clamp(1.25rem, 3vh, 1.75rem); padding-top: clamp(1rem, 2.5vh, 1.5rem); column-gap: var(--svc-list-gap); }
-  .svc__list > li { padding: clamp(0.25rem, 0.6vh, 0.4rem) 0; font-size: 1rem; }
+  .svc__list { margin-top: clamp(1rem, 2.2vh, 1.75rem); padding-top: clamp(0.8rem, 1.8vh, 1.5rem); column-gap: var(--svc-list-gap); }
+  .svc__list > li { padding: clamp(0.2rem, 0.45vh, 0.4rem) 0; font-size: 1rem; }
 }
 
 /* Contact: the intro, then one beige tile — the details, then the form (side by side when wide) */
