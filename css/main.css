@@ -528,7 +528,7 @@ address { font-style: normal; }
 
 /* About: a two-line intro, then three beige tiles. Contact opens with the
    same intro (one line); each Services column carries its own. */
-.firm-intro { margin: 0; padding-bottom: 1.5rem; font-weight: inherit; border-bottom: var(--border) solid var(--accent); font-family: var(--font-serif); font-size: clamp(1.25rem, 2.2vw, 1.75rem); line-height: 1.35; color: var(--ink); text-align: center; }
+.firm-intro { margin: 0; padding-bottom: 1.5rem; font-weight: inherit; border-bottom: var(--border) solid var(--line-soft); font-family: var(--font-serif); font-size: clamp(1.25rem, 2.2vw, 1.75rem); line-height: 1.35; color: var(--ink); text-align: center; }
 .firm-intro > span { display: block; }
 .firm-intro > span + span { margin-top: 0.5rem; font-size: 0.62em; letter-spacing: 0.04em; color: var(--ink-3); }
 .firm-grid--3 .h3 { margin-top: 0; }

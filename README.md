@@ -40,7 +40,6 @@ building it.
 The palette lives in the `:root` custom properties at the top of `css/main.css`
 and maps straight onto a WordPress theme's `theme.json` palette. Ink (`--ink`)
 is the header and every dark surface; the logo's blue (`--accent`) is kept to
-small details: labels, link underlines, active states, focus rings, and the
-line under page titles. On dark surfaces use `--accent-light` for accents
+small details: labels, link underlines, active states and focus rings. On dark surfaces use `--accent-light` for accents
 and `--on-dark` / `--on-dark-2` / `--on-dark-3` for text rather than new
 colour values.
