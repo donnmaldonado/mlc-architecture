@@ -588,27 +588,30 @@ address { font-style: normal; }
 .contact-band .label { font-size: 0.78rem; color: var(--ink-2); }
 @media (min-width: 1100px) {
   /* wide: details stacked on the left, the form on the right */
-  .contact-band { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(2rem, 4vw, 4rem); padding: clamp(1.5rem, 3.5vh, 3rem) clamp(2rem, 3.5vw, 3.5rem); }
+  .contact-band { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(2rem, 4vw, 4rem); padding: clamp(1.1rem, 3vh, 3rem) clamp(2rem, 3.5vw, 3.5rem); }
   .contact__defs { grid-template-columns: none; gap: 0; margin: 0; text-align: left; }
   .contact__defs > div, .contact__defs dd { align-items: flex-start; }
-  .contact__defs > div { padding: clamp(0.75rem, 1.8vh, 1.1rem) 0; }
+  .contact__defs > div { padding: clamp(0.6rem, 1.6vh, 1.1rem) 0; }
   .contact__defs > :nth-child(n + 2) { border-left: 0; border-top: var(--border) solid var(--line-soft); }
   .contact__defs > :first-child { padding-top: 0; }
   .contact__defs > :last-child { grid-column: auto; padding-bottom: 0; }
   .contact__defs dt::after { margin-inline: 0; }
+  /* spacing eases off on shorter screens, so the panel fits the same box as About and Services */
+  .contact__defs dt::after, .contact__form > .label::after { margin-top: clamp(0.35rem, 0.8vh, 0.55rem); margin-bottom: clamp(0.4rem, 1vh, 0.7rem); }
+  .contact__defs dd > :nth-last-child(2) { margin-bottom: clamp(0.35rem, 1vh, 0.7rem); }
   /* the details stretch to the form's height; the icons sit on the bottom row, level with the Submit button */
   .contact-band__info { display: flex; flex-direction: column; }
   .contact__defs { flex: 1; display: flex; flex-direction: column; }
   .contact__defs > div { flex: 1 1 auto; } /* spare height shared evenly, so each block gains the same space above its divider */
   .contact__defs .socials { justify-content: flex-start; align-items: center; min-height: 46px; } /* the Submit button's height, so the two centre on one line */
-  .contact__defs dd { font-size: 1rem; line-height: 1.7; }
+  .contact__defs dd { font-size: 1rem; line-height: clamp(1.45rem, 3.3vh, 1.7rem); }
   .contact__form { margin: 0; padding: 0 0 0 clamp(2rem, 4vw, 4rem); border-top: 0; border-left: var(--border) solid var(--line-soft); }
   /* the form fills the column: the message box grows so the button lines up with the details' last row */
   .contact__form { display: flex; flex-direction: column; }
-  .contact__form .form { flex: 1; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto 1fr auto; gap: 1.5rem clamp(1.25rem, 2vw, 2rem); }
+  .contact__form .form { flex: 1; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto 1fr auto; gap: clamp(0.9rem, 2.4vh, 1.5rem) clamp(1.25rem, 2vw, 2rem); }
   .contact__form .field:first-child, .contact__form .field--wide { grid-column: 1 / -1; }
   .contact__form .field--wide { display: flex; flex-direction: column; }
-  .contact__form .field--wide textarea { flex: 1 1 0; height: 0; min-height: 96px; resize: none; }
+  .contact__form .field--wide textarea { flex: 1 1 0; height: 0; min-height: 72px; resize: none; }
   .contact__form .form__foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; margin-top: 0; }
 }
 
