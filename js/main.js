@@ -339,9 +339,10 @@
   /* Showcase: one project at a time, stepped by hand with Previous / Next;
      nothing advances on its own. Without JS every project simply stacks and
      the controls stay [hidden]. The open project goes in the URL hash so it
-     can be linked. The one Previous / Next bar is moved to the top of the
-     open project, above its heading, so it stays put however long the
-     description runs; focus stays on the button that was pressed. Hidden projects' photos are lazy, so they are
+     can be linked. The one Previous / Next pair is moved into the open
+     project, where CSS sets it either side of the picture; focus stays on
+     the button that was pressed, and a hidden live line tells screen
+     readers which project is showing. Hidden projects' photos are lazy, so they are
      all asked for once the page has loaded, to keep stepping instant. */
   document.querySelectorAll('[data-showcase]').forEach(sc => {
     const projects = Array.from(sc.querySelectorAll('[data-project]'));
@@ -357,14 +358,13 @@
     };
 
     let current = -1;
-    const pad = n => String(n).padStart(2, '0');
     const show = (n, animate) => {
       n = (n + projects.length) % projects.length;
       projects.forEach((p, i) => { p.hidden = i !== n; p.classList.remove('is-entering'); });
       placeNav(projects[n]);
       if (animate) { void projects[n].offsetWidth; projects[n].classList.add('is-entering'); }
       current = n;
-      if (count) count.textContent = pad(n + 1) + ' / ' + pad(projects.length);
+      if (count) count.textContent = (n + 1) + ' of ' + projects.length;
       const compare = compares.get(projects[n].querySelector('[data-compare]'));
       if (compare) compare.reset();
     };

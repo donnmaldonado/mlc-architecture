@@ -396,15 +396,18 @@ address { font-style: normal; }
 
 /* ---------- showcase: one project at a time, stepped by hand ----------
    Every project is in the markup and they simply stack without JS; js/main.js
-   hides all but one, un-hides the Previous / Next bar and moves it to the
-   top of the open project, above its heading. The picture and its
-   controls share one width. --stage-h is the height left under the
-   full-height header, heading and controls, so the whole project fits in
-   the first view of a desktop screen: the picture is 3:2 when there's room
-   and, when there isn't, keeps its height to that and stays up to twice as
-   wide as it is tall, cropping top and bottom rather than shrinking. */
-.showcase { --stage-h: max(14.5rem, calc(100svh - 29rem)); --stage-w: min(100%, 1040px, var(--stage-h) * 2); padding-top: clamp(1.25rem, 2vw, 1.75rem); }
-.project { scroll-margin-top: calc(var(--header-h) + var(--border)); }
+   hides all but one, un-hides the Previous / Next arrows and moves them
+   into the open project, where they sit either side of the picture: the
+   project is a three-column grid, the picture in the middle and the arrows'
+   bar laid over the whole row. --side is each arrow's column. --stage-h is
+   the height left under the full-height header, heading and slider, so the
+   whole project fits in the first view of a desktop screen: the picture is
+   3:2 when there's room and, when there isn't, keeps its height to that and
+   stays up to twice as wide as it is tall, cropping top and bottom rather
+   than shrinking. */
+.showcase { --side: clamp(2rem, 6vw, 4.5rem); --stage-h: max(15.5rem, calc(100svh - 24rem)); --stage-w: min(100% - var(--side) * 2, 1120px, var(--stage-h) * 2); padding-top: clamp(1.25rem, 2vw, 1.75rem); }
+.project { display: grid; grid-template-columns: minmax(0, 1fr) var(--stage-w) minmax(0, 1fr); scroll-margin-top: calc(var(--header-h) + var(--border)); }
+.project > * { grid-column: 1 / -1; }
 .project:not([hidden]) + .project:not([hidden]) { margin-top: var(--section); }
 .project[hidden] { display: none; }
 .project.is-entering > :not(.showcase__nav) { animation: project-in 0.7s var(--ease) both; }
@@ -413,18 +416,16 @@ address { font-style: normal; }
 .project__head .h1 { font-size: clamp(1.5rem, 2.2vw, 2.1rem); }
 .project__title { color: inherit; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size 0.45s var(--ease); }
 .project__title:hover, .project__title:focus-visible { background-size: 100% 1px; }
-.project .compare { width: var(--stage-w); margin-inline: auto; }
+.project .compare { grid-column: 2; grid-row: 2; }
 .project .compare__stage { width: 100%; max-height: var(--stage-h); }
 
-.showcase__nav { width: var(--stage-w); margin: 0 auto clamp(0.75rem, 1.5vw, 1rem); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; }
+.showcase__nav { grid-row: 2; display: flex; justify-content: space-between; align-items: center; pointer-events: none; }
 .showcase__nav[hidden] { display: none; }
-.showcase__btn { justify-self: start; display: inline-flex; align-items: center; gap: 0.6em; padding: 0.35rem 0; font-family: var(--font-label); font-size: 0.82rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-2); transition: color 0.3s var(--ease); }
-.showcase__btn[data-showcase-next] { justify-self: end; }
+.showcase__btn { pointer-events: auto; display: grid; place-items: center; width: var(--side); height: var(--side); font-size: clamp(1.25rem, 2vw, 1.6rem); color: var(--ink-2); transition: color 0.3s var(--ease); }
 .showcase__btn:hover { color: var(--accent); }
 .showcase__btn .arrow { transition: transform 0.45s var(--ease); }
 .showcase__btn:hover .arrow { transform: translateX(4px); }
 .showcase__btn[data-showcase-prev]:hover .arrow { transform: translateX(-4px); }
-.showcase__count { font-family: var(--font-label); font-size: 0.82rem; letter-spacing: var(--track); color: var(--ink-3); }
 
 /* ---------- project page: one project post ----------
    The title over a rule (About's intro), then the primary picture at full
