@@ -579,7 +579,8 @@ address { font-style: normal; }
   .svc__list > li { padding: clamp(0.2rem, 0.45vh, 0.4rem) 0; font-size: 1rem; }
 }
 
-/* Contact: the intro, then one beige tile — the details, then the form (side by side when wide) */
+/* Contact: the intro, then two beige tiles — the details, then the form (side by side when wide) */
+.contact-band { display: grid; gap: clamp(0.75rem, 1vw, 1rem); }
 .contact__defs { display: grid; gap: 1.75rem 0; margin: 0; text-align: center; }
 .contact__defs > div { display: flex; flex-direction: column; align-items: center; padding-inline: 1rem; }
 .contact__defs dt::after, .contact__form > .label::after { content: ""; display: block; width: 1.5rem; margin: 0.55rem auto 0.7rem; border-top: var(--border) solid var(--accent); opacity: 0.6; }
@@ -596,7 +597,6 @@ address { font-style: normal; }
   .contact__defs > :nth-child(2) { border-left: var(--border) solid var(--line-soft); }
   .contact__defs > :last-child { grid-column: 1 / -1; }
 }
-.contact__form { margin-top: 2.5rem; padding-top: 2.5rem; border-top: var(--border) solid var(--line-soft); }
 .contact__form > .label::after { margin-inline: 0; }
 .contact__form .form { margin-top: 0.5rem; }
 .contact-band .field input, .contact-band .field textarea { border-bottom-color: rgba(44, 42, 38, 0.28); }
@@ -604,7 +604,8 @@ address { font-style: normal; }
 .contact-band .label { font-size: 0.78rem; color: var(--ink-2); }
 @media (min-width: 1100px) {
   /* wide: details stacked on the left, the form on the right */
-  .contact-band { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(2rem, 4vw, 4rem); padding: clamp(1.1rem, 3vh, 3rem) clamp(2rem, 3.5vw, 3.5rem); }
+  .contact-band { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .contact-band > .firm-tile { padding: clamp(1.1rem, 3vh, 3rem) clamp(2rem, 3.5vw, 3.5rem); }
   .contact__defs { grid-template-columns: none; gap: 0; margin: 0; text-align: left; }
   .contact__defs > div, .contact__defs dd { align-items: flex-start; }
   .contact__defs > div { padding: clamp(0.6rem, 1.6vh, 1.1rem) 0; }
@@ -621,7 +622,6 @@ address { font-style: normal; }
   .contact__defs > div { flex: 1 1 auto; } /* spare height shared evenly, so each block gains the same space above its divider */
   .contact__defs .socials { justify-content: flex-start; align-items: center; min-height: 46px; } /* the Submit button's height, so the two centre on one line */
   .contact__defs dd { font-size: 1rem; line-height: clamp(1.45rem, 3.3vh, 1.7rem); }
-  .contact__form { margin: 0; padding: 0 0 0 clamp(2rem, 4vw, 4rem); border-top: 0; border-left: var(--border) solid var(--line-soft); }
   /* the form fills the column: the message box grows so the button lines up with the details' last row */
   .contact__form { display: flex; flex-direction: column; }
   .contact__form .form { flex: 1; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto 1fr auto; gap: clamp(0.9rem, 2.4vh, 1.5rem) clamp(1.25rem, 2vw, 2rem); }
