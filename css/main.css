@@ -194,8 +194,8 @@ address { font-style: normal; }
 }
 .btn .arrow { display: inline-block; transition: transform 0.45s var(--ease); }
 .btn:hover .arrow { transform: translateX(4px); }
-/* primary action is ink, like the header; it turns blue on hover */
-.btn--brand { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+/* primary action is the logo blue; it deepens on hover */
+.btn--brand { background: var(--accent); color: var(--paper); border-color: var(--accent); }
 .btn--brand:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
 .btn--block { display: flex; width: 100%; }
 .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
