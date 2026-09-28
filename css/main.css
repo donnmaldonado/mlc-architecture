@@ -399,7 +399,9 @@ address { font-style: normal; }
    hides all but one, un-hides the Previous / Next arrows and moves them
    into the open project, where they sit either side of the picture: the
    project is a three-column grid, the picture in the middle and the arrows'
-   bar laid over the whole row. --side is each arrow's column. --stage-h is
+   bar laid over the whole row with the same columns, each arrow hugging the
+   picture's edge however wide the side column is. --side is each arrow's
+   box and the least each side column gets. --stage-h is
    the height left under the full-height header, heading and slider, so the
    whole project fits in the first view of a desktop screen: the picture is
    3:2 when there's room and, when there isn't, keeps its height to that and
@@ -419,7 +421,9 @@ address { font-style: normal; }
 .project .compare { grid-column: 2; grid-row: 2; }
 .project .compare__stage { width: 100%; max-height: var(--stage-h); }
 
-.showcase__nav { grid-row: 2; display: flex; justify-content: space-between; align-items: center; pointer-events: none; }
+.showcase__nav { grid-row: 2; display: grid; grid-template-columns: minmax(0, 1fr) var(--stage-w) minmax(0, 1fr); align-items: center; pointer-events: none; }
+.showcase__nav [data-showcase-prev] { grid-column: 1; justify-self: end; }
+.showcase__nav [data-showcase-next] { grid-column: 3; justify-self: start; }
 .showcase__nav[hidden] { display: none; }
 .showcase__btn { pointer-events: auto; display: grid; place-items: center; width: var(--side); height: var(--side); font-size: clamp(1.25rem, 2vw, 1.6rem); color: var(--ink-2); transition: color 0.3s var(--ease); }
 .showcase__btn:hover { color: var(--accent); }
