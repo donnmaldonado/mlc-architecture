@@ -551,21 +551,30 @@ address { font-style: normal; }
 
 /* Services: residential and commercial side by side, each an intro over a beige tile, at full reading size */
 .svc__col { display: grid; gap: 2.5rem; }
-.svc__list { display: grid; margin-top: 1.25rem; border-top: var(--border) solid var(--line-soft); }
-.svc__list > li { padding: 0.6rem 0; border-bottom: var(--border) solid var(--line-soft); font-size: 0.95rem; line-height: 1.45; color: var(--ink); }
-@media (min-width: 640px) { .svc__list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(20px, 2.5vw, 32px); } }
-.svc__sub { margin-top: 1.75rem; }
-.svc__sub .svc__list { margin-top: 0.6rem; }
-.svc__sub .label { color: var(--ink-3); }
+/* the lists run down two columns with no row rules, so a wrapped item never leaves a gap beside it */
+.svc__list { margin-top: 1.5rem; padding-top: 1.25rem; border-top: var(--border) solid var(--line-soft); }
+.svc__list > li { padding: 0.3rem 0; font-size: 0.95rem; line-height: 1.45; color: var(--ink); break-inside: avoid; }
+@media (min-width: 640px) { .svc__list { columns: 2; column-gap: clamp(20px, 2.5vw, 32px); } }
+/* Visualization: a slim full-width strip under the two, its three items at left, centre and right */
+.svc__list.svc__list--row { margin-top: 0; padding-top: 0; border-top: 0; }
+@media (min-width: 640px) {
+  .svc__list.svc__list--row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(20px, 2.5vw, 32px); columns: auto; }
+  .svc__list--row > li:nth-child(2) { justify-self: center; text-align: center; }
+  .svc__list--row > li:nth-child(3) { justify-self: end; text-align: right; }
+}
 @media (min-width: 1100px) {
-  .svc__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(0.75rem, 1vw, 1rem); }
-  /* both columns share the grid's two rows, so the intros and their rules line up */
-  .svc__col { grid-row: span 2; grid-template-rows: subgrid; row-gap: normal; }
+  .svc__grid { --svc-gap: clamp(0.75rem, 1vw, 1rem); --svc-list-gap: clamp(1.5rem, 2.5vw, 2.5rem); grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--svc-gap); }
+  /* both columns share the grid's first three rows (heading, intro, list), so the headings, the
+     intros and the rules above the lists all line up; the Visualization strip takes the fourth */
+  .fit .svc__grid { grid-template-rows: auto auto 1fr auto; }
+  .svc__col { grid-row: span 3; grid-template-rows: subgrid; row-gap: normal; }
+  .svc__col > .firm-tile { grid-row: span 2; display: grid; grid-template-rows: subgrid; row-gap: 0; align-content: start; }
+  /* the strip sits as close under the cards as the cards sit to each other */
+  .svc__col--wide { grid-column: 1 / -1; grid-row: auto; display: block; margin-top: calc(var(--svc-gap) - clamp(1.1rem, 2.6vh, 2.5rem)); }
+  .svc__col--wide .firm-tile { padding-block: clamp(0.9rem, 2vh, 1.4rem); }
   .svc__grid .body { font-size: 1rem; line-height: 1.7; }
-  .svc__list { margin-top: 1.5rem; column-gap: clamp(1.5rem, 2.5vw, 2.5rem); }
-  .svc__list > li { padding: clamp(0.5rem, 1.3vh, 0.8rem) 0; font-size: 1rem; }
-  .svc__sub .svc__list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .svc__sub { margin-top: clamp(1.25rem, 3vh, 2rem); }
+  .svc__list { margin-top: clamp(1rem, 2.2vh, 1.75rem); padding-top: clamp(0.8rem, 1.8vh, 1.5rem); column-gap: var(--svc-list-gap); }
+  .svc__list > li { padding: clamp(0.2rem, 0.45vh, 0.4rem) 0; font-size: 1rem; }
 }
 
 /* Contact: the intro, then one beige tile — the details, then the form (side by side when wide) */
