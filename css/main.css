@@ -584,7 +584,7 @@ address { font-style: normal; }
 .contact__form .form { margin-top: 0.5rem; }
 .contact-band .field input, .contact-band .field textarea { border-bottom-color: rgba(44, 42, 38, 0.28); }
 .contact-band .field label { font-size: 0.74rem; color: var(--ink-2); }
-.contact-band .label { font-size: 0.78rem; }
+.contact-band .label { font-size: 0.78rem; color: var(--ink-2); }
 @media (min-width: 1100px) {
   /* wide: details stacked on the left, the form on the right */
   .contact-band { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(2rem, 4vw, 4rem); padding: clamp(1.5rem, 3.5vh, 3rem) clamp(2rem, 3.5vw, 3.5rem); }
