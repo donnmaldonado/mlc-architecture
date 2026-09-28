@@ -605,7 +605,8 @@ address { font-style: normal; }
 /* Contact: one beige tile — heading, then the details, then the form */
 .contact-band .h2 { margin-top: 0; text-align: center; }
 .contact__defs { display: grid; gap: 1rem 1.5rem; margin-top: 1.5rem; }
-.contact__col { display: grid; gap: 1rem; margin: 0; align-content: start; }
+.contact__col { display: grid; gap: 1rem; margin: 0; align-content: start; text-align: center; }
+.contact__col .socials { justify-content: center; }
 @media (min-width: 640px) { .contact__defs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .contact__defs dt { margin-bottom: 0.2rem; }
 .contact__defs dd { margin: 0; font-size: 0.93rem; line-height: 1.55; color: var(--ink); }
