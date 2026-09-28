@@ -560,7 +560,7 @@ address { font-style: normal; }
   .firm-grid { gap: clamp(1.1rem, 2.6vh, 2.5rem) clamp(2rem, 3.5vw, 3.5rem); align-items: start; }
   /* every firm page's content fills the same box (capped on tall screens),
      so About, Services and Contact share one top and bottom edge */
-  .fit .firm-grid { min-height: min(calc(100svh - var(--hero-offset, calc(var(--header-h) + var(--border))) - clamp(1.5rem, 11vh - 3rem, 5rem)), 46rem); grid-template-rows: 1fr; align-items: stretch; }
+  .fit .firm-grid { min-height: min(calc(100svh - var(--hero-offset, calc(var(--header-h) + var(--border))) - clamp(2.5rem, 47vh - 21rem, 8rem)), 44rem); grid-template-rows: 1fr; align-items: stretch; }
   .firm-band { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(2rem, 3.5vw, 3.5rem); align-items: start; padding: clamp(1.1rem, 2.6vh, 2.5rem) clamp(1.75rem, 2.5vw, 2.5rem); }
   .firm-band .h2 { font-size: clamp(1.8rem, 2.4vw, 2.5rem); }
   .firm-band .lead { font-size: 0.95rem; line-height: 1.55; }
@@ -580,10 +580,10 @@ address { font-style: normal; }
 @media (min-width: 1100px) {
   .fit .firm-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto 1fr; column-gap: clamp(0.75rem, 1vw, 1rem); }
   .firm-intro { grid-column: 1 / -1; padding-bottom: clamp(0.9rem, 2vh, 1.5rem); }
-  .firm-tile { align-self: stretch; padding: clamp(1.5rem, 4vh, 3rem) clamp(1.5rem, 2.2vw, 2.5rem); }
+  .firm-tile { align-self: stretch; padding: clamp(1.5rem, 3.5vh, 2.75rem) clamp(1.5rem, 2.2vw, 2.5rem); }
   .firm-grid--3 .h3 { font-size: clamp(1.4rem, 1.8vw, 1.8rem); }
   .firm-grid--3 .firm-col .h3 + .body { margin-top: 1rem; }
-  .firm-grid--3 .firm-col .body { font-size: clamp(0.85rem, 0.15rem + 1.4vh, 1rem); line-height: 1.72; }
+  .firm-grid--3 .firm-col .body { font-size: clamp(0.85rem, 0.45rem + 0.8vh, 0.97rem); line-height: 1.72; }
 }
 
 /* Services: residential and commercial side by side in beige tiles, at full reading size */
