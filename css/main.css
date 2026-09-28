@@ -340,9 +340,9 @@ address { font-style: normal; }
 .hero :focus-visible { outline-color: var(--accent-light); }
 
 /* foot: a row of tiles, one per slide, centred over the Scroll link */
-.hero__foot { position: absolute; z-index: 3; left: var(--gutter); right: var(--gutter); bottom: clamp(1rem, 3vh, 2rem); display: flex; flex-direction: column; align-items: center; gap: 0.35rem; pointer-events: none; }
+.hero__foot { position: absolute; z-index: 3; left: var(--gutter); right: var(--gutter); bottom: clamp(1rem, 3vh, 2rem); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; pointer-events: none; }
 .hero__foot > * { pointer-events: auto; }
-.hero__scroll { padding: 0.25rem; font-family: var(--font-label); font-size: 0.64rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--paper); }
+.hero__scroll { padding: 0.25rem; font-family: var(--font-label); font-size: 0.8rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--paper); }
 
 /* tiles: short dashes with a taller hit area (24px wide at least, so they
    stay tappable on a phone, shrinking a touch rather than wrapping on the
@@ -352,8 +352,8 @@ address { font-style: normal; }
    the animation pauses the timer. */
 .hero__tabs { display: flex; justify-content: center; width: 100%; }
 .hero__tabs[hidden] { display: none; }
-.hero__tab { position: relative; flex: 0 1 1.5rem; min-width: 0; height: 1.75rem; }
-.hero__tab::before, .hero__tab::after { content: ""; position: absolute; left: 0.2rem; right: 0.2rem; top: 50%; height: 2px; margin-top: -1px; background: var(--paper); }
+.hero__tab { position: relative; flex: 0 1 2.25rem; min-width: 0; height: 2.25rem; }
+.hero__tab::before, .hero__tab::after { content: ""; position: absolute; left: 0.2rem; right: 0.2rem; top: 50%; height: 3px; margin-top: -1.5px; background: var(--paper); }
 .hero__tab::before { opacity: 0.35; transition: opacity 0.4s var(--ease); }
 .hero__tab:hover::before { opacity: 0.65; }
 .hero__tab[aria-current="true"]::before { opacity: 1; }
@@ -361,7 +361,7 @@ address { font-style: normal; }
 .hero__tab.is-running::after { animation: hero-fill var(--interval) linear forwards; }
 .hero.is-paused .hero__tab::after { animation-play-state: paused; }
 @keyframes hero-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-@media (min-width: 900px) { .hero__tab { flex-basis: 2rem; } .hero__tab::before, .hero__tab::after { left: 0.3rem; right: 0.3rem; } }
+@media (min-width: 900px) { .hero__tab { flex-basis: 3rem; } .hero__tab::before, .hero__tab::after { left: 0.35rem; right: 0.35rem; } .hero__scroll { font-size: 0.875rem; } }
 
 
 /* no autoplay, instant swaps; the tiles still work */
