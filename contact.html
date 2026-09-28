@@ -10,19 +10,20 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/main.css?v=44">
+<link rel="stylesheet" href="css/main.css?v=45">
 <script src="js/header-preview.js"></script>
 <style>
   /* contact-only: the form, one field per line */
-  .form { display: grid; gap: 1.6rem; }
+  .form { display: grid; gap: 1.5rem; }
   .form__foot { display: grid; gap: 1rem; justify-items: start; margin-top: 0.5rem; }
-  .field { display: grid; gap: 0.45rem; }
-  .field label { font-size: 0.68rem; font-weight: 600; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); line-height: 1.6; }
-  .field input, .field textarea { width: 100%; background: transparent; border: 0; border-bottom: var(--border) solid var(--line); padding: 0.85rem 0; font: inherit; font-size: 1rem; color: var(--ink); border-radius: 0; }
+  .field { display: grid; gap: 0.2rem; }
+  .field label { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: 0.68rem; font-weight: 500; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); line-height: 1.6; }
+  .field__opt { font-weight: 400; text-transform: none; letter-spacing: 0.02em; color: var(--ink-4); }
+  .field input, .field textarea { width: 100%; background: transparent; border: 0; border-bottom: var(--border) solid var(--line); padding: 0.5rem 0; font: inherit; font-size: 1rem; color: var(--ink); border-radius: 0; transition: border-color 0.3s var(--ease); }
   .field input::placeholder, .field textarea::placeholder { color: var(--ink-4); }
   .field input:focus, .field textarea:focus { border-bottom-color: var(--accent); outline: none; }
   .field [aria-invalid="true"] { border-bottom-color: var(--error); }
-  .field textarea { min-height: 150px; resize: vertical; }
+  .field textarea { min-height: 120px; resize: vertical; }
   .form-msg { font-size: 0.85rem; line-height: 1.7; color: var(--ink-3); }
   .form-msg a { color: var(--accent); text-decoration: underline; text-underline-offset: 0.2em; }
   .form-msg--error { color: var(--error); }
@@ -114,25 +115,23 @@
         <!-- TODO: wire to a form backend (Formspree / Netlify Forms). Until then main.js composes a mailto: -->
         <form class="form" id="contact-form" novalidate data-mailto="info@mlcarchitecture.com" data-subject="Website enquiry">
           <div class="field">
-            <label for="cf-name">Your full name <span aria-hidden="true">*</span></label>
+            <label for="cf-name">Name</label>
             <input type="text" id="cf-name" name="name" autocomplete="name" required>
           </div>
           <div class="field">
-            <label for="cf-email">Your email <span aria-hidden="true">*</span></label>
+            <label for="cf-email">Email</label>
             <input type="email" id="cf-email" name="email" autocomplete="email" required>
           </div>
           <div class="field">
-            <label for="cf-phone">Your telephone <span aria-hidden="true">*</span></label>
+            <label for="cf-phone">Phone</label>
             <input type="tel" id="cf-phone" name="phone" autocomplete="tel" placeholder="(631) 555-0100" required>
           </div>
           <div class="field field--wide">
-            <label for="cf-message">Your message <span class="muted">(optional)</span></label>
+            <label for="cf-message">Message <span class="field__opt">optional</span></label>
             <textarea id="cf-message" name="message" rows="5"></textarea>
           </div>
           <div class="form__foot">
-            <div class="btn-row">
-              <button class="btn btn--brand" type="submit">Send message</button>
-            </div>
+            <button class="btn btn--brand" type="submit">Send message <span class="arrow" aria-hidden="true">&rarr;</span></button>
             <p class="form-msg" id="cf-msg" data-form-msg role="status" aria-live="polite"></p>
           </div>
         </form>
