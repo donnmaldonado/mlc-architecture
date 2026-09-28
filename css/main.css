@@ -642,7 +642,8 @@ address { font-style: normal; }
   .contact__defs dt::after { margin-inline: 0; }
   /* the details stretch to the form's height; the icons sit on the bottom row, level with the Submit button */
   .contact-band__info { display: flex; flex-direction: column; }
-  .contact__defs { flex: 1; grid-template-rows: auto auto 1fr; }
+  .contact__defs { flex: 1; display: flex; flex-direction: column; }
+  .contact__defs > div { flex: 1 1 auto; } /* spare height shared evenly, so each block gains the same space above its divider */
   .contact__defs .socials { justify-content: flex-start; align-items: center; min-height: 46px; } /* the Submit button's height, so the two centre on one line */
   .contact__defs dd { font-size: 1rem; line-height: 1.7; }
   .contact__form { margin: 0; padding: 0 0 0 clamp(2rem, 4vw, 4rem); border-top: 0; border-left: var(--border) solid var(--line-soft); }
