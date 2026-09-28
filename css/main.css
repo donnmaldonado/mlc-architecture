@@ -558,6 +558,9 @@ address { font-style: normal; }
   .fit { display: flex; flex-direction: column; justify-content: center; min-height: calc(100vh - var(--hero-offset, calc(var(--header-h) + var(--border)))); min-height: calc(100svh - var(--hero-offset, calc(var(--header-h) + var(--border)))); padding-block: clamp(0.9rem, 2vh, 2.5rem); }
   .fit .container { max-width: calc(var(--wrap) + var(--gutter) * 2); }
   .firm-grid { gap: clamp(1.1rem, 2.6vh, 2.5rem) clamp(2rem, 3.5vw, 3.5rem); align-items: start; }
+  /* every firm page's content fills the same box (capped on tall screens),
+     so About, Services and Contact share one top and bottom edge */
+  .fit .firm-grid { min-height: min(calc(100svh - var(--hero-offset, calc(var(--header-h) + var(--border))) - clamp(2.5rem, 47vh - 21rem, 8rem)), 44rem); grid-template-rows: 1fr; align-items: stretch; }
   .firm-band { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(2rem, 3.5vw, 3.5rem); align-items: start; padding: clamp(1.1rem, 2.6vh, 2.5rem) clamp(1.75rem, 2.5vw, 2.5rem); }
   .firm-band .h2 { font-size: clamp(1.8rem, 2.4vw, 2.5rem); }
   .firm-band .lead { font-size: 0.95rem; line-height: 1.55; }
@@ -575,19 +578,22 @@ address { font-style: normal; }
 .firm-tile { padding: clamp(1.75rem, 5vw, 2.5rem); }
 .firm-tile--light { background: var(--paper-3); }
 @media (min-width: 1100px) {
-  .firm-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(0.75rem, 1vw, 1rem); }
+  .fit .firm-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto 1fr; column-gap: clamp(0.75rem, 1vw, 1rem); }
   .firm-intro { grid-column: 1 / -1; padding-bottom: clamp(0.9rem, 2vh, 1.5rem); }
-  .firm-tile { align-self: stretch; padding: clamp(1.5rem, 3.5vh, 2.75rem) clamp(1.5rem, 2.2vw, 2.25rem); }
+  .firm-tile { align-self: stretch; padding: clamp(1.5rem, 3.5vh, 2.75rem) clamp(1.5rem, 2.2vw, 2.5rem); }
+  .firm-grid--3 .h3 { font-size: clamp(1.4rem, 1.8vw, 1.8rem); }
+  .firm-grid--3 .firm-col .h3 + .body { margin-top: 1rem; }
+  .firm-grid--3 .firm-col .body { font-size: clamp(0.85rem, 0.45rem + 0.8vh, 0.97rem); line-height: 1.72; }
 }
 
-/* Services: residential and commercial side by side, at full reading size */
+/* Services: residential and commercial side by side in beige tiles, at full reading size */
 .svc__list { display: grid; margin-top: 1.25rem; border-top: var(--border) solid var(--line-soft); }
 .svc__list > li { padding: 0.6rem 0; border-bottom: var(--border) solid var(--line-soft); font-size: 0.95rem; line-height: 1.45; color: var(--ink); }
 @media (min-width: 640px) { .svc__list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(20px, 2.5vw, 32px); } }
 .svc__sub { margin-top: 1.75rem; }
 .svc__sub .svc__list { margin-top: 0.6rem; }
 @media (min-width: 1100px) {
-  .svc__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(3rem, 5.5vw, 6rem); }
+  .svc__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(0.75rem, 1vw, 1rem); }
   .svc__grid .h3 { margin-top: 0; font-size: clamp(1.6rem, 2.1vw, 2.1rem); }
   .svc__grid .h3 + .body { margin-top: 1rem; font-size: 1rem; line-height: 1.7; }
   .svc__list { margin-top: 1.5rem; column-gap: clamp(1.5rem, 2.5vw, 2.5rem); }
