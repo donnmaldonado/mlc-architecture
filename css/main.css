@@ -551,20 +551,21 @@ address { font-style: normal; }
 
 /* Services: residential and commercial side by side, each an intro over a beige tile, at full reading size */
 .svc__col { display: grid; gap: 2.5rem; }
-.svc__list { display: grid; margin-top: 1.25rem; border-top: var(--border) solid var(--line-soft); }
-.svc__list > li { padding: 0.6rem 0; border-bottom: var(--border) solid var(--line-soft); font-size: 0.95rem; line-height: 1.45; color: var(--ink); }
-@media (min-width: 640px) { .svc__list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(20px, 2.5vw, 32px); } }
+/* the lists run down two columns with no row rules, so a wrapped item never leaves a gap beside it */
+.svc__list { margin-top: 1.5rem; padding-top: 1.25rem; border-top: var(--border) solid var(--line-soft); }
+.svc__list > li { padding: 0.3rem 0; font-size: 0.95rem; line-height: 1.45; color: var(--ink); break-inside: avoid; }
+@media (min-width: 640px) { .svc__list { columns: 2; column-gap: clamp(20px, 2.5vw, 32px); } }
 .svc__sub { margin-top: 1.75rem; }
-.svc__sub .svc__list { margin-top: 0.6rem; }
+.svc__sub .svc__list { margin-top: 0; padding-top: 0; border-top: 0; }
 .svc__sub .label { color: var(--ink-3); }
+.svc__sub .label::after { content: ""; display: block; width: 1.5rem; margin: 0.45rem 0 0.6rem; border-top: var(--border) solid var(--accent); opacity: 0.6; }
 @media (min-width: 1100px) {
   .svc__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(0.75rem, 1vw, 1rem); }
   /* both columns share the grid's two rows, so the intros and their rules line up */
   .svc__col { grid-row: span 2; grid-template-rows: subgrid; row-gap: normal; }
   .svc__grid .body { font-size: 1rem; line-height: 1.7; }
-  .svc__list { margin-top: 1.5rem; column-gap: clamp(1.5rem, 2.5vw, 2.5rem); }
-  .svc__list > li { padding: clamp(0.5rem, 1.3vh, 0.8rem) 0; font-size: 1rem; }
-  .svc__sub .svc__list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .svc__list { margin-top: clamp(1.25rem, 3vh, 1.75rem); padding-top: clamp(1rem, 2.5vh, 1.5rem); column-gap: clamp(1.5rem, 2.5vw, 2.5rem); }
+  .svc__list > li { padding: clamp(0.25rem, 0.6vh, 0.4rem) 0; font-size: 1rem; }
   .svc__sub { margin-top: clamp(1.25rem, 3vh, 2rem); }
 }
 
