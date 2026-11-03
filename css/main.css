@@ -671,12 +671,19 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
 .features { display: grid; gap: 0.5rem; padding: 0.5rem; background: var(--paper); scroll-margin-top: var(--hero-offset, calc(var(--header-h) + var(--border))); }
 .feature { display: grid; gap: 0.5rem; }
 .feature__media { display: block; position: relative; overflow: hidden; background: var(--paper-3); aspect-ratio: 4 / 3; }
-.feature__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); transition: transform 1.6s var(--ease); }
-/* a light ink tint that deepens on hover */
-.feature__media::after { content: ""; position: absolute; inset: 0; background: var(--deep); opacity: 0.15; transition: opacity 0.5s var(--ease); }
-.feature__media:hover img { transform: scale(1.03); }
-.feature__media:hover::after, .feature__media:focus-visible::after { opacity: 0.55; }
-.feature__media:focus-visible { outline: 2px solid var(--paper); outline-offset: -8px; }
+.feature__media :is(img, video) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); transition: transform 1.6s var(--ease); }
+/* a light ink tint that deepens on hover; the link covers the whole media box */
+.feature__media::after { content: ""; position: absolute; inset: 0; background: var(--deep); opacity: 0.15; transition: opacity 0.5s var(--ease); pointer-events: none; }
+.feature__link { position: absolute; inset: 0; z-index: 1; }
+.feature__media:has(.feature__link:hover) :is(img, video) { transform: scale(1.03); }
+.feature__media:has(.feature__link:is(:hover, :focus-visible))::after { opacity: 0.55; }
+.feature__link:focus-visible { outline: 2px solid var(--paper); outline-offset: -8px; }
+/* replay: shown once a video has played through (or straight away under reduced motion) */
+.feature__replay { position: absolute; right: 1rem; bottom: 1rem; z-index: 2; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border: 0; border-radius: 50%; background: var(--deep); color: var(--paper); opacity: 0.8; cursor: pointer; transition: opacity 0.3s var(--ease); }
+.feature__replay[hidden] { display: none; }
+.feature__replay:hover { opacity: 1; }
+.feature__replay:focus-visible { outline: 2px solid var(--accent-light); outline-offset: 2px; opacity: 1; }
+.feature__replay svg { width: 1.25rem; height: 1.25rem; fill: currentColor; }
 .feature__panel { display: flex; align-items: center; justify-content: center; text-align: center; padding: clamp(3rem, 9vw, 4.5rem) var(--gutter); }
 .feature__content { width: 100%; max-width: 24rem; }
 /* short blue ticks above and below a short statement, as on the contact labels */
