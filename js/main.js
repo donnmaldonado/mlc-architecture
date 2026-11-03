@@ -87,6 +87,32 @@
     revealEls.forEach(el => el.classList.add('is-in'));
   }
 
+  /* Feature videos: each plays once when half on screen, then holds its last
+     frame (a finished rendering); a replay button appears when it ends. The
+     poster is that last frame, kept for reduced motion, no JS, or when the
+     browser blocks autoplay (e.g. Low Power Mode); there the button plays it. */
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const playOnce = document.querySelectorAll('[data-play-once]');
+  const canAutoplay = 'IntersectionObserver' in window && !reduceMotion.matches;
+  playOnce.forEach(box => {
+    const video = box.querySelector('video');
+    const replay = box.querySelector('.feature__replay');
+    if (!video || !replay) return;
+    const poster = video.getAttribute('poster');
+    const start = () => video.play().catch(() => { if (poster) video.poster = poster; replay.hidden = false; });
+    video.addEventListener('ended', () => { replay.hidden = false; });
+    replay.addEventListener('click', () => { replay.hidden = true; video.currentTime = 0; start(); });
+    if (canAutoplay) {
+      video.removeAttribute('poster'); // start on the blank first frame, not the finished picture
+      const io = new IntersectionObserver(entries => {
+        if (entries.some(en => en.isIntersecting)) { io.disconnect(); start(); }
+      }, { threshold: 0.5 });
+      io.observe(video);
+    } else {
+      replay.hidden = false;
+    }
+  });
+
   /* Current year */
   document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
 
@@ -245,7 +271,6 @@
      then falls quickly back to the after photo. Any press or slider input
      cancels it; reduced motion skips it. */
   const compares = new WeakMap();
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   document.querySelectorAll('[data-compare]').forEach(fig => {
     const stage = fig.querySelector('.compare__stage');
     const range = fig.querySelector('.compare__range');
