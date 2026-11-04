@@ -438,11 +438,11 @@ address { font-style: normal; }
 @keyframes project-in { from { opacity: 0; transform: translateY(10px); } }
 /* town and name share one line, so every project's head is the same height
    with or without a town, and the picture sits at the same place */
-.project__head { max-width: 64rem; margin: 0 auto clamp(0.75rem, 1.5vw, 1rem); display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; column-gap: 0.5em; text-align: center; font-size: 1rem; }
+.project__head { max-width: 64rem; margin: 0 auto 0.35rem; display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; column-gap: 0.5em; text-align: center; font-size: 1rem; }
 .project__head .label + .h1 { margin-top: 0; }
-.project__head .label { font-size: inherit; line-height: 1.12; letter-spacing: 0.002em; text-transform: none; }
+.project__head .label { font-size: inherit; line-height: 1.12; }
 .project__head .label::after { content: "\2013"; margin-left: 0.5em; color: var(--ink-3); }
-.project__head .h1 { font-size: 1rem; } /* the header nav's size */
+.project__head .h1 { font-size: 1rem; letter-spacing: var(--track); text-transform: uppercase; } /* set like the Featured / All subnav */
 .project__title { color: inherit; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size 0.45s var(--ease); }
 .project__title:hover, .project__title:focus-visible { background-size: 100% 1px; }
 .project .compare { grid-column: 2; grid-row: 2; }
