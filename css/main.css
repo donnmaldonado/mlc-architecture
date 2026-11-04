@@ -356,8 +356,10 @@ address { font-style: normal; }
    of that animation is what advances the show (see js/main.js), so pausing
    the animation pauses the timer. */
 /* prev / next arrows over the photo: the Featured page's plain arrows,
-   in paper with a soft shadow so they read on any picture */
-.hero__arrow { position: absolute; z-index: 3; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 3.5rem; height: 3.5rem; padding: 0; border: 0; background: none; font-size: clamp(1.25rem, 2vw, 1.6rem); color: var(--paper); text-shadow: 0 1px 6px rgba(26,24,21,0.6); cursor: pointer; transition: color 0.3s var(--ease); }
+   larger and stroked heavier (the arrow glyph comes from a system font, so
+   font-weight can't be relied on), in paper with a soft shadow so they read
+   on any picture */
+.hero__arrow { position: absolute; z-index: 3; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 3.5rem; height: 3.5rem; padding: 0; border: 0; background: none; font-size: clamp(2.25rem, 4vw, 3.25rem); line-height: 1; -webkit-text-stroke: 1.5px currentColor; color: var(--paper); text-shadow: 0 1px 6px rgba(26,24,21,0.6); cursor: pointer; transition: color 0.3s var(--ease); }
 .hero__arrow[hidden] { display: none; }
 .hero__arrow--prev { left: 0.5rem; }
 .hero__arrow--next { right: 0.5rem; }
