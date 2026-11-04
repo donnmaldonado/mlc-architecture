@@ -272,8 +272,11 @@
      screen, the divider is tossed a short way in from the left like a ball
      thrown up, slowing to a stop at the top to show a slice of the before,
      then falls quickly back to the after photo. Any press or slider input
-     cancels it; reduced motion skips it. */
+     cancels it; reduced motion skips it. The tease plays once per page
+     visit: after it has played, or the visitor has moved a divider
+     themselves, stepping to other projects doesn't arm it again. */
   const compares = new WeakMap();
+  let teased = false;
   document.querySelectorAll('[data-compare]').forEach(fig => {
     const stage = fig.querySelector('.compare__stage');
     const range = fig.querySelector('.compare__range');
@@ -299,7 +302,7 @@
     // after photo, speeding up; BACK shorter than UP makes the fall quicker
     const PEAK = 15, UP = 400, BACK = 280;
     const playTease = () => {
-      armed = false;
+      armed = false; teased = true;
       const start = performance.now();
       const tick = now => {
         const t = now - start;
@@ -333,7 +336,7 @@
     const SLOP = 8;
     let touch = null, dragging = null;
     const grab = e => {
-      stopTease();
+      stopTease(); teased = true;
       dragging = e.pointerId;
       stage.setPointerCapture(e.pointerId);
       fig.classList.add('is-dragging');
@@ -351,15 +354,15 @@
     });
     const release = () => { touch = null; dragging = null; fig.classList.remove('is-dragging'); };
     stage.addEventListener('pointerup', e => {
-      if (touch && touch.id === e.pointerId) { stopTease(); fromPointer(e); }
+      if (touch && touch.id === e.pointerId) { stopTease(); teased = true; fromPointer(e); }
       release();
     });
     stage.addEventListener('pointercancel', release);
     range.addEventListener('pointerdown', stopTease);
     range.addEventListener('keydown', stopTease);
-    range.addEventListener('input', () => { stopTease(); set(+range.value); });
+    range.addEventListener('input', () => { stopTease(); teased = true; set(+range.value); });
 
-    const reset = () => { stopTease(); set(0); armed = true; maybeTease(); };
+    const reset = () => { stopTease(); set(0); armed = !teased; maybeTease(); };
     reset();
     compares.set(fig, { reset });
   });
