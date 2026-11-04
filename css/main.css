@@ -348,10 +348,6 @@ address { font-style: normal; }
 /* phones: tabs only, low on the photo; swiping down needs no Scroll prompt */
 .hero__foot { position: absolute; z-index: 3; left: var(--gutter); right: var(--gutter); bottom: 0.25rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; pointer-events: none; }
 .hero__foot > * { pointer-events: auto; }
-.hero__scroll { display: none; margin-top: -0.5rem; padding: 0.15rem 0.5rem; color: var(--paper); opacity: 0.85; transition: opacity 0.3s; }
-.hero__scroll:hover { opacity: 1; }
-.hero__scroll svg { display: block; width: 1.4rem; height: 1.4rem; fill: none; stroke: currentColor; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; animation: hero-drift 2.4s var(--ease) infinite; }
-@keyframes hero-drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
 
 /* tiles: short dashes with a taller hit area (24px wide at least, so they
    stay tappable on a phone, shrinking a touch rather than wrapping on the
@@ -377,14 +373,13 @@ address { font-style: normal; }
 .hero__tab.is-running::after { animation: hero-fill var(--interval) linear forwards; }
 .hero.is-paused .hero__tab::after { animation-play-state: paused; }
 @keyframes hero-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-@media (min-width: 900px) { .hero__tab { flex-basis: 3rem; } .hero__tab::before, .hero__tab::after { left: 0.35rem; right: 0.35rem; } .hero__foot { bottom: clamp(1rem, 3vh, 2rem); } .hero__scroll { display: block; } }
+@media (min-width: 900px) { .hero__tab { flex-basis: 3rem; } .hero__tab::before, .hero__tab::after { left: 0.35rem; right: 0.35rem; } .hero__foot { bottom: clamp(1rem, 3vh, 2rem); } }
 
 
 /* no autoplay, instant swaps; the tiles still work */
 @media (prefers-reduced-motion: reduce) {
   .slide, .slide.is-active { transition: none; }
   .hero__tab.is-running::after { animation: none; }
-  .hero__scroll svg { animation: none; }
 }
 
 /* ---------- gallery (all page): a row of category filters over a grid of
