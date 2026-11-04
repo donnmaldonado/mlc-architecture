@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/main.css?v=93">
+<link rel="stylesheet" href="css/main.css?v=94">
 </head>
 <body>
 <header class="header" id="top">
@@ -57,16 +57,18 @@
 <main>
   <!-- PROJECT: one project post (single-project template). Its primary
        picture leads, the rest follow; any photo opens the lightbox, which
-       steps through the whole set. Previous / Next, above the title, walk
+       steps through the whole set. Previous / Next arrows, beside the title, walk
        the project list. -->
   <article class="section project-page" aria-labelledby="project-title">
     <div class="container">
-      <nav class="project-pager" aria-label="More projects">
-        <a class="link" href="project-black-trimmed-farmhouse-with-pool.html" rel="prev"><span class="arrow" aria-hidden="true">&larr;</span> Black-Trimmed Farmhouse with Pool</a>
-        <a class="link" href="project-ugly-dumpling-facade-and-restaurant.html" rel="next">Ugly Dumpling Facade &amp; Restaurant <span class="arrow" aria-hidden="true">&rarr;</span></a>
-      </nav>
       <p class="label">Westhampton Beach</p>
-      <h1 class="firm-intro" id="project-title">Light-Filled Modern Farmhouse with Pool</h1>
+      <div class="project-title">
+        <h1 class="firm-intro" id="project-title">Light-Filled Modern Farmhouse with Pool</h1>
+        <nav class="project-pager" aria-label="More projects">
+          <a class="project-pager__arrow" href="project-black-trimmed-farmhouse-with-pool.html" rel="prev" aria-label="Previous project: Black-Trimmed Farmhouse with Pool"><span class="arrow" aria-hidden="true">&larr;</span></a>
+          <a class="project-pager__arrow" href="project-ugly-dumpling-facade-and-restaurant.html" rel="next" aria-label="Next project: Ugly Dumpling Facade &amp; Restaurant"><span class="arrow" aria-hidden="true">&rarr;</span></a>
+        </nav>
+      </div>
       <div class="plates" data-lightbox-group>
         <div class="plate plate--lead plate--video" data-play-once>
           <video src="assets/video/2025-JCR.mp4" poster="assets/img/projects/2025-JCR-end.jpg" muted playsinline preload="none" width="1920" height="1080" aria-hidden="true"></video>
