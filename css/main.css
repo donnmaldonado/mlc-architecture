@@ -716,6 +716,16 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
 .feature--medium .label { color: var(--on-dark-3); }
 :is(.feature--dark, .feature--medium) :focus-visible { outline-color: var(--paper); }
 
+/* phones: a picture plus the text tile under it fill one screen below the
+   header: the hero and the first tile, then each video and the next tile.
+   Each tile tops up whatever its picture leaves (hero 3:2, videos 4:3);
+   min-height, so longer text grows the tile instead of clipping. */
+@media (max-width: 899.98px) {
+  .features { --room: calc(100svh - var(--hero-offset, calc(var(--header-h) + var(--border))) - 2 * var(--mat)); --w: calc(100vw - 2 * var(--mat)); }
+  .feature__panel { min-height: calc(var(--room) - var(--w) * 3 / 4); }
+  .feature:first-child .feature__panel { min-height: calc(var(--room) - min(var(--w) * 2 / 3, var(--room))); }
+}
+
 @media (min-width: 900px) {
   :root { --mat: 1vw; }
   .feature { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); min-height: clamp(25rem, 38vw, 56rem); }
