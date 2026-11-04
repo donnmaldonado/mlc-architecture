@@ -72,6 +72,7 @@
   --wrap: 1240px;
   --wrap-narrow: 860px;
   --gutter: clamp(20px, 5vw, 40px);
+  --mat: 0.5rem; /* paper mat round the hero and feature rows; 1vw from 900px */
   --section: clamp(64px, 8.5vw, 128px);
   --header-h: 84px;
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -317,12 +318,16 @@ address { font-style: normal; }
 .pairs > :nth-child(odd) { color: var(--ink-3); }
 @media (min-width: 900px) { .menu { display: none; } }
 
-/* ---------- hero (home): full-screen slideshow ----------
-   Fills the viewport below the sticky header exactly. The header sits in the
-   page flow, so the hero is the viewport minus the header's real height, which
-   js/main.js measures into --hero-offset. Without JS it falls back to the 84px
-   mobile bar plus its rule (taller than that on desktop). svh keeps mobile browser toolbars from pushing it past the fold. */
-.hero { --interval: 6s; position: relative; overflow: hidden; color: var(--paper); background: var(--deep); min-height: 16rem; height: calc(100vh - var(--hero-offset, calc(var(--header-h) + var(--border)))); height: calc(100svh - var(--hero-offset, calc(var(--header-h) + var(--border)))); }
+/* ---------- hero (home): framed slideshow ----------
+   Set in the same paper mat (--mat) as the feature rows below (the rows' own
+   top padding is the gap underneath). It fills the width and the viewport
+   below the sticky header (js/main.js measures that into --hero-offset;
+   without JS it falls back to the 84px mobile bar plus its rule), trimming
+   sky and lawn to fit. On narrow screens it stops at 3:2 rather than going
+   tall, so phones show the whole house instead of a slice of it. svh keeps
+   mobile browser toolbars from pushing it past the fold. */
+.hero { --interval: 6s; --hero-room: calc(100vh - var(--hero-offset, calc(var(--header-h) + var(--border))) - 2 * var(--mat)); position: relative; overflow: hidden; color: var(--paper); background: var(--deep); aspect-ratio: 3 / 2; width: calc(100% - 2 * var(--mat)); max-height: var(--hero-room); margin: var(--mat) auto 0; }
+@supports (height: 100svh) { .hero { --hero-room: calc(100svh - var(--hero-offset, calc(var(--header-h) + var(--border))) - 2 * var(--mat)); } }
 .hero__bg { position: absolute; inset: 0; }
 /* no text over the photos any more, so only a light foot to lift the controls */
 .hero__bg::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(to top, rgba(26,24,21,0.6) 0%, rgba(26,24,21,0) 35%); }
@@ -668,8 +673,8 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
    Set in a thin paper mat that also runs between rows and between photo and
    panel. Sides alternate from 900px, image first when stacked. Each row stands
    alone so it can become a block pattern; the tone modifier sets the panel. */
-.features { display: grid; gap: 0.5rem; padding: 0.5rem; background: var(--paper); scroll-margin-top: var(--hero-offset, calc(var(--header-h) + var(--border))); }
-.feature { display: grid; gap: 0.5rem; }
+.features { display: grid; gap: var(--mat); padding: var(--mat); background: var(--paper); scroll-margin-top: var(--hero-offset, calc(var(--header-h) + var(--border))); }
+.feature { display: grid; gap: var(--mat); }
 .feature__media { display: block; position: relative; overflow: hidden; background: var(--paper-3); aspect-ratio: 4 / 3; }
 .feature__media :is(img, video) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); transition: transform 1.6s var(--ease); }
 /* a light ink tint that deepens on hover; the link covers the whole media box */
@@ -710,8 +715,8 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
 :is(.feature--dark, .feature--medium) :focus-visible { outline-color: var(--paper); }
 
 @media (min-width: 900px) {
-  .features { gap: 1vw; padding: 1vw; }
-  .feature { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 1vw; min-height: clamp(25rem, 38vw, 56rem); }
+  :root { --mat: 1vw; }
+  .feature { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); min-height: clamp(25rem, 38vw, 56rem); }
   .feature__media { aspect-ratio: auto; }
   .feature:nth-child(even), .feature--flip { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
   :is(.feature:nth-child(even), .feature--flip) .feature__media { order: 2; }
