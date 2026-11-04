@@ -74,7 +74,7 @@
   --gutter: clamp(20px, 5vw, 40px);
   --mat: 0.5rem; /* paper mat round the hero and feature rows; 1vw from 900px */
   --section: clamp(64px, 8.5vw, 128px);
-  --header-h: 68px; /* phone bar; 84px from 900px, where the logo sets the height */
+  --header-h: 80px; /* phone bar; 84px from 900px, where the logo sets the height */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   /* The logo file carries more transparent margin under the wordmark than above
      the monogram, so its optical middle sits this fraction of its height above
@@ -229,7 +229,7 @@ address { font-style: normal; }
 
 /* brandmark: the logo carries the wordmark */
 .brandmark { display: inline-block; line-height: 1.1; }
-.header { --logo-h: clamp(58px, 15vw, 68px); }
+.header { --logo-h: clamp(66px, 18vw, 76px); }
 .header .brandmark { text-align: center; }
 .header .brandmark__logo {
   height: var(--logo-h); width: auto; margin-inline: auto;
@@ -261,12 +261,12 @@ address { font-style: normal; }
 .subnav a:hover::after, .subnav a[aria-current="page"]::after { transform: scaleX(1); }
 .subnav a[aria-current="page"] { color: var(--hd-text); }
 
-.menu-btn { display: inline-flex; align-items: center; gap: 0.65rem; font-family: var(--font-label); font-size: 0.66rem; font-weight: 400; letter-spacing: var(--track); text-transform: uppercase; color: var(--hd-text-2); justify-self: end; }
-.menu-btn__icon { width: 22px; height: 11px; position: relative; display: block; }
+.menu-btn { display: inline-flex; align-items: center; gap: 0.65rem; font-family: var(--font-label); font-size: 0.85rem; font-weight: 400; letter-spacing: var(--track); text-transform: uppercase; color: var(--hd-text-2); justify-self: end; }
+.menu-btn__icon { width: 30px; height: 15px; position: relative; display: block; }
 .menu-btn__icon::before, .menu-btn__icon::after { content: ""; position: absolute; left: 0; right: 0; height: 1px; background: currentColor; transition: transform 0.4s var(--ease), top 0.4s var(--ease); }
-.menu-btn__icon::before { top: 0; } .menu-btn__icon::after { top: 10px; }
-.menu-open .menu-btn__icon::before { top: 5px; transform: rotate(45deg); }
-.menu-open .menu-btn__icon::after { top: 5px; transform: rotate(-45deg); }
+.menu-btn__icon::before { top: 0; } .menu-btn__icon::after { top: 14px; }
+.menu-open .menu-btn__icon::before { top: 7px; transform: rotate(45deg); }
+.menu-open .menu-btn__icon::after { top: 7px; transform: rotate(-45deg); }
 
 @media (min-width: 900px) {
   .header__inner {
@@ -323,7 +323,7 @@ address { font-style: normal; }
    Set in the same paper mat (--mat) as the feature rows below (the rows' own
    top padding is the gap underneath). It fills the width and the viewport
    below the sticky header (js/main.js measures that into --hero-offset;
-   without JS it falls back to the 68px mobile bar plus its rule), trimming
+   without JS it falls back to the 80px mobile bar plus its rule), trimming
    sky and lawn to fit. On narrow screens it stops at 3:2 rather than going
    tall, so phones show the whole house instead of a slice of it. svh keeps
    mobile browser toolbars from pushing it past the fold. */
