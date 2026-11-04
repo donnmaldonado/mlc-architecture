@@ -317,15 +317,15 @@ address { font-style: normal; }
 .pairs > :nth-child(odd) { color: var(--ink-3); }
 @media (min-width: 900px) { .menu { display: none; } }
 
-/* ---------- hero (home): framed 3:2 slideshow ----------
-   A fixed 3:2 frame in the same 0.5rem paper mat as the feature rows below,
-   so every photo crops the same way and the house stays centred. The frame is
-   as wide as the page allows, but never taller than the viewport below the
-   sticky header (which js/main.js measures into --hero-offset; without JS it
-   falls back to the 84px mobile bar plus its rule). On a wide screen that
-   leaves paper either side; on a phone it is a full-width strip. svh keeps
+/* ---------- hero (home): framed slideshow ----------
+   Set in the same 0.5rem paper mat as the feature rows below (the rows' own
+   top padding is the gap underneath). It fills the width and the viewport
+   below the sticky header (js/main.js measures that into --hero-offset;
+   without JS it falls back to the 84px mobile bar plus its rule), trimming
+   sky and lawn to fit. On narrow screens it stops at 3:2 rather than going
+   tall, so phones show the whole house instead of a slice of it. svh keeps
    mobile browser toolbars from pushing it past the fold. */
-.hero { --interval: 6s; --hero-room: calc(100vh - var(--hero-offset, calc(var(--header-h) + var(--border))) - 1rem); position: relative; overflow: hidden; color: var(--paper); background: var(--deep); aspect-ratio: 3 / 2; width: min(calc(100% - 1rem), calc(var(--hero-room) * 3 / 2)); margin: 0.5rem auto 0; }
+.hero { --interval: 6s; --hero-room: calc(100vh - var(--hero-offset, calc(var(--header-h) + var(--border))) - 1rem); position: relative; overflow: hidden; color: var(--paper); background: var(--deep); aspect-ratio: 3 / 2; width: calc(100% - 1rem); max-height: var(--hero-room); margin: 0.5rem auto 0; }
 @supports (height: 100svh) { .hero { --hero-room: calc(100svh - var(--hero-offset, calc(var(--header-h) + var(--border))) - 1rem); } }
 .hero__bg { position: absolute; inset: 0; }
 /* no text over the photos any more, so only a light foot to lift the controls */
