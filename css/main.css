@@ -356,13 +356,13 @@ address { font-style: normal; }
    The active tile also runs an invisible fill over the interval, and the end
    of that animation is what advances the show (see js/main.js), so pausing
    the animation pauses the timer. */
-/* prev / next arrows over the photo, phones only (the tabs serve desktop) */
+/* prev / next arrows over the photo */
 .hero__arrow { position: absolute; z-index: 3; top: 50%; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; margin-top: -1.375rem; padding: 0; border: 0; border-radius: 50%; background: rgba(26,24,21,0.55); color: var(--paper); cursor: pointer; }
 .hero__arrow[hidden] { display: none; }
 .hero__arrow--prev { left: 0.5rem; }
 .hero__arrow--next { right: 0.5rem; }
 .hero__arrow svg { width: 1.6rem; height: 1.6rem; fill: none; stroke: currentColor; stroke-width: 2; }
-@media (min-width: 900px) { .hero__arrow { display: none; } }
+@media (min-width: 900px) { .hero__arrow { width: 3.25rem; height: 3.25rem; margin-top: -1.625rem; } .hero__arrow--prev { left: 1.5rem; } .hero__arrow--next { right: 1.5rem; } .hero__arrow svg { width: 1.9rem; height: 1.9rem; } }
 .hero__tabs { display: flex; justify-content: center; width: 100%; }
 .hero__tabs[hidden] { display: none; }
 .hero__tab { position: relative; flex: 0 1 2.25rem; min-width: 0; height: 2.25rem; }
