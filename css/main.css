@@ -317,12 +317,16 @@ address { font-style: normal; }
 .pairs > :nth-child(odd) { color: var(--ink-3); }
 @media (min-width: 900px) { .menu { display: none; } }
 
-/* ---------- hero (home): full-screen slideshow ----------
-   Fills the viewport below the sticky header exactly. The header sits in the
-   page flow, so the hero is the viewport minus the header's real height, which
-   js/main.js measures into --hero-offset. Without JS it falls back to the 84px
-   mobile bar plus its rule (taller than that on desktop). svh keeps mobile browser toolbars from pushing it past the fold. */
-.hero { --interval: 6s; position: relative; overflow: hidden; color: var(--paper); background: var(--deep); min-height: 16rem; height: calc(100vh - var(--hero-offset, calc(var(--header-h) + var(--border)))); height: calc(100svh - var(--hero-offset, calc(var(--header-h) + var(--border)))); }
+/* ---------- hero (home): framed 3:2 slideshow ----------
+   A fixed 3:2 frame in the same 0.5rem paper mat as the feature rows below,
+   so every photo crops the same way and the house stays centred. The frame is
+   as wide as the page allows, but never taller than the viewport below the
+   sticky header (which js/main.js measures into --hero-offset; without JS it
+   falls back to the 84px mobile bar plus its rule). On a wide screen that
+   leaves paper either side; on a phone it is a full-width strip. svh keeps
+   mobile browser toolbars from pushing it past the fold. */
+.hero { --interval: 6s; --hero-room: calc(100vh - var(--hero-offset, calc(var(--header-h) + var(--border))) - 1rem); position: relative; overflow: hidden; color: var(--paper); background: var(--deep); aspect-ratio: 3 / 2; width: min(calc(100% - 1rem), calc(var(--hero-room) * 3 / 2)); margin: 0.5rem auto 0; }
+@supports (height: 100svh) { .hero { --hero-room: calc(100svh - var(--hero-offset, calc(var(--header-h) + var(--border))) - 1rem); } }
 .hero__bg { position: absolute; inset: 0; }
 /* no text over the photos any more, so only a light foot to lift the controls */
 .hero__bg::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(to top, rgba(26,24,21,0.6) 0%, rgba(26,24,21,0) 35%); }
