@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/main.css?v=93">
+<link rel="stylesheet" href="css/main.css?v=94">
 </head>
 <body>
 <header class="header" id="top">
@@ -57,16 +57,18 @@
 <main>
   <!-- PROJECT: one project post (single-project template). Its primary
        picture leads, the rest follow; any photo opens the lightbox, which
-       steps through the whole set. Previous / Next, above the title, walk
+       steps through the whole set. Previous / Next arrows, beside the title, walk
        the project list. -->
   <article class="section project-page" aria-labelledby="project-title">
     <div class="container">
-      <nav class="project-pager" aria-label="More projects">
-        <a class="link" href="project-mid-century-office-facade-renovation.html" rel="prev"><span class="arrow" aria-hidden="true">&larr;</span> Mid-Century Office Facade Renovation</a>
-        <a class="link" href="project-stone-clad-church.html" rel="next">Stone-Clad Church <span class="arrow" aria-hidden="true">&rarr;</span></a>
-      </nav>
       <p class="label">Westhampton</p>
-      <h1 class="firm-intro" id="project-title">Estate Farmhouse with Pool &amp; Tennis Court</h1>
+      <div class="project-title">
+        <h1 class="firm-intro" id="project-title">Estate Farmhouse with Pool &amp; Tennis Court</h1>
+        <nav class="project-pager" aria-label="More projects">
+          <a class="project-pager__arrow" href="project-mid-century-office-facade-renovation.html" rel="prev" aria-label="Previous project: Mid-Century Office Facade Renovation"><span class="arrow" aria-hidden="true">&larr;</span></a>
+          <a class="project-pager__arrow" href="project-stone-clad-church.html" rel="next" aria-label="Next project: Stone-Clad Church"><span class="arrow" aria-hidden="true">&rarr;</span></a>
+        </nav>
+      </div>
       <div class="plates" data-lightbox-group>
         <a class="plate plate--lead" href="assets/img/projects/westhampton-2/01.jpg" data-caption="Estate Farmhouse with Pool &amp; Tennis Court">
           <img src="assets/img/projects/westhampton-2/01.jpg" srcset="assets/img/projects/westhampton-2/thumbs/01.jpg 720w, assets/img/projects/westhampton-2/01.jpg 1600w" sizes="(min-width: 1100px) 1040px, 100vw" alt="Estate Farmhouse with Pool &amp; Tennis Court, rear with pool, rendering" width="1600" height="896" decoding="async">
