@@ -241,6 +241,9 @@
       tab.addEventListener('click', () => go(n));
       tab.addEventListener('animationend', e => { if (e.animationName === 'hero-fill' && n === current) go((n + 1) % slides.length); });
     });
+    const step = d => go((current + d + slides.length) % slides.length);
+    show.querySelector('[data-slideshow-prev]')?.addEventListener('click', () => step(-1));
+    show.querySelector('[data-slideshow-next]')?.addEventListener('click', () => step(1));
     // hover pauses for a mouse only; a tap would otherwise leave it "hovered"
     show.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { hovered = true; setPaused(); } });
     show.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { hovered = false; setPaused(); } });
