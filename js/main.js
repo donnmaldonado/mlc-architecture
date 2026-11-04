@@ -259,17 +259,17 @@
   });
 
   /* Before / after comparison: [data-compare] crops its before layer at --pos.
-     After is left of the divider and before is right of it. It opens on the
-     after photo (divider parked at the right edge, the slider bar's thumb on
-     its After end) and the divider travels right to left to uncover the
-     before; it only moves when the visitor presses or drags on the picture
+     Before is left of the divider and after is right of it. It opens on the
+     after photo (divider parked at the left edge, the slider bar's thumb on
+     its After end, also the left) and the divider travels left to right to
+     uncover the before; it only moves when the visitor presses or drags on the picture
      or moves the slider bar above it; plain hover does nothing. The bar
      (shipped [hidden], so there's nothing dead without JS) is a range
      input, so it also takes the keyboard; its value is the divider's place
-     from the left, so it runs opposite to the amount of before shown.
+     from the left, which is the amount of before shown.
      reset() puts it back on the after photo each time its project is shown
      and arms a one-off tease: once the picture is loaded and mostly on
-     screen, the divider is tossed a short way in from the right like a ball
+     screen, the divider is tossed a short way in from the left like a ball
      thrown up, slowing to a stop at the top to show a slice of the before,
      then falls quickly back to the after photo. Any press or slider input
      cancels it; reduced motion skips it. */
@@ -284,10 +284,10 @@
     const set = v => {
       v = Math.max(0, Math.min(100, v));
       fig.style.setProperty('--k', String(v / 100));
-      range.value = String(Math.round(100 - v));
+      range.value = String(Math.round(v));
       range.setAttribute('aria-valuetext', v < 1 ? 'After' : v > 99 ? 'Before' : Math.round(v) + '% before');
     };
-    const fromPointer = e => { const r = stage.getBoundingClientRect(); set((r.right - e.clientX) / r.width * 100); };
+    const fromPointer = e => { const r = stage.getBoundingClientRect(); set((e.clientX - r.left) / r.width * 100); };
 
     let armed = false, inView = false, timer = 0, frame = 0;
     const stopTease = () => {
@@ -357,7 +357,7 @@
     stage.addEventListener('pointercancel', release);
     range.addEventListener('pointerdown', stopTease);
     range.addEventListener('keydown', stopTease);
-    range.addEventListener('input', () => { stopTease(); set(100 - range.value); });
+    range.addEventListener('input', () => { stopTease(); set(+range.value); });
 
     const reset = () => { stopTease(); set(0); armed = true; maybeTease(); };
     reset();

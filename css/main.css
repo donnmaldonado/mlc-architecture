@@ -479,10 +479,10 @@ address { font-style: normal; }
    over the divider; the track's drawn line is inset to the picture's
    width, and its fill runs from the thumb's centre to the right end.
    Self-contained, so it can become a block pattern or shortcode. */
-.compare { --k: 0.5; --pos: calc((1 - var(--k)) * 100%); margin: 0; }
+.compare { --k: 0.5; --pos: calc(var(--k) * 100%); margin: 0; }
 .compare__stage { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: var(--paper-3); cursor: ew-resize; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
 .compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--obj, 50% 50%); pointer-events: none; -webkit-user-drag: none; }
-.compare__before { position: absolute; inset: 0; clip-path: inset(0 0 0 var(--pos)); }
+.compare__before { position: absolute; inset: 0; clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
 /* stand-in until the real before photo arrives: the after shot, washed out */
 .compare__before.is-placeholder img { filter: grayscale(1) sepia(0.2) contrast(0.8) brightness(1.08); }
 .compare__handle { position: absolute; inset: 0; pointer-events: none; }
@@ -492,7 +492,7 @@ address { font-style: normal; }
 .compare__bar[hidden] { display: none; }
 .compare__end:last-child { justify-self: end; }
 .compare__end { font-family: var(--font-label); font-size: 0.72rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); }
-.compare__range { --thumb: 1.1rem; --fill: calc(var(--thumb) / 2 + (100% - var(--thumb)) * (1 - var(--k))); --track-bg: linear-gradient(to right, transparent calc(var(--thumb) / 2), var(--line) 0 var(--fill), var(--accent) 0 calc(100% - var(--thumb) / 2), transparent 0); -webkit-appearance: none; appearance: none; grid-column: 1 / -1; order: 1; display: block; width: calc(100% + var(--thumb)); height: 1.5rem; margin: 0 calc(var(--thumb) / -2); background: transparent; cursor: pointer; }
+.compare__range { --thumb: 1.1rem; --fill: calc(var(--thumb) / 2 + (100% - var(--thumb)) * var(--k)); --track-bg: linear-gradient(to right, transparent calc(var(--thumb) / 2), var(--accent) 0 var(--fill), var(--line) 0 calc(100% - var(--thumb) / 2), transparent 0); -webkit-appearance: none; appearance: none; grid-column: 1 / -1; order: 1; display: block; width: calc(100% + var(--thumb)); height: 1.5rem; margin: 0 calc(var(--thumb) / -2); background: transparent; cursor: pointer; }
 .compare__range:focus-visible { outline: none; }
 .compare__range::-webkit-slider-runnable-track { height: 2px; background: var(--track-bg); }
 .compare__range::-webkit-slider-thumb { -webkit-appearance: none; box-sizing: border-box; width: var(--thumb); height: var(--thumb); margin-top: calc(1px - var(--thumb) / 2); border: 1.5px solid var(--accent); border-radius: 50%; background: var(--paper); transition: transform 0.3s var(--ease); }
