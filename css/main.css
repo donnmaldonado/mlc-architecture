@@ -333,8 +333,11 @@ address { font-style: normal; }
 .hero { --interval: 6s; --hero-room: calc(100vh - var(--hero-offset, calc(var(--header-h) + var(--border))) - 2 * var(--mat)); position: relative; overflow: hidden; color: var(--paper); background: var(--deep); aspect-ratio: 3 / 2; width: calc(100% - 2 * var(--mat)); max-height: var(--hero-room); margin: var(--mat) auto 0; }
 @supports (height: 100svh) { .hero { --hero-room: calc(100svh - var(--hero-offset, calc(var(--header-h) + var(--border))) - 2 * var(--mat)); } }
 .hero__bg { position: absolute; inset: 0; }
-/* no text over the photos any more, so only a light foot to lift the controls */
-.hero__bg::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(to top, rgba(26,24,21,0.6) 0%, rgba(26,24,21,0) 35%); }
+/* no text over the photos any more, so only a light foot to lift the
+   controls, plus soft shading at each side behind the prev / next arrows */
+.hero__bg::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background:
+  linear-gradient(to top, rgba(26,24,21,0.6) 0%, rgba(26,24,21,0) 35%),
+  linear-gradient(to right, rgba(26,24,21,0.5) 0%, rgba(26,24,21,0) 15%, rgba(26,24,21,0) 85%, rgba(26,24,21,0.5) 100%); }
 /* Crossfade: the incoming slide fades in on top while the outgoing one holds
    underneath, then drops out once the fade is done, so there's no dip to the
    background mid-change. visibility keeps hidden slides out of the a11y tree. */
@@ -359,7 +362,7 @@ address { font-style: normal; }
    larger and stroked heavier (the arrow glyph comes from a system font, so
    font-weight can't be relied on), in paper with a soft shadow so they read
    on any picture */
-.hero__arrow { position: absolute; z-index: 3; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 3.5rem; height: 3.5rem; padding: 0; border: 0; background: none; font-size: clamp(2.25rem, 4vw, 3.25rem); line-height: 1; -webkit-text-stroke: 1.5px currentColor; color: var(--paper); text-shadow: 0 1px 6px rgba(26,24,21,0.6); cursor: pointer; transition: color 0.3s var(--ease); }
+.hero__arrow { position: absolute; z-index: 3; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 3.5rem; height: 3.5rem; padding: 0; border: 0; background: none; font-size: clamp(2.25rem, 4vw, 3.25rem); line-height: 1; -webkit-text-stroke: 2px currentColor; color: var(--paper); text-shadow: 0 1px 6px rgba(26,24,21,0.6); cursor: pointer; transition: color 0.3s var(--ease); }
 .hero__arrow[hidden] { display: none; }
 .hero__arrow--prev { left: 0.5rem; }
 .hero__arrow--next { right: 0.5rem; }
