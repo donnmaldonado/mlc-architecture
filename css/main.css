@@ -74,7 +74,7 @@
   --gutter: clamp(20px, 5vw, 40px);
   --mat: 0.5rem; /* paper mat round the hero and feature rows; 1vw from 900px */
   --section: clamp(64px, 8.5vw, 128px);
-  --header-h: 84px;
+  --header-h: 68px; /* phone bar; 84px from 900px, where the logo sets the height */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   /* The logo file carries more transparent margin under the wordmark than above
      the monogram, so its optical middle sits this fraction of its height above
@@ -229,7 +229,7 @@ address { font-style: normal; }
 
 /* brandmark: the logo carries the wordmark */
 .brandmark { display: inline-block; line-height: 1.1; }
-.header { --logo-h: clamp(76px, 17vw, 90px); }
+.header { --logo-h: clamp(58px, 15vw, 68px); }
 .header .brandmark { text-align: center; }
 .header .brandmark__logo {
   height: var(--logo-h); width: auto; margin-inline: auto;
@@ -291,6 +291,7 @@ address { font-style: normal; }
   /* pages with a section nav: tuck it up under the logo row */
   .header__inner:has(+ .subnav) { padding-bottom: 0.15rem; }
 
+  :root { --header-h: 84px; }
   .header { --logo-h: clamp(120px, 11.6vw, 150px); }
   /* condensed: the section nav folds away, the bar shrinks to the logo */
   .header.is-condensed .header__inner { padding-top: 0.6rem; padding-bottom: 0.6rem; }
@@ -322,7 +323,7 @@ address { font-style: normal; }
    Set in the same paper mat (--mat) as the feature rows below (the rows' own
    top padding is the gap underneath). It fills the width and the viewport
    below the sticky header (js/main.js measures that into --hero-offset;
-   without JS it falls back to the 84px mobile bar plus its rule), trimming
+   without JS it falls back to the 68px mobile bar plus its rule), trimming
    sky and lawn to fit. On narrow screens it stops at 3:2 rather than going
    tall, so phones show the whole house instead of a slice of it. svh keeps
    mobile browser toolbars from pushing it past the fold. */
@@ -341,9 +342,10 @@ address { font-style: normal; }
 .hero :focus-visible { outline-color: var(--accent-light); }
 
 /* foot: a row of tiles, one per slide, centred over the Scroll link */
-.hero__foot { position: absolute; z-index: 3; left: var(--gutter); right: var(--gutter); bottom: clamp(1rem, 3vh, 2rem); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; pointer-events: none; }
+/* phones: tabs only, low on the photo; swiping down needs no Scroll prompt */
+.hero__foot { position: absolute; z-index: 3; left: var(--gutter); right: var(--gutter); bottom: 0.25rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; pointer-events: none; }
 .hero__foot > * { pointer-events: auto; }
-.hero__scroll { padding: 0.25rem; font-family: var(--font-label); font-size: 0.8rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--paper); }
+.hero__scroll { display: none; padding: 0.25rem; font-family: var(--font-label); font-size: 0.8rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--paper); }
 
 /* tiles: short dashes with a taller hit area (24px wide at least, so they
    stay tappable on a phone, shrinking a touch rather than wrapping on the
@@ -362,7 +364,7 @@ address { font-style: normal; }
 .hero__tab.is-running::after { animation: hero-fill var(--interval) linear forwards; }
 .hero.is-paused .hero__tab::after { animation-play-state: paused; }
 @keyframes hero-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-@media (min-width: 900px) { .hero__tab { flex-basis: 3rem; } .hero__tab::before, .hero__tab::after { left: 0.35rem; right: 0.35rem; } .hero__scroll { font-size: 0.875rem; } }
+@media (min-width: 900px) { .hero__tab { flex-basis: 3rem; } .hero__tab::before, .hero__tab::after { left: 0.35rem; right: 0.35rem; } .hero__foot { bottom: clamp(1rem, 3vh, 2rem); } .hero__scroll { display: inline; font-size: 0.875rem; } }
 
 
 /* no autoplay, instant swaps; the tiles still work */
