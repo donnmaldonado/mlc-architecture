@@ -673,7 +673,7 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
 
 /* ---------- feature rows: two-thirds photo, one-third coloured panel ----------
    Set in a thin paper mat that also runs between rows and between photo and
-   panel. Sides alternate from 900px, image first when stacked. Each row stands
+   panel. Sides alternate from 900px, text first when stacked. Each row stands
    alone so it can become a block pattern; the tone modifier sets the panel. */
 .features { display: grid; gap: var(--mat); padding: var(--mat); background: var(--paper); scroll-margin-top: var(--hero-offset, calc(var(--header-h) + var(--border))); }
 .feature { display: grid; gap: var(--mat); }
@@ -691,7 +691,7 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
 .feature__replay:hover { opacity: 1; }
 .feature__replay:focus-visible { outline: 2px solid var(--accent-light); outline-offset: 2px; opacity: 1; }
 .feature__replay svg { width: 1.25rem; height: 1.25rem; fill: currentColor; }
-.feature__panel { display: flex; align-items: center; justify-content: center; text-align: center; padding: clamp(3rem, 9vw, 4.5rem) var(--gutter); }
+.feature__panel { order: -1; display: flex; align-items: center; justify-content: center; text-align: center; padding: clamp(3rem, 9vw, 4.5rem) var(--gutter); }
 .feature__content { width: 100%; max-width: 24rem; }
 /* short blue ticks above and below a short statement, as on the contact labels */
 .feature__statement::before, .feature__statement::after { content: ""; display: block; width: 1.5rem; margin-inline: auto; border-top: var(--border) solid var(--accent); opacity: 0.6; }
@@ -722,7 +722,7 @@ a.media:hover img, .media--hover:hover img { transform: scale(1.04); }
   .feature__media { aspect-ratio: auto; }
   .feature:nth-child(even), .feature--flip { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
   :is(.feature:nth-child(even), .feature--flip) .feature__media { order: 2; }
-  .feature__panel { padding: clamp(2.5rem, 3.5vw, 4rem) clamp(1.75rem, 3vw, 3.5rem); }
+  .feature__panel { order: 0; padding: clamp(2.5rem, 3.5vw, 4rem) clamp(1.75rem, 3vw, 3.5rem); }
 }
 
 /* ---------- footer ---------- */
