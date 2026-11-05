@@ -672,6 +672,14 @@ address { font-style: normal; }
 .contact__defs .socials { justify-content: center; gap: 0.4rem; }
 .contact__defs .socials a, .contact__defs .socials .copy--icon { width: 34px; height: 34px; }
 .contact__defs .socials svg { width: 15px; height: 15px; }
+@media (max-width: 639px) {
+  /* phones: left-aligned, as on desktop */
+  .contact__defs { text-align: left; }
+  .contact__defs > div, .contact__defs dd { align-items: flex-start; }
+  .contact__defs > div { padding-inline: 0; }
+  .contact__defs dt::after { margin-inline: 0; }
+  .contact__defs .socials { justify-content: flex-start; }
+}
 @media (min-width: 640px) {
   .contact__defs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .contact__defs > :nth-child(2) { border-left: var(--border) solid var(--line-soft); }
