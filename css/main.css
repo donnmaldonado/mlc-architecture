@@ -464,26 +464,30 @@ address { font-style: normal; }
 .showcase__btn .arrow { transition: transform 0.45s var(--ease); }
 .showcase__btn:hover .arrow { transform: translateX(4px); }
 .showcase__btn[data-showcase-prev]:hover .arrow { transform: translateX(-4px); }
-/* phone: no room for arrows beside the picture, so the picture runs edge to
-   edge at 4:3, the town sits over a larger name, the slider gets a
-   thumb-sized handle, and the arrows drop under the picture either side of
-   a visible "Project 3 of 5" */
-@media (max-width: 639.98px) {
-  .showcase { --stage-w: 100%; padding-top: 1.75rem; }
+/* phone and tablet (the burger-menu widths): no room for arrows beside the
+   picture, so the picture runs edge to edge at 4:3, the town sits over a
+   larger name, the slider gets a thumb-sized handle, and the arrows drop
+   under the picture either side of a visible "Project 3 of 5". The page
+   is at least the screen's height, so the footer sits on the bottom edge,
+   and the project is centred in the room between header and footer. */
+@media (max-width: 899.98px) {
+  body:has(.showcase) { min-height: 100svh; display: flex; flex-direction: column; }
+  body:has(.showcase) > main { flex: 1 0 auto; display: flex; flex-direction: column; justify-content: center; }
+  .showcase { --stage-w: 100%; padding-block: 1.75rem; }
   .project { grid-template-columns: minmax(0, 1fr); }
-  .project__head { flex-direction: column; align-items: center; margin-bottom: 1rem; }
-  .project__head .label { font-size: 0.8rem; }
+  .project__head { flex-direction: column; align-items: center; margin-bottom: 1.1rem; }
+  .project__head .label { font-size: 0.95rem; }
   .project__head .label::after { content: none; }
-  .project__head .h1 { font-size: 1.35rem; line-height: 1.25; margin-top: 0.3rem; text-wrap: wrap; }
+  .project__head .h1 { font-size: clamp(1.4rem, 5.5vw, 1.75rem); line-height: 1.25; margin-top: 0.35rem; text-wrap: wrap; }
   .project .compare { grid-column: 1; margin-inline: calc(var(--gutter) * -1); }
   .project .compare__stage { aspect-ratio: 4 / 3; max-height: none; }
   .project .compare__bar { padding-inline: var(--gutter); margin-bottom: 0.5rem; }
-  .project .compare__end { font-size: 0.8rem; }
+  .project .compare__end { font-size: 0.9rem; }
   .project .compare__range { --thumb: 1.75rem; height: 2.5rem; }
   .showcase__nav { grid-row: 3; grid-template-columns: auto 1fr auto; margin-top: 0.75rem; pointer-events: auto; }
   .showcase__nav [data-showcase-prev], .showcase__nav [data-showcase-next] { grid-column: auto; justify-self: auto; margin: 0; }
-  .showcase__nav > p.sr-only { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; text-align: center; font-family: var(--font-label); font-size: 0.8rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); }
-  .showcase__btn { width: 3rem; height: 3rem; font-size: 1.6rem; }
+  .showcase__nav > p.sr-only { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; text-align: center; font-family: var(--font-label); font-size: 0.95rem; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); }
+  .showcase__btn { width: 3rem; height: 3rem; font-size: 1.75rem; }
 }
 
 /* ---------- project page: one project post ----------
