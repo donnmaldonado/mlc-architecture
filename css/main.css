@@ -74,7 +74,7 @@
   --gutter: clamp(20px, 5vw, 40px);
   --mat: 0.5rem; /* paper mat round the hero and feature rows; 1vw from 900px */
   --section: clamp(64px, 8.5vw, 128px);
-  --header-h: 192px; /* phone bar; 84px from 900px, where the logo sets the height */
+  --header-h: 154px; /* phone bar; 84px from 900px, where the logo sets the height */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   /* The logo file carries more transparent margin under the wordmark than above
      the monogram, so its optical middle sits this fraction of its height above
@@ -231,7 +231,7 @@ address { font-style: normal; }
 .brandmark { display: inline-block; line-height: 1.1; }
 /* phones: logo sized so its visible wordmark clears the burger on both sides
    (the file's ink is 841 of 900px wide; 9rem = two gutters + two burgers) */
-.header { --logo-h: min(176px, calc((100vw - 9rem) * 0.536)); }
+.header { --logo-h: min(141px, calc((100vw - 9rem) * 0.429)); } /* 80% of the width that just clears the burgers */
 .header .brandmark { text-align: center; }
 .header .brandmark__logo {
   height: var(--logo-h); width: auto; margin-inline: auto;
@@ -314,16 +314,20 @@ address { font-style: normal; }
 }
 
 /* mobile overlay menu */
-.menu { position: fixed; inset: 0; z-index: 90; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; padding: calc(var(--header-h) + 2rem) var(--gutter) 2.5rem; transform: translateY(-100%); transition: transform 0.55s var(--ease); visibility: hidden; overflow-y: auto; }
+.menu { position: fixed; inset: 0; z-index: 90; background: var(--paper); color: var(--ink); display: flex; flex-direction: column; padding: calc(var(--header-h) + 1rem) var(--gutter) 1.5rem; transform: translateY(-100%); transition: transform 0.55s var(--ease); visibility: hidden; overflow-y: auto; }
 .menu-open .menu { transform: translateY(0); visibility: visible; }
 .menu-open { overflow: hidden; }
-.menu__list { display: flex; flex-direction: column; }
-.menu__list a { display: block; font-family: var(--font-serif); font-size: clamp(2.8rem, 12.5vw, 3.6rem); font-weight: 400; line-height: 1.2; padding: 0.55rem 0; border-bottom: var(--border) solid var(--line-soft); }
+.menu__list { display: flex; flex-direction: column;
+  /* type as big as fits one screen: the list is 11.7em tall (6 links, 2 group
+     heads, their gaps), so the size is what's left under the bar over 11.7 */
+  font-size: min(12.5vw, 3.6rem, calc((100vh - var(--header-h) - 2.5rem - 6px) / 11.7)); }
+@supports (height: 100svh) { .menu__list { font-size: min(12.5vw, 3.6rem, calc((100svh - var(--header-h) - 2.5rem - 6px) / 11.7)); } }
+.menu__list a { display: block; font-family: var(--font-serif); font-size: 1em; font-weight: 400; line-height: 1.2; padding: 0.153em 0; border-bottom: var(--border) solid var(--line-soft); }
 .menu__list a .idx { display: none; }
 .menu__list a[aria-current="page"] { color: var(--accent); }
-.menu__grp { padding-top: 1.6rem; }
+.menu__grp { padding-top: 0.444em; }
 .menu__grp:first-child { padding-top: 0; }
-.menu__grp-head { font-family: var(--font-label); font-size: 1.7rem; font-weight: 400; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); padding-bottom: 0.4rem; }
+.menu__grp-head { font-family: var(--font-label); font-size: 0.472em; line-height: 1.65; font-weight: 400; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); padding-bottom: 0.235em; }
 /* label / value pairs in two aligned columns (opening hours on the contact page) */
 .pairs { display: inline-grid; grid-template-columns: auto auto; column-gap: 1.25rem; text-align: left; font-variant-numeric: tabular-nums; }
 .pairs > :nth-child(odd) { color: var(--ink-3); }
