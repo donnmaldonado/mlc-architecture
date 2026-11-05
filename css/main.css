@@ -465,7 +465,7 @@ address { font-style: normal; }
 .showcase__btn:hover .arrow { transform: translateX(4px); }
 .showcase__btn[data-showcase-prev]:hover .arrow { transform: translateX(-4px); }
 /* phone and tablet (the burger-menu widths): no room for arrows beside the
-   picture, so the picture runs edge to edge at 4:3, the town sits over a
+   picture, so the picture spans the gutters at 4:3, the town sits over a
    larger name, the slider gets a thumb-sized handle, and the arrows drop
    under the picture either side of a visible "Project 3 of 5". The page
    is at least the screen's height, so the footer sits on the bottom edge,
@@ -479,9 +479,9 @@ address { font-style: normal; }
   .project__head .label { font-size: 0.95rem; }
   .project__head .label::after { content: none; }
   .project__head .h1 { font-size: clamp(1.4rem, 5.5vw, 1.75rem); line-height: 1.25; margin-top: 0.35rem; text-wrap: wrap; }
-  .project .compare { grid-column: 1; margin-inline: calc(var(--gutter) * -1); }
+  .project .compare { grid-column: 1; }
   .project .compare__stage { aspect-ratio: 4 / 3; max-height: none; }
-  .project .compare__bar { padding-inline: var(--gutter); margin-bottom: 0.5rem; }
+  .project .compare__bar { margin-bottom: 0.5rem; }
   .project .compare__end { font-size: 0.9rem; }
   .project .compare__range { --thumb: 1.75rem; height: 2.5rem; }
   .showcase__nav { grid-row: 3; grid-template-columns: auto 1fr auto; margin-top: 0.75rem; pointer-events: auto; }
