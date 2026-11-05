@@ -318,12 +318,12 @@ address { font-style: normal; }
 .menu-open .menu { transform: translateY(0); visibility: visible; }
 .menu-open { overflow: hidden; }
 .menu__list { display: flex; flex-direction: column; }
-.menu__list a { display: block; font-family: var(--font-serif); font-size: clamp(2.3rem, 10vw, 3rem); font-weight: 400; line-height: 1.25; padding: 0.7rem 0; border-bottom: var(--border) solid var(--line-soft); }
+.menu__list a { display: block; font-family: var(--font-serif); font-size: clamp(2.8rem, 12.5vw, 3.6rem); font-weight: 400; line-height: 1.2; padding: 0.55rem 0; border-bottom: var(--border) solid var(--line-soft); }
 .menu__list a .idx { display: none; }
 .menu__list a[aria-current="page"] { color: var(--accent); }
 .menu__grp { padding-top: 1.6rem; }
 .menu__grp:first-child { padding-top: 0; }
-.menu__grp-head { font-family: var(--font-label); font-size: 1.15rem; font-weight: 400; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); padding-bottom: 0.4rem; }
+.menu__grp-head { font-family: var(--font-label); font-size: 1.35rem; font-weight: 400; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-3); padding-bottom: 0.4rem; }
 /* label / value pairs in two aligned columns (opening hours on the contact page) */
 .pairs { display: inline-grid; grid-template-columns: auto auto; column-gap: 1.25rem; text-align: left; font-variant-numeric: tabular-nums; }
 .pairs > :nth-child(odd) { color: var(--ink-3); }
